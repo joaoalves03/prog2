@@ -10,9 +10,9 @@ import java.io.IOException;
 public class PetCareApplication extends Application {
   @Override
   public void start(Stage stage) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("register.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("login.fxml"));
     Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-    stage.setTitle("Hello!");
+    stage.setTitle("Pet Care");
     stage.setScene(scene);
     stage.show();
   }
