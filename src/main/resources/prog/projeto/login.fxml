@@ -4,9 +4,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
 
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+<VBox alignment="CENTER" style="-fx-padding: 10;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="prog.projeto.controllers.LoginController">
+   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@assets/petcare.png"/>
+   </ImageView>
    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pet Care" textAlignment="CENTER">
       <VBox.margin>
          <Insets top="10.0"/>
