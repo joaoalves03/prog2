@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @AllArgsConstructor
-public abstract class User {
+public abstract class User implements Serializable {
   int id;
   UserType type;
   @Setter String firstName, lastName;
