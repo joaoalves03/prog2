@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 
 <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="prog.projeto.LoginController">
+      fx:controller="prog.projeto.controllers.LoginController">
    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pet Care" textAlignment="CENTER">
       <VBox.margin>
          <Insets top="10.0"/>
@@ -39,6 +39,6 @@
             <Insets/>
          </HBox.margin>
       </Text>
-      <Hyperlink text="Registar"/>
+      <Hyperlink text="Registar" fx:id="registerLink" onAction="#onRegisterClick"/>
    </HBox>
 </VBox>

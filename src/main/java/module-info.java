@@ -9,4 +9,6 @@ module prog.projeto {
 
   opens prog.projeto to javafx.fxml;
   exports prog.projeto;
+  exports prog.projeto.controllers;
+  opens prog.projeto.controllers to javafx.fxml;
 }
