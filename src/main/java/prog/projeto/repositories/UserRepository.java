@@ -4,6 +4,7 @@ import prog.projeto.models.users.User;
 import prog.projeto.models.users.UserType;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class UserRepository extends Repository<User> {
   private static UserRepository instance;
@@ -17,6 +18,12 @@ public class UserRepository extends Repository<User> {
 
   public List<User> getByType(UserType type) {
     return entities.values().stream().filter(user -> user.getType() == type).toList();
+  }
+
+  public User findByEmail(String email) throws NoSuchElementException {
+    return entities.values().stream().filter(
+        x -> x.getEmail().equals(email)
+    ).findFirst().orElseThrow();
   }
 
   @Override

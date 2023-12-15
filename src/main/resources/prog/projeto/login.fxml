@@ -15,7 +15,7 @@
          <Insets top="10.0" />
       </VBox.margin>
    </Text>
-   <TextField promptText="Utilizador">
+   <TextField promptText="E-mail" fx:id="email">
       <opaqueInsets>
          <Insets />
       </opaqueInsets>
@@ -23,12 +23,12 @@
          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
       </VBox.margin>
    </TextField>
-   <TextField promptText="Palavra-passe">
+   <TextField promptText="Palavra-passe" fx:id="password">
       <VBox.margin>
          <Insets bottom="10.0" left="10.0" right="10.0" />
       </VBox.margin>
    </TextField>
-   <Button mnemonicParsing="false" text="Iniciar sessão">
+   <Button mnemonicParsing="false" text="Iniciar sessão" onAction="#onLoginClick">
       <VBox.margin>
          <Insets bottom="10.0" />
       </VBox.margin>
