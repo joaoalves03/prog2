@@ -8,20 +8,19 @@ import java.io.Serializable;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
+@Getter
 public class Company implements Serializable {
-  @Getter
   int id;
-  @Getter @Setter
+  @Setter
   String name;
-  @Getter @Setter
+  @Setter
   String address;
-  @Getter @Setter
+  @Setter
   String city;
-  @Getter @Setter
+  @Setter
   String phone;
-  @Getter @Setter
+  @Setter
   CompanySpecialty specialty;
-  @Getter
   Set<Integer> employees;
 
   public void addEmployee(int id) throws AlreadyExistsException {
