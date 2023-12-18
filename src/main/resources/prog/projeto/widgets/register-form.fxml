@@ -30,16 +30,16 @@
                </padding>
             </TextField>
             <Label contentDisplay="BOTTOM" layoutX="10.0" layoutY="70.0" text="Password" />
-            <PasswordField />
+            <PasswordField fx:id="password" />
             <Label contentDisplay="BOTTOM" layoutX="10.0" layoutY="10.0" text="Morada" />
             <HBox fillHeight="false" layoutX="10.0" layoutY="31.0" spacing="10.0">
                <children>
-                  <TextField prefWidth="1000.0" promptText="Rua" />
-                  <TextField prefWidth="1000.0" promptText="Cidade" />
+                  <TextField fx:id="address" prefWidth="1000.0" promptText="Rua" />
+                  <TextField fx:id="city" prefWidth="1000.0" promptText="Cidade" />
                </children>
             </HBox>
             <Label contentDisplay="BOTTOM" layoutX="10.0" layoutY="70.0" text="Telemovel" />
-            <TextField layoutX="10.0" layoutY="91.0">
+            <TextField fx:id="phone" layoutX="10.0" layoutY="91.0">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
