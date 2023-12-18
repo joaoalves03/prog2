@@ -1,14 +1,16 @@
 package prog.projeto.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import prog.projeto.models.users.ServiceProvider;
 
 @Data
+@AllArgsConstructor
 public class AnimalCenter {
-  ServiceProvider provider;
-  String address;
-  String city;
-  String phone;
-  AnimalServiceType serviceType;
-  float servicePrice;
+  private ServiceProvider provider;
+  private String address;
+  private String city;
+  private String phone;
+  private AnimalServiceType serviceType;
+  private float servicePrice;
 }

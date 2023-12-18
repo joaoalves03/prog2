@@ -6,7 +6,7 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class Extra {
-  String name;
-  float price;
-  int quantity;
+  private String name;
+  private float price;
+  private int quantity;
 }

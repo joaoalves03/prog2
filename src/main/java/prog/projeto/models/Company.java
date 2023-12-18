@@ -5,23 +5,34 @@ import lombok.Setter;
 import prog.projeto.exceptions.AlreadyExistsException;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
 @Getter
 public class Company implements Serializable {
-  int id;
+  private final int id;
   @Setter
-  String name;
+  private String name;
   @Setter
-  String address;
+  private String address;
   @Setter
-  String city;
+  private String city;
   @Setter
-  String phone;
+  private String phone;
   @Setter
-  CompanySpecialty specialty;
-  Set<Integer> employees;
+  private CompanySpecialty specialty;
+  private final Set<Integer> employees;
+
+  public Company(int id, String name, String address, String city, String phone, CompanySpecialty specialty) {
+    this.id = id;
+    this.name = name;
+    this.address = address;
+    this.city = city;
+    this.phone = phone;
+    this.specialty = specialty;
+    this.employees = new HashSet<>();
+  }
 
   public void addEmployee(int id) throws AlreadyExistsException {
     if(!employees.add(id)) throw new AlreadyExistsException();

@@ -8,10 +8,10 @@ import java.util.*;
 
 @Getter
 public class Appointment implements Serializable {
-  int companyID;
+  private final int companyID;
   @Setter
-  float price;
-  Set<Extra> extras;
+  private float price;
+  private final Set<Extra> extras;
 
   public Appointment(int companyID, float price) {
     this.companyID = companyID;
