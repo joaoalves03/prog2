@@ -9,6 +9,7 @@ public class SceneManager {
     FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource(sceneName));
     Scene scene = new Scene(fxmlLoader.load());
     stage.setScene(scene);
+    stage.centerOnScreen();
     stage.show();
   }
 }
