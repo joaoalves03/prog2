@@ -1,0 +1,39 @@
+@import "theme.css";
+
+.background {
+    -fx-background-color: -background-900;
+    -fx-padding: 30;
+}
+
+VBox {
+    -fx-background-color: -background-800;
+    -fx-background-radius: 20;
+    -fx-padding: 20;
+    -fx-spacing: 20;
+}
+
+.label {
+    -fx-font-size: 18;
+}
+
+.title {
+    -fx-font-size: 50;
+}
+
+.text-field {
+    -fx-background-color: -background-700;
+    -fx-background-radius: 5;
+    -fx-padding: 15;
+    -fx-font-size: 18;
+}
+
+.button {
+    -fx-background-color: -primary-500;
+    -fx-background-radius: 8;
+    -fx-font-size: 18;
+    -fx-padding: 10;
+}
+
+.button:hover {
+    -fx-background-color: -primary-600;
+}

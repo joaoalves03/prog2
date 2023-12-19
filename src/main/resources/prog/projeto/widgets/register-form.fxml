@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<FlowPane orientation="VERTICAL" prefWrapLength="450.0" vgap="10.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+
+    <Label contentDisplay="BOTTOM" text="Nome"/>
+    <HBox fillHeight="false" spacing="10.0">
+        <TextField fx:id="firstName" prefWidth="300.0" promptText="Primeiro"/>
+        <TextField fx:id="lastName" layoutX="10.0" layoutY="10.0" prefWidth="300.0" promptText="Ultimo"/>
+    </HBox>
+
+    <Label contentDisplay="BOTTOM" text="Email"/>
+    <TextField fx:id="email"/>
+
+    <Label contentDisplay="BOTTOM" text="Password"/>
+    <PasswordField fx:id="password"/>
+
+    <Label contentDisplay="BOTTOM" text="Morada"/>
+    <HBox fillHeight="false" spacing="10.0">
+        <TextField fx:id="address" prefWidth="300.0" promptText="Rua"/>
+        <TextField fx:id="city" layoutX="10.0" layoutY="10.0" prefWidth="300.0" promptText="Cidade"/>
+    </HBox>
+
+    <Label contentDisplay="BOTTOM" text="Telemovel"/>
+    <TextField fx:id="phone"/>
+
+</FlowPane>
