@@ -5,9 +5,10 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<FlowPane alignment="CENTER" stylesheets="@assets/styles/form.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
-   <VBox alignment="TOP_CENTER" spacing="10.0">
+<FlowPane alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
+         stylesheets="@assets/styles/form.css" styleClass="background" >
 
+   <VBox alignment="TOP_CENTER" spacing="10.0">
       <ImageView fitHeight="123.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
          <Image url="@assets/petcare.png" />
       </ImageView>
@@ -21,4 +22,5 @@
          <Insets />
       </FlowPane.margin>
    </VBox>
+
 </FlowPane>

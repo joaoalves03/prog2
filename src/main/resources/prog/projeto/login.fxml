@@ -6,13 +6,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<FlowPane alignment="CENTER" stylesheets="@assets/styles/form.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.LoginController">
+<FlowPane alignment="CENTER" styleClass="background" stylesheets="@assets/styles/form.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.LoginController">
    <VBox alignment="CENTER">
 
       <ImageView fitHeight="123.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
          <Image url="@assets/petcare.png" />
       </ImageView>
-      <Label text="Pet Care" styleClass="title" />
+      <Label styleClass="title" text="Pet Care" />
 
       <TextField fx:id="email" promptText="E-mail" />
       <PasswordField fx:id="password" promptText="Palavra-passe" />
