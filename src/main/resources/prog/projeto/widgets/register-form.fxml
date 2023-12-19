@@ -4,49 +4,29 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
-         <children>
-            <Label contentDisplay="BOTTOM" text="Nome">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Label>
-            <HBox fillHeight="false" spacing="10.0">
-               <children>
-                  <TextField fx:id="firstName" prefWidth="1000.0" promptText="Primeiro" />
-                  <TextField fx:id="lastName" prefWidth="1000.0" promptText="Ultimo" />
-               </children>
-            </HBox>
-            <Label contentDisplay="BOTTOM" text="Email">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="email">
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </TextField>
-            <Label contentDisplay="BOTTOM" layoutX="10.0" layoutY="70.0" text="Password" />
-            <PasswordField fx:id="password" />
-            <Label contentDisplay="BOTTOM" layoutX="10.0" layoutY="10.0" text="Morada" />
-            <HBox fillHeight="false" layoutX="10.0" layoutY="31.0" spacing="10.0">
-               <children>
-                  <TextField fx:id="address" prefWidth="1000.0" promptText="Rua" />
-                  <TextField fx:id="city" prefWidth="1000.0" promptText="Cidade" />
-               </children>
-            </HBox>
-            <Label contentDisplay="BOTTOM" layoutX="10.0" layoutY="70.0" text="Telemovel" />
-            <TextField fx:id="phone" layoutX="10.0" layoutY="91.0">
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </TextField>
-         </children>
-      </VBox>
-   </children>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+
+   <Label contentDisplay="BOTTOM" text="Nome" />
+   <HBox fillHeight="false" spacing="10.0">
+         <TextField fx:id="firstName" prefWidth="1000.0" promptText="Primeiro" />
+         <TextField fx:id="lastName" layoutX="10.0" layoutY="10.0" prefWidth="1000.0" promptText="Ultimo" />
+   </HBox>
+
+   <Label contentDisplay="BOTTOM" text="Email" />
+   <TextField fx:id="email" prefWidth="1000.0" />
+
+   <Label contentDisplay="BOTTOM" text="Password" />
+   <PasswordField fx:id="password" />
+
+   <Label contentDisplay="BOTTOM" layoutX="10.0" layoutY="60.0" text="Morada" />
+   <HBox fillHeight="false" spacing="10.0">
+         <TextField fx:id="address" prefWidth="1000.0" promptText="Rua" />
+         <TextField fx:id="city" layoutX="10.0" layoutY="10.0" prefWidth="1000.0" promptText="Cidade" />
+   </HBox>
+
+   <Label contentDisplay="BOTTOM" text="Telemovel" />
+   <TextField fx:id="phone" prefWidth="1000.0" />
+
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>

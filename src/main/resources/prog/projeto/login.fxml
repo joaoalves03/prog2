@@ -6,42 +6,29 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" style="-fx-padding: 10;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.LoginController">
-   <ImageView fitHeight="123.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@assets/petcare.png" />
-   </ImageView>
-   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pet Care" textAlignment="CENTER">
-      <VBox.margin>
-         <Insets top="10.0" />
-      </VBox.margin>
-   </Text>
-   <TextField promptText="E-mail" fx:id="email">
-      <opaqueInsets>
-         <Insets />
-      </opaqueInsets>
-      <VBox.margin>
-         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-      </VBox.margin>
-   </TextField>
-   <TextField promptText="Palavra-passe" fx:id="password">
-      <VBox.margin>
-         <Insets bottom="10.0" left="10.0" right="10.0" />
-      </VBox.margin>
-   </TextField>
-   <Button mnemonicParsing="false" text="Iniciar sessão" onAction="#onLoginClick">
-      <VBox.margin>
-         <Insets bottom="10.0" />
-      </VBox.margin>
-   </Button>
-   <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0">
-      <VBox.margin>
-         <Insets bottom="10.0" />
-      </VBox.margin>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Não tem conta?">
-         <HBox.margin>
-            <Insets />
-         </HBox.margin>
-      </Text>
-      <Hyperlink fx:id="registerLink" onAction="#onRegisterClick" text="Registar" />
-   </HBox>
-</VBox>
+<FlowPane alignment="CENTER" stylesheets="@assets/styles/form.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.LoginController">
+   <VBox alignment="CENTER">
+
+      <ImageView fitHeight="123.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@assets/petcare.png" />
+      </ImageView>
+      <Label text="Pet Care" styleClass="title" />
+
+      <TextField fx:id="email" promptText="E-mail" />
+      <PasswordField fx:id="password" promptText="Palavra-passe" />
+      <Button mnemonicParsing="false" onAction="#onLoginClick" text="Iniciar sessão" />
+
+
+      <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Não tem conta?">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+         </Text>
+         <Hyperlink fx:id="registerLink" onAction="#onRegisterClick" text="Registar" />
+      </HBox>
+   </VBox>
+</FlowPane>

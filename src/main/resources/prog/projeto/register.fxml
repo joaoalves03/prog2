@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
+<FlowPane alignment="CENTER" stylesheets="@assets/styles/form.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <VBox alignment="TOP_CENTER" spacing="10.0">
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea">
-   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-</ScrollPane>
+      <ImageView fitHeight="123.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@assets/petcare.png" />
+      </ImageView>
+      <Label text="Pet Care" styleClass="title" />
+
+      <fx:include source="widgets/register-form.fxml" />
+
+      <Button mnemonicParsing="false" text="Registar" />
+
+      <FlowPane.margin>
+         <Insets />
+      </FlowPane.margin>
+   </VBox>
+</FlowPane>
