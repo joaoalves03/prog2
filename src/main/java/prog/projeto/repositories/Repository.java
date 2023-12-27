@@ -8,6 +8,8 @@ public abstract class Repository<T> {
   protected String fileName;
   protected Map<Long, T> entities = new HashMap<>();
 
+  public int length() { return entities.size(); }
+
   public void add(T entity) {
     entities.put(getId(entity), entity);
   }
