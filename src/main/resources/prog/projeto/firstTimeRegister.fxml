@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+<FlowPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="prog.projeto.controllers.FirstTimeRegisterController"
+          prefHeight="400.0" prefWidth="600.0">
+
+    <VBox alignment="TOP_CENTER" spacing="10.0">
+        <ImageView fitHeight="123.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@assets/petcare.png" />
+        </ImageView>
+        <Label text="Pet Care" styleClass="title" />
+
+        <fx:include source="widgets/register-form.fxml" fx:id="registerForm" />
+
+        <Button mnemonicParsing="false" text="Registar" onAction="#onRegisterSubmit"/>
+
+        <FlowPane.margin>
+            <Insets />
+        </FlowPane.margin>
+    </VBox>
+
+</FlowPane>

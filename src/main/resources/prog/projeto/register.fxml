@@ -6,7 +6,8 @@
 <?import javafx.scene.layout.*?>
 
 <FlowPane alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
-         stylesheets="@assets/styles/form.css" styleClass="background" >
+         stylesheets="@assets/styles/form.css" styleClass="background"
+         fx:controller="prog.projeto.controllers.RegisterController">
 
    <VBox alignment="TOP_CENTER" spacing="10.0">
       <ImageView fitHeight="123.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
@@ -14,9 +15,9 @@
       </ImageView>
       <Label text="Pet Care" styleClass="title" />
 
-      <fx:include source="widgets/register-form.fxml" />
+      <fx:include source="widgets/register-form.fxml" fx:id="registerForm" />
 
-      <Button mnemonicParsing="false" text="Registar" />
+      <Button mnemonicParsing="false" text="Registar"/>
 
       <FlowPane.margin>
          <Insets />

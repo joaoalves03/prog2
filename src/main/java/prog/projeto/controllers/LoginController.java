@@ -20,7 +20,7 @@ public class LoginController {
   @FXML
   protected void onRegisterClick() throws Exception {
     Stage stage = (Stage) registerLink.getScene().getWindow();
-    SceneManager.switchScene(stage, "register.fxml");
+    SceneManager.switchScene(stage, "firstTimeRegister.fxml");
   }
 
   @FXML
