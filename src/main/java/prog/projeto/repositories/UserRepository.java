@@ -28,6 +28,8 @@ public class UserRepository extends Repository<User> {
 
   @Override
   public int getNextId() {
+    if(entities.isEmpty()) return 0;
+
     return getId(entities.get(entities.size()-1)) + 1;
   }
 
