@@ -10,7 +10,7 @@
 
    <VBox alignment="TOP_CENTER" spacing="10.0">
       <ImageView fitHeight="123.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
-         <Image url="@assets/petcare.png" />
+         <Image url="@assets/icons/petcare.png" />
       </ImageView>
       <Label text="Pet Care" styleClass="title" />
 
