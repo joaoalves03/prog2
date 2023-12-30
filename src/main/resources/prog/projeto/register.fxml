@@ -15,9 +15,12 @@
       </ImageView>
       <Label text="Pet Care" styleClass="title" />
 
+      <!--<Label text="Por favor adicione o primeiro utilizador" visible="${firstTime}"/>
+      <Label text="${firstTime}"/>-->
+
       <fx:include source="widgets/register-form.fxml" fx:id="registerForm" />
 
-      <Button mnemonicParsing="false" text="Registar"/>
+      <Button mnemonicParsing="false" text="Registar" onAction="#onRegisterSubmit"/>
 
       <FlowPane.margin>
          <Insets />

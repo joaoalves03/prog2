@@ -27,13 +27,12 @@ public class UserRepository extends Repository<User> {
   }
 
   @Override
-  public long getNextId() {
-    //TODO
-    return 0;
+  public int getNextId() {
+    return getId(entities.get(entities.size()-1)) + 1;
   }
 
   @Override
-  public long getId(User entity) {
+  public int getId(User entity) {
     return entity.getId();
   }
 }

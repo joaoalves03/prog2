@@ -10,7 +10,7 @@
     <Label contentDisplay="BOTTOM" text="Nome"/>
     <HBox fillHeight="false" spacing="10.0">
         <TextField fx:id="firstName" prefWidth="300.0" promptText="Primeiro"/>
-        <TextField fx:id="lastName" layoutX="10.0" layoutY="10.0" prefWidth="300.0" promptText="Ultimo"/>
+        <TextField fx:id="lastName" layoutX="10.0" layoutY="10.0" prefWidth="300.0" promptText="Último"/>
     </HBox>
 
     <Label contentDisplay="BOTTOM" text="Email"/>
