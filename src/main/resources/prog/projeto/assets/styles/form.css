@@ -1,7 +1,6 @@
-@import "theme.css";
+@import "global.css";
 
 .background {
-    -fx-background-color: -background-900;
     -fx-padding: 30;
 }
 

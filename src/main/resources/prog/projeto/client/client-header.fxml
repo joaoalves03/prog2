@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"  xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="prog.projeto.controllers.HeaderController"
+          stylesheets="@../assets/styles/header.css">
+
+    <columnConstraints>
+        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="500.0" />
+        <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+
+    <Label styleClass="title" fx:id="titleLabel" text="PetCare">
+        <graphic>
+            <ImageView fitHeight="60.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../assets/icons/petcare.png" />
+            </ImageView>
+        </graphic>
+    </Label>
+
+
+    <HBox alignment="CENTER" styleClass="profile-dropdown" GridPane.columnIndex="1">
+        <MenuButton fx:id="userDropDown" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Username">
+          <items>
+              <MenuItem mnemonicParsing="false" onAction="#openPage" text="Marcar Serviços" userData="client/scheduleService.fxml" />
+              <MenuItem mnemonicParsing="false" onAction="#openPage" text="Ver Marcações" userData="client/viewAppointments.fxml" />
+              <MenuItem mnemonicParsing="false" onAction="#openPage" text="Definições" userData="client/settings.fxml" />
+              <MenuItem mnemonicParsing="false" onAction="#logout" text="Sair" />
+          </items>
+        </MenuButton>
+        <ImageView fitHeight="40.0" fitWidth="40.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../assets/icons/user.png" />
+        </ImageView>
+    </HBox>
+</GridPane>

@@ -12,7 +12,7 @@ import java.net.URL;
 public class PetCareApplication extends Application {
   @Override
   public void start(Stage stage) throws IOException {
-    URL url = PetCareApplication.class.getResource("client/home.fxml");
+    URL url = PetCareApplication.class.getResource("client/scheduleService.fxml");
 
     UserRepository userRepository = UserRepository.getInstance();
     try {

@@ -1,0 +1,18 @@
+@import "global.css";
+
+.content {
+    -fx-padding: 15;
+    -fx-vgap: 10;
+}
+
+.content .choice-box {
+    -fx-background-color: -background-700;
+}
+
+.content .choice-box .context-menu {
+    -fx-background-color: -background-600;
+}
+
+.content .choice-box .menu-item:hover, .content .choice-box .menu-item:focused {
+    -fx-background-color: -background-500;
+}

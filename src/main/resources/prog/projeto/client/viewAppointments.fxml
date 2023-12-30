@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox styleClass="background" stylesheets="@../assets/styles/dashboard.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.ScheduleServiceController">
+
+    <fx:include source="client-header.fxml" />
+
+    <FlowPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL" styleClass="content">
+        <Label nodeOrientation="RIGHT_TO_LEFT" text="Test" />
+        <Label nodeOrientation="RIGHT_TO_LEFT" text="Test" />
+      <Button mnemonicParsing="false" text="Button" />
+      <ComboBox prefWidth="150.0" />
+    </FlowPane>
+
+</VBox>
