@@ -41,7 +41,7 @@ public class LoginController {
       if(user.getPassword().equals(password.getText())) {
         // TODO: Switch with an actual scene
         Stage stage = (Stage) email.getScene().getWindow();
-        SceneManager.switchScene(stage, "hello-view.fxml");
+        SceneManager.switchScene(stage, "client/scheduleService.fxml");
       } else {
         throw new Exception();
       }
