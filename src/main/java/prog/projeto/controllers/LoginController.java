@@ -46,11 +46,7 @@ public class LoginController {
         throw new Exception();
       }
     } catch (Exception err) {
-      Alert alert = new Alert(Alert.AlertType.ERROR);
-      alert.setTitle("Erro");
-      alert.setHeaderText("Erro a iniciar sessão");
-      alert.setContentText("Credenciais erradas");
-      alert.showAndWait();
+      SceneManager.openErrorAlert("Erro a iniciar sessão", "Credenciais erradas");
     }
   }
 }
