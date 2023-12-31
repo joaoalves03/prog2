@@ -1,0 +1,7 @@
+@import "theme.css";
+
+.background {
+    -fx-background-color: -background-900;
+    -fx-text-fill: -text-90;
+    -fx-font-size: 16;
+}

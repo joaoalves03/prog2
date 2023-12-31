@@ -1,0 +1,27 @@
+@import "global.css";
+
+GridPane {
+    -fx-background-color: -background-800;
+    -fx-padding: 15;
+}
+
+GridPane .title{
+    -fx-font-size: 24;
+}
+
+.profile-dropdown {
+    -fx-spacing: 10;
+}
+
+.menu-button {
+    -fx-background-color: -background-700;
+}
+
+.menu-button .context-menu {
+    -fx-background-color: -background-600;
+    -fx-background-radius: 8;
+}
+
+.menu-item:hover, .menu-item:focused {
+    -fx-background-color: -background-500;
+}
