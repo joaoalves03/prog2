@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane stylesheets="@../assets/styles/header.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.HeaderController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="500.0" />
+        <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="30.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints fillHeight="false" valignment="CENTER" vgrow="SOMETIMES" />
+    </rowConstraints>
+
+    <ImageView fitHeight="60.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../assets/icons/petcare.png" />
+    </ImageView>
+
+
+    <FlowPane fx:id="closeButton" onMouseClicked="#closeWindow" alignment="CENTER" columnHalignment="CENTER" prefWidth="10.0" GridPane.columnIndex="1">
+        <ImageView accessibleRole="BUTTON" fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../assets/icons/close.png"/>
+          <viewport>
+              <Rectangle2D/>
+          </viewport>
+        </ImageView>
+    </FlowPane>
+
+</GridPane>
