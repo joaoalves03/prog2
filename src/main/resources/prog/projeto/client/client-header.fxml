@@ -16,7 +16,7 @@
         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
     </rowConstraints>
 
-    <Label styleClass="title" fx:id="titleLabel" text="PetCare">
+    <Label styleClass="title" text="PetCare">
         <graphic>
             <ImageView fitHeight="60.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                 <Image url="@../assets/icons/petcare.png" />
@@ -30,7 +30,7 @@
           <items>
               <MenuItem mnemonicParsing="false" onAction="#openPage" text="Marcar Serviços" userData="client/scheduleService.fxml" />
               <MenuItem mnemonicParsing="false" onAction="#openPage" text="Ver Marcações" userData="client/viewAppointments.fxml" />
-              <MenuItem mnemonicParsing="false" onAction="#openPage" text="Definições" userData="client/settings.fxml" />
+              <MenuItem mnemonicParsing="false" onAction="#openModal" text="Definições" userData="client/settings.fxml" />
               <MenuItem mnemonicParsing="false" onAction="#logout" text="Sair" />
           </items>
         </MenuButton>
