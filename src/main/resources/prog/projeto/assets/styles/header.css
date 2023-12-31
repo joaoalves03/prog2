@@ -2,7 +2,7 @@
 
 GridPane {
     -fx-background-color: -background-800;
-    -fx-padding: 15;
+    -fx-padding: 10;
 }
 
 GridPane .title{
@@ -24,4 +24,20 @@ GridPane .title{
 
 .menu-item:hover, .menu-item:focused {
     -fx-background-color: -background-500;
+}
+
+
+#closeButton {
+    -fx-padding: 8;
+    -fx-background-radius: 50;
+}
+
+#closeButton:hover {
+    -fx-background-color: red;
+}
+
+#closeButton:focused {
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-style: none;
 }

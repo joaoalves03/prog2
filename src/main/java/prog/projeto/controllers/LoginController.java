@@ -41,16 +41,12 @@ public class LoginController {
       if(user.getPassword().equals(password.getText())) {
         // TODO: Switch with an actual scene
         Stage stage = (Stage) email.getScene().getWindow();
-        SceneManager.switchScene(stage, "hello-view.fxml");
+        SceneManager.switchScene(stage, "client/scheduleService.fxml");
       } else {
         throw new Exception();
       }
     } catch (Exception err) {
-      Alert alert = new Alert(Alert.AlertType.ERROR);
-      alert.setTitle("Erro");
-      alert.setHeaderText("Erro a iniciar sessão");
-      alert.setContentText("Credenciais erradas");
-      alert.showAndWait();
+      SceneManager.openErrorAlert("Erro a iniciar sessão", "Credenciais erradas");
     }
   }
 }

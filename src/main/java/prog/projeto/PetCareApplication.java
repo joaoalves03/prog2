@@ -1,16 +1,12 @@
 package prog.projeto;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import prog.projeto.repositories.UserRepository;
 
-import java.io.IOException;
-
 public class PetCareApplication extends Application {
   @Override
-  public void start(Stage stage) throws IOException {
+  public void start(Stage stage) throws Exception {
   String resource = "login.fxml";
 
     UserRepository userRepository = UserRepository.getInstance();
@@ -24,11 +20,7 @@ public class PetCareApplication extends Application {
       resource = "register.fxml";
     }
 
-    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource(resource));
-    Scene scene = new Scene(fxmlLoader.load());
-    stage.setTitle("Pet Care");
-    stage.setScene(scene);
-    stage.show();
+    SceneManager.openNewWindow(resource);
   }
 
   public static void main(String[] args) {
