@@ -19,4 +19,11 @@ public class RegisterFormController {
   public TextField city;
   @FXML
   public TextField phone;
+
+  public boolean isFormCorrect() {
+    return
+        email.getText().matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
+        && phone.getText().matches("\\d{9}")
+    ;
+  }
 }

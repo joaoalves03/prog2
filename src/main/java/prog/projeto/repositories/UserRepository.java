@@ -1,7 +1,7 @@
 package prog.projeto.repositories;
 
-import prog.projeto.models.users.User;
-import prog.projeto.models.users.UserType;
+import prog.projeto.models.User;
+import prog.projeto.models.UserType;
 
 import java.util.List;
 import java.util.NoSuchElementException;

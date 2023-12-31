@@ -6,6 +6,9 @@
 <?import javafx.scene.layout.*?>
 
 <FlowPane alignment="CENTER" styleClass="background" stylesheets="@assets/styles/form.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.RegisterController">
+   <fx:define>
+      <ToggleGroup fx:id="userType" />
+   </fx:define>
 
    <VBox alignment="TOP_CENTER" spacing="10.0">
       <ImageView fitHeight="123.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
@@ -13,7 +16,11 @@
       </ImageView>
       <Label styleClass="title" text="Pet Care" />
 
-      <Label text="Por favor adicione o primeiro utilizador" fx:id="firstTimeLabel" visible="false" managed="false"/>
+      <Label fx:id="firstTimeLabel" text="Por favor adicione o primeiro utilizador" visible="false" managed="false" />
+      <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="8.0" fx:id="userTypeSelection">
+         <RadioButton mnemonicParsing="false" text="Cliente" toggleGroup="$userType" selected="true"/>
+         <RadioButton mnemonicParsing="false" text="Prestador" toggleGroup="$userType"/>
+      </HBox>
 
       <fx:include fx:id="registerForm" source="widgets/register-form.fxml" />
       <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="8.0">
