@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="50.247578mm"
+   height="50.200321mm"
+   viewBox="0 0 50.247578 50.200321"
+   version="1.1"
+   id="svg5"
+   inkscape:export-filename="/home/pedro/alpha/school/ipvc/ano2/s1/prog2/projeto/src/main/resources/prog/projeto/assets/icons/close.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="close.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.6754065"
+     inkscape:cx="67.744755"
+     inkscape:cy="132.80359"
+     inkscape:window-width="1920"
+     inkscape:window-height="1013"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-77.800366,-102.9159)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="80.331535"
+       y="149.78207"
+       id="text1442"><tspan
+         sodipodi:role="line"
+         id="tspan1440"
+         style="stroke-width:0.264583"
+         x="80.331535"
+         y="149.78207"></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:93.2646px;line-height:1.25;font-family:sans-serif;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2.33162"
+       x="73.887512"
+       y="155.56776"
+       id="text6087"
+       transform="scale(1.016011,0.98424131)"><tspan
+         sodipodi:role="line"
+         id="tspan6085"
+         style="stroke-width:2.33162;fill:#ffffff"
+         x="73.887512"
+         y="155.56776">x</tspan></text>
+  </g>
+</svg>
