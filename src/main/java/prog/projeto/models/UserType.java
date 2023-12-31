@@ -1,4 +1,4 @@
-package prog.projeto.models.users;
+package prog.projeto.models;
 
 public enum UserType {
   Client,

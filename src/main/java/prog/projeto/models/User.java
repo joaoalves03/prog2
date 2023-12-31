@@ -1,4 +1,4 @@
-package prog.projeto.models.users;
+package prog.projeto.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Getter
 @AllArgsConstructor
-public abstract class User implements Serializable {
+public class User implements Serializable {
   private int id;
   private UserType type;
   @Setter private String firstName, lastName;

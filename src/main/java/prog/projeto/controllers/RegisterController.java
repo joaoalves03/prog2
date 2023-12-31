@@ -2,10 +2,15 @@ package prog.projeto.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import prog.projeto.SceneManager;
-import prog.projeto.models.users.Admin;
+import prog.projeto.models.User;
+import prog.projeto.models.UserType;
 import prog.projeto.repositories.UserRepository;
 
 import java.net.URL;
@@ -16,9 +21,12 @@ public class RegisterController implements Initializable {
   RegisterFormController registerFormController;
   @FXML
   boolean firstTime = false;
-
   @FXML
   Label firstTimeLabel;
+  @FXML
+  ToggleGroup userType;
+  @FXML
+  HBox userTypeSelection;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -27,17 +35,44 @@ public class RegisterController implements Initializable {
       firstTime = true;
       firstTimeLabel.setVisible(true);
       firstTimeLabel.setManaged(true);
+      userTypeSelection.setVisible(false);
+      userTypeSelection.setManaged(false);
     }
+
+    //rbClient.setSelected(true);
   }
 
-  @FXML
-  protected void onRegisterSubmit() throws Exception {
-    // TODO: Add form verification
-    UserRepository userRepository = UserRepository.getInstance();
 
-    // TODO: Register other types of users, obviously
-    userRepository.add(new Admin(
+  @FXML
+  protected void onRegisterSubmit() {
+    if(!registerFormController.isFormCorrect()) {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setTitle("Erro ao registar");
+      alert.setHeaderText("Por favor preencha todos os campos corretamente");
+      alert.showAndWait();
+      return;
+    }
+
+    UserRepository userRepository = UserRepository.getInstance();
+    UserType selectedUserType = ((RadioButton) userType.getSelectedToggle()).getText().equals("Cliente")
+        ? UserType.Client
+        : UserType.ServiceProvider;
+
+    if(firstTime) selectedUserType = UserType.Admin;
+
+    try {
+      userRepository.findByEmail(registerFormController.email.getText());
+
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setTitle("Erro ao registar");
+      alert.setHeaderText("Um utilizador com este e-mail já existe");
+      alert.showAndWait();
+      return;
+    } catch (Exception ignored) {}
+
+    userRepository.add(new User(
         userRepository.getNextId(),
+        selectedUserType,
         registerFormController.firstName.getText(),
         registerFormController.lastName.getText(),
         registerFormController.email.getText(),
@@ -47,9 +82,16 @@ public class RegisterController implements Initializable {
         registerFormController.phone.getText()
     ));
 
-    userRepository.save();
+    try {
+      userRepository.save();
 
-    returnToLogin();
+      returnToLogin();
+    } catch (Exception exc) {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setTitle("Erro ao registar");
+      alert.setHeaderText("Não foi possível guardar o registo");
+      alert.showAndWait();
+    }
   }
 
   @FXML

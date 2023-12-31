@@ -6,7 +6,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import prog.projeto.SceneManager;
-import prog.projeto.models.users.User;
+import prog.projeto.models.User;
 import prog.projeto.repositories.UserRepository;
 
 public class LoginController {
