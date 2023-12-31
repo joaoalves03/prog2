@@ -6,7 +6,7 @@ import java.util.Map;
 
 public abstract class Repository<T> {
   protected String fileName;
-  protected Map<Long, T> entities = new HashMap<>();
+  protected Map<Integer, T> entities = new HashMap<>();
 
   public int length() { return entities.size(); }
 
@@ -19,8 +19,7 @@ public abstract class Repository<T> {
   }
 
   public void update(T entity) {
-    long id = getId(entity);
-    entities.put(id, entity);
+    entities.put(getId(entity), entity);
   }
 
   public void delete(long id) {
@@ -40,10 +39,10 @@ public abstract class Repository<T> {
     FileInputStream fileInputStream = new FileInputStream(fileName);
     ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-    entities = (Map<Long, T>) objectInputStream.readObject();
+    entities = (Map<Integer, T>) objectInputStream.readObject();
     objectInputStream.close();
   }
 
-  public abstract long getNextId();
-  public abstract long getId(T entity);
+  public abstract int getNextId();
+  public abstract int getId(T entity);
 }

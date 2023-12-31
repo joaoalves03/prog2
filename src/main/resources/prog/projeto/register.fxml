@@ -5,18 +5,21 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<FlowPane alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
-         stylesheets="@assets/styles/form.css" styleClass="background" >
+<FlowPane alignment="CENTER" styleClass="background" stylesheets="@assets/styles/form.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.RegisterController">
 
    <VBox alignment="TOP_CENTER" spacing="10.0">
       <ImageView fitHeight="123.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
          <Image url="@assets/icons/petcare.png" />
       </ImageView>
-      <Label text="Pet Care" styleClass="title" />
+      <Label styleClass="title" text="Pet Care" />
 
-      <fx:include source="widgets/register-form.fxml" />
+      <Label text="Por favor adicione o primeiro utilizador" fx:id="firstTimeLabel" visible="false" managed="false"/>
 
-      <Button mnemonicParsing="false" text="Registar" />
+      <fx:include fx:id="registerForm" source="widgets/register-form.fxml" />
+      <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="8.0">
+         <Button mnemonicParsing="false" onAction="#returnToLogin" text="Voltar" />
+         <Button mnemonicParsing="false" onAction="#onRegisterSubmit" text="Registar" />
+      </HBox>
 
       <FlowPane.margin>
          <Insets />

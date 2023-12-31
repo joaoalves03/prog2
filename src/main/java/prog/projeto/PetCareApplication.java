@@ -7,12 +7,11 @@ import javafx.stage.Stage;
 import prog.projeto.repositories.UserRepository;
 
 import java.io.IOException;
-import java.net.URL;
 
 public class PetCareApplication extends Application {
   @Override
   public void start(Stage stage) throws IOException {
-    URL url = PetCareApplication.class.getResource("client/scheduleService.fxml");
+  String resource = "login.fxml";
 
     UserRepository userRepository = UserRepository.getInstance();
     try {
@@ -22,11 +21,10 @@ public class PetCareApplication extends Application {
         throw new Exception();
       }
     } catch (Exception exception) {
-      // TODO: Redirect to a one time register screen
-      url = PetCareApplication.class.getResource("register.fxml");
+      resource = "register.fxml";
     }
 
-    FXMLLoader fxmlLoader = new FXMLLoader(url);
+    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource(resource));
     Scene scene = new Scene(fxmlLoader.load());
     stage.setTitle("Pet Care");
     stage.setScene(scene);
