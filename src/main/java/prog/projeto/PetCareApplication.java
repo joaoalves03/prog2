@@ -1,12 +1,8 @@
 package prog.projeto;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import prog.projeto.repositories.UserRepository;
-
-import java.io.IOException;
 
 public class PetCareApplication extends Application {
   @Override
