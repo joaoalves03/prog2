@@ -5,8 +5,6 @@
 
 <VBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" >
 
-    <fx:include source="client-header.fxml" />
-
     <FlowPane alignment="CENTER" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0">
         <Label text="Definições"/>
     </FlowPane>
