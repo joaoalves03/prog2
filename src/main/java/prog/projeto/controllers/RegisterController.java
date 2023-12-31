@@ -1,16 +1,34 @@
 package prog.projeto.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import prog.projeto.SceneManager;
 import prog.projeto.models.users.Admin;
 import prog.projeto.repositories.UserRepository;
 
-public class RegisterController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class RegisterController implements Initializable {
   @FXML
   RegisterFormController registerFormController;
   @FXML
-  boolean firstTime = true;
+  boolean firstTime = false;
 
-  public void enableFirstTime() { firstTime = true; }
+  @FXML
+  Label firstTimeLabel;
+
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    UserRepository userRepository = UserRepository.getInstance();
+    if(userRepository.length() == 0) {
+      firstTime = true;
+      firstTimeLabel.setVisible(true);
+      firstTimeLabel.setManaged(true);
+    }
+  }
 
   @FXML
   protected void onRegisterSubmit() throws Exception {
@@ -30,5 +48,13 @@ public class RegisterController {
     ));
 
     userRepository.save();
+
+    returnToLogin();
+  }
+
+  @FXML
+  protected void returnToLogin() throws Exception {
+    Stage stage = (Stage) firstTimeLabel.getScene().getWindow();
+    SceneManager.switchScene(stage, "login.fxml");
   }
 }

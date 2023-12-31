@@ -2,10 +2,8 @@ package prog.projeto;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import prog.projeto.controllers.RegisterController;
 import prog.projeto.repositories.UserRepository;
 
 import java.io.IOException;
@@ -13,7 +11,7 @@ import java.io.IOException;
 public class PetCareApplication extends Application {
   @Override
   public void start(Stage stage) throws IOException {
-    boolean firstTime = false;
+    String resource = "login.fxml";
 
     UserRepository userRepository = UserRepository.getInstance();
     try {
@@ -23,21 +21,11 @@ public class PetCareApplication extends Application {
         throw new Exception();
       }
     } catch (Exception exception) {
-      // TODO: Redirect to a one time register screen
-      firstTime = true;
+      resource = "register.fxml";
     }
 
-    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource(
-        firstTime ? "register.fxml" : "login.fxml"
-    ));
-    Parent root = fxmlLoader.load();
-
-    if(firstTime) {
-      RegisterController controller = fxmlLoader.getController();
-      controller.enableFirstTime();
-    }
-
-    Scene scene = new Scene(root);
+    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource(resource));
+    Scene scene = new Scene(fxmlLoader.load());
     stage.setTitle("Pet Care");
     stage.setScene(scene);
     stage.show();
