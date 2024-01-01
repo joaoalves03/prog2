@@ -14,7 +14,7 @@ public abstract class Repository<T> {
     entities.put(getId(entity), entity);
   }
 
-  public T findById(long id) {
+  public T findById(int id) {
     return entities.get(id);
   }
 
