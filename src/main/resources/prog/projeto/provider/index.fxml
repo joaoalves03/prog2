@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 <FlowPane styleClass="background" stylesheets="@../assets/styles/dashboard.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.ProviderIndexController">
-   <fx:include source="../header.fxml" />
+   <fx:include source="../widgets/header.fxml" />
    <GridPane>
          
          <columnConstraints>

@@ -6,7 +6,7 @@
 
 <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"  xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="prog.projeto.controllers.HeaderController"
-          stylesheets="@assets/styles/header.css">
+          stylesheets="@../assets/styles/header.css">
 
     <columnConstraints>
         <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="500.0" />
@@ -19,7 +19,7 @@
     <Label styleClass="title" text="PetCare">
         <graphic>
             <ImageView fitHeight="60.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@assets/icons/petcare.png" />
+                <Image url="@../assets/icons/petcare.png" />
             </ImageView>
         </graphic>
     </Label>
@@ -33,7 +33,7 @@
           </items>
         </MenuButton>
         <ImageView fitHeight="40.0" fitWidth="40.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-            <Image url="@assets/icons/user.png" />
+            <Image url="@../assets/icons/user.png" />
         </ImageView>
     </HBox>
 </GridPane>
