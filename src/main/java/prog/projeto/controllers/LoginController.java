@@ -39,9 +39,13 @@ public class LoginController {
       User user = userRepository.findByEmail(email.getText());
 
       if(user.getPassword().equals(password.getText())) {
-        // TODO: Switch with an actual scene
         Stage stage = (Stage) email.getScene().getWindow();
-        SceneManager.switchScene(stage, "client/scheduleService.fxml");
+        // TODO: Implement the remaining types
+        switch(user.getType()) {
+          case Client -> SceneManager.switchScene(stage, "client/scheduleService.fxml");
+          case ServiceProvider -> SceneManager.switchScene(stage, "provider/index.fxml");
+          default -> System.out.println("Welp guess you're staying in login page");
+        }
       } else {
         throw new Exception();
       }

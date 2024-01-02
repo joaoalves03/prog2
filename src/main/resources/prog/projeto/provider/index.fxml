@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="prog.projeto.controllers.ProviderIndexController">
-   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints minHeight="0.0" vgrow="SOMETIMES" />
-   </rowConstraints>
-  <Button mnemonicParsing="false" text="Serviços" onAction="#onServiceClick"/>
-</GridPane>
+<FlowPane styleClass="background" stylesheets="@../assets/styles/dashboard.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.ProviderIndexController">
+   <fx:include source="../header.fxml" />
+   <GridPane>
+         
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="0.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+        <Button mnemonicParsing="false" onAction="#onServiceClick" text="Serviços" />
+      <padding>
+         <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+      </padding>
+      </GridPane>
+</FlowPane>
