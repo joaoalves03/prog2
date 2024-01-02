@@ -40,6 +40,7 @@ public class LoginController {
 
       if(user.getPassword().equals(password.getText())) {
         Stage stage = (Stage) email.getScene().getWindow();
+        userRepository.setSelectedUser(user);
         // TODO: Implement the remaining types
         switch(user.getType()) {
           case Client -> SceneManager.switchScene(stage, "client/scheduleService.fxml");

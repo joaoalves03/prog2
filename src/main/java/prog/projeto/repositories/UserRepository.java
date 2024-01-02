@@ -1,13 +1,17 @@
 package prog.projeto.repositories;
 
+import lombok.Getter;
+import lombok.Setter;
 import prog.projeto.models.User;
 import prog.projeto.models.UserType;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@Getter
 public class UserRepository extends Repository<User> {
   private static UserRepository instance;
+  @Setter private User selectedUser;
 
   private UserRepository(){fileName = "users.dat";}
 
