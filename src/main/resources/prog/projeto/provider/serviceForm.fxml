@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<VBox alignment="CENTER" spacing="8.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="prog.projeto.controllers.ServiceFormController">
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Serviço">
+        <font>
+            <Font size="24.0" />
+        </font>
+    </Text>
+    <TextField promptText="Nome" fx:id="nameField"/>
+    <TextField promptText="Preço" fx:id="priceField"/>
+    <Button mnemonicParsing="false" text="Guardar" onAction="#save"/>
+    <padding>
+      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+    </padding>
+</VBox>
