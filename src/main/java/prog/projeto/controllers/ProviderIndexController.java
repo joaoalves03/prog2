@@ -12,4 +12,13 @@ public class ProviderIndexController {
       System.out.println("SceneManager: " + e.getMessage());
     }
   }
+
+  @FXML
+  protected void onAnimalCenterClick() {
+    try {
+      SceneManager.openNewModal("provider/animalCenterView.fxml", "Locais de recolha", true);
+    } catch (Exception e) {
+      System.out.println("SceneManager: " + e.getMessage());
+    }
+  }
 }

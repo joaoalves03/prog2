@@ -5,6 +5,7 @@ import prog.projeto.models.User;
 import prog.projeto.models.UserType;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class AnimalCenterRepository extends Repository<AnimalCenter> {
@@ -28,6 +29,8 @@ public class AnimalCenterRepository extends Repository<AnimalCenter> {
 
     return employees;
   }
+
+  public Collection<AnimalCenter> getEntities() { return this.entities.values(); }
 
   @Override
   public int getId(AnimalCenter entity) {
