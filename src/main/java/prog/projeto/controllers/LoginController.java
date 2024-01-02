@@ -45,12 +45,14 @@ public class LoginController {
         switch(user.getType()) {
           case Client -> SceneManager.switchScene(stage, "client/scheduleService.fxml");
           case ServiceProvider -> SceneManager.switchScene(stage, "provider/index.fxml");
+          case Admin -> SceneManager.switchScene(stage, "admin/index.fxml");
           default -> System.out.println("Welp guess you're staying in login page");
         }
       } else {
         throw new Exception();
       }
     } catch (Exception err) {
+      System.out.println(err.getMessage());
       SceneManager.openErrorAlert("Erro a iniciar sessão", "Credenciais erradas");
     }
   }
