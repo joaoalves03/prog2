@@ -6,15 +6,9 @@
 <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
       styleClass="background" stylesheets="@../assets/styles/dashboard.css">
 
-    <fx:include source="client-header.fxml" />
+    <fx:include source="../widgets/header.fxml" />
 
     <FlowPane styleClass="content" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL">
-        <Label nodeOrientation="RIGHT_TO_LEFT" text="meow:">
-            <graphic>
-                <ChoiceBox nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" fx:id="serviceTypeChoiceBox"/>
-            </graphic>
-        </Label>
-
         <Label nodeOrientation="RIGHT_TO_LEFT" text="meow:">
             <graphic>
                 <ChoiceBox nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" fx:id="serviceTypeChoiceBox"/>

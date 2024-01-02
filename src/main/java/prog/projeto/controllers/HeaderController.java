@@ -8,6 +8,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import prog.projeto.SceneManager;
+import prog.projeto.models.User;
+import prog.projeto.repositories.UserRepository;
 
 public class HeaderController {
   @FXML
@@ -16,12 +18,17 @@ public class HeaderController {
   @FXML
   FlowPane closeButton;
 
-  public void initialize() throws RuntimeException {
-    try {
-      userDropDown.setText("Test User");
-    } catch (RuntimeException e) {
-      System.out.println("Header: " + e.getMessage());
-    }
+  public void initialize() {
+    UserRepository userRepository = UserRepository.getInstance();
+    User selectedUser = userRepository.getSelectedUser();
+
+    System.out.println(selectedUser);
+
+    userDropDown.setText(
+        selectedUser == null
+            ? ""
+            : String.format("%s %s", selectedUser.getFirstName(), selectedUser.getLastName())
+    );
   }
   @FXML
   protected void openPage(ActionEvent event) {

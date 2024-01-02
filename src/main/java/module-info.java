@@ -11,4 +11,6 @@ module prog.projeto {
   exports prog.projeto;
   exports prog.projeto.controllers;
   opens prog.projeto.controllers to javafx.fxml;
+  exports prog.projeto.models;
+  opens prog.projeto.models to javafx.fxml;
 }

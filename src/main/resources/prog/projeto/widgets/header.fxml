@@ -28,8 +28,6 @@
     <HBox alignment="CENTER" styleClass="profile-dropdown" GridPane.columnIndex="1">
         <MenuButton fx:id="userDropDown" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Username">
           <items>
-              <MenuItem mnemonicParsing="false" onAction="#openPage" text="Marcar Serviços" userData="client/scheduleService.fxml" />
-              <MenuItem mnemonicParsing="false" onAction="#openPage" text="Ver Marcações" userData="client/viewAppointments.fxml" />
               <MenuItem mnemonicParsing="false" onAction="#openModal" text="Definições" userData="client/settings.fxml" />
               <MenuItem mnemonicParsing="false" onAction="#logout" text="Sair" />
           </items>
