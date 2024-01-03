@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -13,7 +14,9 @@ import javafx.stage.Stage;
 import prog.projeto.PetCareApplication;
 import prog.projeto.SceneManager;
 import prog.projeto.models.AnimalCenter;
+import prog.projeto.models.Service;
 import prog.projeto.repositories.AnimalCenterRepository;
+import prog.projeto.repositories.ServiceRepository;
 import prog.projeto.repositories.UserRepository;
 
 import java.net.URL;
@@ -29,7 +32,7 @@ public class AnimalCenterViewController implements Initializable {
   @FXML
   TableColumn<AnimalCenter, String> phoneColumn;
   @FXML
-  TableColumn<AnimalCenter, String> serviceTypeColumn;
+  TableColumn<AnimalCenter, Integer> serviceTypeColumn;
 
   protected void refreshTable() {
     AnimalCenterRepository animalCenterRepository = AnimalCenterRepository.getInstance();
@@ -43,9 +46,11 @@ public class AnimalCenterViewController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     AnimalCenterRepository animalCenterRepository = AnimalCenterRepository.getInstance();
+    ServiceRepository serviceRepository = ServiceRepository.getInstance();
 
     try {
       animalCenterRepository.read();
+      serviceRepository.read();
     } catch (Exception ignored) {
       SceneManager.openErrorAlert("Erro", "Não foi possível obter locais de recolha");
       close();
@@ -55,6 +60,21 @@ public class AnimalCenterViewController implements Initializable {
     cityColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
     phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
     serviceTypeColumn.setCellValueFactory(new PropertyValueFactory<>("serviceType"));
+
+    serviceTypeColumn.setCellFactory(tc -> new TableCell<>() {
+      @Override
+      protected void updateItem(Integer item, boolean empty) {
+        super.updateItem(item, empty);
+        if (empty || item == null) {
+          setText(null);
+        } else {
+          Service service = serviceRepository.findById(item);
+          setText(
+              service.getName() + " (" + service.getPrice() + "€)"
+          );
+        }
+      }
+    });
 
     refreshTable();
   }
