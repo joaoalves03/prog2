@@ -2,12 +2,10 @@ package prog.projeto.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 import prog.projeto.SceneManager;
 import prog.projeto.models.User;
 import prog.projeto.models.UserType;
@@ -46,10 +44,7 @@ public class RegisterController implements Initializable {
   @FXML
   protected void onRegisterSubmit() {
     if(!registerFormController.isFormCorrect()) {
-      Alert alert = new Alert(Alert.AlertType.ERROR);
-      alert.setTitle("Erro ao registar");
-      alert.setHeaderText("Por favor preencha todos os campos corretamente");
-      alert.showAndWait();
+      SceneManager.openErrorAlert("Erro ao registar", "Por favor preencha todos os campos corretamente");
       return;
     }
 
@@ -63,10 +58,7 @@ public class RegisterController implements Initializable {
     try {
       userRepository.findByEmail(registerFormController.email.getText());
 
-      Alert alert = new Alert(Alert.AlertType.ERROR);
-      alert.setTitle("Erro ao registar");
-      alert.setHeaderText("Um utilizador com este e-mail já existe");
-      alert.showAndWait();
+      SceneManager.openErrorAlert("Erro ao registar", "Um utilizador com este e-mail já existe");
       return;
     } catch (Exception ignored) {}
 
@@ -87,16 +79,17 @@ public class RegisterController implements Initializable {
 
       returnToLogin();
     } catch (Exception exc) {
-      Alert alert = new Alert(Alert.AlertType.ERROR);
-      alert.setTitle("Erro ao registar");
-      alert.setHeaderText("Não foi possível guardar o registo");
-      alert.showAndWait();
+      SceneManager.openErrorAlert("Erro ao registar", "Não foi possível guardar o registo");
     }
   }
 
   @FXML
-  protected void returnToLogin() throws Exception {
-    Stage stage = (Stage) firstTimeLabel.getScene().getWindow();
-    SceneManager.switchScene(stage, "login.fxml");
+  protected void returnToLogin() {
+    try{
+      SceneManager.switchScene(firstTimeLabel, "login.fxml");
+    } catch (Exception e) {
+      System.out.println("SceneManager");
+    }
+
   }
 }
