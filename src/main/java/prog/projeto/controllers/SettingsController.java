@@ -2,7 +2,6 @@ package prog.projeto.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 import prog.projeto.SceneManager;
 import prog.projeto.models.User;
 import prog.projeto.repositories.UserRepository;
@@ -67,11 +66,6 @@ public class SettingsController {
 
   @FXML
   protected void closeWindow(){
-    Stage stage = SceneManager.getStage(cancelButton);
-    if (stage != null) {
-      stage.close();
-    } else {
-      System.out.println("Stage is null. Unable to close stage");
-    }
+    SceneManager.closeWindow(cancelButton);
   }
 }
