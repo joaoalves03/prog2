@@ -45,7 +45,7 @@ public class ServiceViewController implements Initializable {
   }
 
   @FXML
-  public void newService() throws Exception {
+  public void newService() {
     SceneManager.openNewModal("provider/serviceForm.fxml", "Serviço", true);
     refreshTable();
   }

@@ -6,7 +6,7 @@ import prog.projeto.repositories.UserRepository;
 
 public class PetCareApplication extends Application {
   @Override
-  public void start(Stage stage) throws Exception {
+  public void start(Stage stage) {
   String resource = "login.fxml";
 
     UserRepository userRepository = UserRepository.getInstance();

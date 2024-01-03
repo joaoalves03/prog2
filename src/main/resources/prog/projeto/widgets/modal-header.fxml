@@ -18,7 +18,7 @@
     </ImageView>
 
 
-    <FlowPane fx:id="closeButton" onMouseClicked="#closeWindow" alignment="CENTER" columnHalignment="CENTER" prefWidth="10.0" GridPane.columnIndex="1">
+    <FlowPane onMouseClicked="#closeWindow" alignment="CENTER" columnHalignment="CENTER" prefWidth="10.0" GridPane.columnIndex="1">
         <ImageView accessibleRole="BUTTON" fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../assets/icons/close.png"/>
           <viewport>
