@@ -15,6 +15,7 @@ public class HeaderController {
   MenuButton userDropDown;
 
   public void initialize() {
+    if(userDropDown == null) return;
     UserRepository userRepository = UserRepository.getInstance();
     User selectedUser = userRepository.getSelectedUser();
 
