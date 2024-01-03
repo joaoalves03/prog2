@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<FlowPane styleClass="background" stylesheets="@../assets/styles/dashboard.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.ProviderIndexController">
-   <fx:include source="../widgets/header.fxml" />
-   <GridPane>
-         
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="0.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-        <Button mnemonicParsing="false" onAction="#onServiceClick" text="Serviços" />
-      <padding>
-         <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-      </padding>
-      </GridPane>
-</FlowPane>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="prog.projeto.controllers.ProviderIndexController"
+      styleClass="background" stylesheets="@../assets/styles/dashboard.css">
+
+     <fx:include source="../widgets/header.fxml" />
+
+    <FlowPane styleClass="content">
+        <Button mnemonicParsing="false" onAction="#onServiceClick" text="Serviços"/>
+    </FlowPane>
+</VBox>
