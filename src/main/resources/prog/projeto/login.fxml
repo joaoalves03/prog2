@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 
 <FlowPane alignment="CENTER" styleClass="background" stylesheets="@assets/styles/form.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.LoginController">
-   <VBox alignment="CENTER">
+   <VBox alignment="CENTER" styleClass="form-container">
 
       <ImageView fitHeight="123.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
          <Image url="@assets/icons/petcare.png" />
@@ -16,19 +16,15 @@
 
       <TextField fx:id="email" promptText="E-mail" />
       <PasswordField fx:id="password" promptText="Palavra-passe" />
-      <Button mnemonicParsing="false" onAction="#onLoginClick" text="Iniciar sessão" />
+      <Button mnemonicParsing="false" styleClass="primary" onAction="#onLoginClick" text="Iniciar sessão" />
 
 
       <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0">
          <VBox.margin>
             <Insets bottom="10.0" />
          </VBox.margin>
-         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Não tem conta?">
-            <HBox.margin>
-               <Insets />
-            </HBox.margin>
-         </Text>
-         <Hyperlink fx:id="registerLink" onAction="#onRegisterClick" text="Registar" />
+         <Label text="Não tem conta?" />
+         <Hyperlink fx:id="registerLink" styleClass="link-button" onAction="#onRegisterClick" text="Registar" />
       </HBox>
    </VBox>
 </FlowPane>

@@ -10,7 +10,7 @@
       <ToggleGroup fx:id="userType" />
    </fx:define>
 
-   <VBox alignment="TOP_CENTER" spacing="10.0">
+   <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="form-container">
       <ImageView fitHeight="123.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
          <Image url="@assets/icons/petcare.png" />
       </ImageView>
@@ -25,7 +25,7 @@
       <fx:include fx:id="registerForm" source="widgets/register-form.fxml" />
       <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="8.0">
          <Button mnemonicParsing="false" onAction="#returnToLogin" text="Voltar" />
-         <Button mnemonicParsing="false" onAction="#onRegisterSubmit" text="Registar" />
+         <Button mnemonicParsing="false" styleClass="primary" onAction="#onRegisterSubmit" text="Registar" />
       </HBox>
 
       <FlowPane.margin>
