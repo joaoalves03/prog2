@@ -3,7 +3,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <VBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="prog.projeto.controllers.ProviderIndexController"
       styleClass="background" stylesheets="@../assets/styles/global.css">
@@ -12,5 +11,6 @@
 
     <FlowPane styleClass="content">
         <Button mnemonicParsing="false" onAction="#onServiceClick" text="Serviços"/>
+        <Button mnemonicParsing="false" onAction="#onAnimalCenterClick" text="Locais de recolha" />
     </FlowPane>
 </VBox>

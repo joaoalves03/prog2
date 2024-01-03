@@ -8,4 +8,13 @@ public class ProviderIndexController {
   protected void onServiceClick() {
     SceneManager.openNewModal("provider/serviceView.fxml", "Serviços", true);
   }
+
+  @FXML
+  protected void onAnimalCenterClick() {
+    try {
+      SceneManager.openNewModal("provider/animalCenterView.fxml", "Locais de recolha", true);
+    } catch (Exception e) {
+      System.out.println("SceneManager: " + e.getMessage());
+    }
+  }
 }

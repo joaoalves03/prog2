@@ -17,13 +17,6 @@ public class ServiceRepository extends Repository<Service> {
   public Collection<Service> getEntities() { return this.entities.values(); }
 
   @Override
-  public int getNextId() {
-    if(entities.isEmpty()) return 0;
-
-    return getId(entities.get(entities.size()-1)) + 1;
-  }
-
-  @Override
   public int getId(Service entity) {
     return entity.getId();
   }
