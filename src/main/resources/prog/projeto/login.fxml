@@ -4,7 +4,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <FlowPane alignment="CENTER" styleClass="background" stylesheets="@assets/styles/form.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.LoginController">
    <VBox alignment="CENTER" styleClass="form-container">
