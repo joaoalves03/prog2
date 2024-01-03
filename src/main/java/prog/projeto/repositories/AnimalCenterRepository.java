@@ -34,6 +34,6 @@ public class AnimalCenterRepository extends Repository<AnimalCenter> {
 
   @Override
   public int getId(AnimalCenter entity) {
-    return 0;
+    return entity.getId();
   }
 }

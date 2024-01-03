@@ -36,7 +36,12 @@ public class ServiceViewController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     ServiceRepository serviceRepository = ServiceRepository.getInstance();
 
-    try {serviceRepository.read();} catch (Exception ignored) {}
+    try {
+      serviceRepository.read();
+    } catch (Exception ignored) {
+      SceneManager.openErrorAlert("Erro ao abrir formulário", "Não foi possível obter serviços");
+      close();
+    }
 
     nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -67,5 +72,10 @@ public class ServiceViewController implements Initializable {
     stage.showAndWait();
 
     refreshTable();
+  }
+
+  public void close() {
+    Stage stage = (Stage) table.getScene().getWindow();
+    stage.close();
   }
 }

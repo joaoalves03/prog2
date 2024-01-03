@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @AllArgsConstructor
-public class AnimalCenter {
+public class AnimalCenter implements Serializable {
   private final int id;
   private final int providerID;
   @Setter
@@ -15,7 +17,5 @@ public class AnimalCenter {
   private String city;
   @Setter
   private String phone;
-  private final AnimalServiceType serviceType;
-  @Setter
-  private float servicePrice;
+  private int serviceType;
 }

@@ -3,58 +3,39 @@ package prog.projeto.controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import lombok.AllArgsConstructor;
+import javafx.stage.Stage;
+import prog.projeto.PetCareApplication;
+import prog.projeto.SceneManager;
 import prog.projeto.models.AnimalCenter;
-import prog.projeto.models.Service;
 import prog.projeto.repositories.AnimalCenterRepository;
+import prog.projeto.repositories.UserRepository;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-@AllArgsConstructor
-class AnimalCenterTableElement {
-  String provider;
-  String address;
-  String city;
-  String phone;
-  String serviceType;
-  Float price;
-}
-
 public class AnimalCenterViewController implements Initializable {
   @FXML
-  TableView<AnimalCenterTableElement> table;
+  TableView<AnimalCenter> table;
   @FXML
-  TableColumn<Service, String> providerColumn;
+  TableColumn<AnimalCenter, String> addressColumn;
   @FXML
-  TableColumn<Service, String> addressColumn;
+  TableColumn<AnimalCenter, String> cityColumn;
   @FXML
-  TableColumn<Service, String> cityColumn;
+  TableColumn<AnimalCenter, String> phoneColumn;
   @FXML
-  TableColumn<Service, String> phoneColumn;
-  @FXML
-  TableColumn<Service, String> serviceTypeColumn;
-  @FXML
-  TableColumn<Service, Float> priceColumn;
+  TableColumn<AnimalCenter, String> serviceTypeColumn;
 
   protected void refreshTable() {
     AnimalCenterRepository animalCenterRepository = AnimalCenterRepository.getInstance();
-    ObservableList<AnimalCenterTableElement> entities = FXCollections.observableArrayList();
-
-    for(AnimalCenter animalCenter: animalCenterRepository.getEntities()){
-      entities.add(new AnimalCenterTableElement(
-          "lol",
-          animalCenter.getAddress(),
-          animalCenter.getCity(),
-          animalCenter.getPhone(),
-          "animalCenter.getServiceType()",
-          animalCenter.getServicePrice()
-      ));
-    }
+    ObservableList<AnimalCenter> entities = FXCollections.observableArrayList(
+        animalCenterRepository.getEntities().stream().toList()
+    );
 
     table.setItems(entities);
   }
@@ -63,16 +44,62 @@ public class AnimalCenterViewController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     AnimalCenterRepository animalCenterRepository = AnimalCenterRepository.getInstance();
 
-    // TODO: Probably shouldn't ignore this, will check later
-    try {animalCenterRepository.read();} catch (Exception ignored) {}
+    try {
+      animalCenterRepository.read();
+    } catch (Exception ignored) {
+      SceneManager.openErrorAlert("Erro", "Não foi possível obter locais de recolha");
+      close();
+    }
 
-    providerColumn.setCellValueFactory(new PropertyValueFactory<>("provider"));
     addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
     cityColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
     phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
     serviceTypeColumn.setCellValueFactory(new PropertyValueFactory<>("serviceType"));
-    priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
 
     refreshTable();
+  }
+
+  @FXML
+  public void newAnimalCenter() throws Exception {
+    UserRepository userRepository = UserRepository.getInstance();
+
+    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("provider/animalCenterForm.fxml"));
+    Scene scene = new Scene(fxmlLoader.load());
+    Stage stage = new Stage();
+    stage.setScene(scene);
+    stage.setTitle("Novo Local de recolha");
+    stage.centerOnScreen();
+    AnimalCenterFormController controller = fxmlLoader.getController();
+    controller.setProvider(userRepository.getSelectedUser().getId());
+
+    stage.showAndWait();
+
+    refreshTable();
+  }
+
+  @FXML
+  public void editAnimalCenter() throws Exception {
+    UserRepository userRepository = UserRepository.getInstance();
+    AnimalCenter selectedAnimalCenter = table.getSelectionModel().getSelectedItem();
+    if (selectedAnimalCenter == null) return;
+
+    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("provider/animalCenterForm.fxml"));
+    Scene scene = new Scene(fxmlLoader.load());
+    Stage stage = new Stage();
+    stage.setScene(scene);
+    stage.setTitle("Editar Local de recolha");
+    stage.centerOnScreen();
+    AnimalCenterFormController controller = fxmlLoader.getController();
+    controller.setProvider(userRepository.getSelectedUser().getId());
+    controller.setAnimalCenterToEdit(selectedAnimalCenter.getId());
+
+    stage.showAndWait();
+
+    refreshTable();
+  }
+
+  public void close() {
+    Stage stage = (Stage) table.getScene().getWindow();
+    stage.close();
   }
 }

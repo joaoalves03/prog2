@@ -1,6 +1,7 @@
 package prog.projeto.repositories;
 
 import java.io.*;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,7 +47,7 @@ public abstract class Repository<T> {
   public int getNextId() {
     if(entities.isEmpty()) return 0;
 
-    return getId(entities.get(entities.size()-1)) + 1;
+    return Collections.max(entities.keySet()) + 1;
   }
 
   public abstract int getId(T entity);
