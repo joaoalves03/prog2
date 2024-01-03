@@ -40,9 +40,9 @@ public class LoginController {
       if(user.getPassword().equals(password.getText())) {
         Stage stage = (Stage) email.getScene().getWindow();
         userRepository.setSelectedUser(user);
-        // TODO: Implement the remaining types
+
         switch(user.getType()) {
-          case Client -> SceneManager.switchScene(stage, "client/scheduleService.fxml");
+          case Client -> SceneManager.switchScene(stage, "client/index.fxml");
           case ServiceProvider -> SceneManager.switchScene(stage, "provider/index.fxml");
           case Admin -> SceneManager.switchScene(stage, "admin/index.fxml");
           default -> System.out.println("Welp guess you're staying in login page");
