@@ -3,18 +3,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
-        styleClass="background" stylesheets="@../assets/styles/dashboard.css"
-        fx:controller="prog.projeto.controllers.ScheduleServiceController">
-
-    <fx:include source="../widgets/header.fxml" />
-
-    <FlowPane styleClass="content" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL">
+<ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: -background-900"
+            stylesheets="@../assets/styles/modal.css" xmlns="http://javafx.com/javafx/11.0.14-internal"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="prog.projeto.controllers.client.ScheduleServiceController">
+    <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="background">
         <Label nodeOrientation="RIGHT_TO_LEFT" text="Tipo de Serviço:">
-           <graphic>
-               <ChoiceBox nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" fx:id="serviceTypeChoiceBox"/>
-           </graphic>
+            <graphic>
+                <ChoiceBox nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" fx:id="serviceTypeChoiceBox"/>
+            </graphic>
         </Label>
-    </FlowPane>
-
-</VBox>
+    </VBox>
+</ScrollPane>

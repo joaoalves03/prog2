@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: -background-900"
+            stylesheets="@../assets/styles/modal.css" xmlns="http://javafx.com/javafx/11.0.14-internal"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="prog.projeto.controllers.admin.UserManagementController">
+    <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="background">
+        <ListView fx:id="usersList" prefHeight="250.0" prefWidth="400.0"/>
+        <VBox fx:id="informationBox" prefWidth="100.0">
+            <Label text="Informação do Utilizador"/>
+            <Label fx:id="name" text="Nome:"/>
+            <Label fx:id="email" text="Email:"/>
+            <Label fx:id="address" text="Rua:"/>
+            <Label fx:id="city" text="Cidade:"/>
+            <Label fx:id="phone" text="Telemovel:"/>
+        </VBox>
+    </VBox>
+</ScrollPane>

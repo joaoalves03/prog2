@@ -10,6 +10,7 @@
     <fx:include source="../widgets/header.fxml" />
 
     <FlowPane styleClass="content">
+        <Button mnemonicParsing="false" onAction="#openModal" text="Marcar Serviço" userData="client/scheduleService.fxml"/>
         <Button mnemonicParsing="false" onAction="#openModal" text="Ver Marcações" userData="client/viewAppointments.fxml"/>
     </FlowPane>
 </VBox>

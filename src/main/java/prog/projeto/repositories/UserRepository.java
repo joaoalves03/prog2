@@ -41,4 +41,8 @@ public class UserRepository extends Repository<User> {
   public int getId(User entity) {
     return entity.getId();
   }
+
+  public List<User> getAllUsers() {
+    return entities.values().stream().toList();
+  }
 }

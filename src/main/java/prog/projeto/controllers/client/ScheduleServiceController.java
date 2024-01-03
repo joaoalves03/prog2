@@ -1,4 +1,4 @@
-package prog.projeto.controllers;
+package prog.projeto.controllers.client;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
