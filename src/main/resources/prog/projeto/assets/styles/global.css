@@ -8,6 +8,13 @@
     -fx-background-color: -background-900;
 }
 
+.content {
+    -fx-padding: 15;
+    -fx-hgap: 10;
+}
+
+
+
 .button {
     -fx-background-radius: 8;
     -fx-font-size: 18;
@@ -31,11 +38,6 @@
 
 .link-button{
     -fx-text-fill: -primary-200;
-}
-
-.content {
-    -fx-padding: 15;
-    -fx-vgap: 10;
 }
 
 
