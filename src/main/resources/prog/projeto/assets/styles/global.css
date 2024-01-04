@@ -10,6 +10,7 @@
 
 .content {
     -fx-padding: 15;
+    -fx-vgap: 10;
     -fx-hgap: 10;
 }
 
