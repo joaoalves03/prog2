@@ -7,7 +7,7 @@ import prog.projeto.repositories.UserRepository;
 public class PetCareApplication extends Application {
   @Override
   public void start(Stage stage) {
-  String resource = "login.fxml";
+  String resource = "pages/login.fxml";
 
     UserRepository userRepository = UserRepository.getInstance();
     try {
@@ -17,7 +17,7 @@ public class PetCareApplication extends Application {
         throw new Exception();
       }
     } catch (Exception exception) {
-      resource = "register.fxml";
+      resource = "pages/register.fxml";
     }
 
     SceneManager.openNewWindow(resource);

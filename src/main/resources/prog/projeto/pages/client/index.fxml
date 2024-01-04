@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="prog.projeto.controllers.client.ClientIndexController"
+      styleClass="background" stylesheets="@../../assets/styles/global.css">
+
+    <fx:include source="../../widgets/header.fxml"/>
+
+    <FlowPane styleClass="content">
+        <Button mnemonicParsing="false" onAction="#openModal" text="Marcar Serviço"
+                userData="pages/client/scheduleService.fxml"/>
+        <Button mnemonicParsing="false" onAction="#openModal" text="Ver Marcações"
+                userData="pages/client/viewAppointments.fxml"/>
+    </FlowPane>
+</VBox>

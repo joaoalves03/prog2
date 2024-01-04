@@ -86,7 +86,7 @@ public class RegisterController implements Initializable {
   @FXML
   protected void returnToLogin() {
     try{
-      SceneManager.switchScene(firstTimeLabel, "login.fxml");
+      SceneManager.switchScene(firstTimeLabel, "pages/login.fxml");
     } catch (Exception e) {
       System.out.println("SceneManager");
     }

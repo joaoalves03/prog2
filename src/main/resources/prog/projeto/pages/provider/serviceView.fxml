@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: -background-900"
+            stylesheets="@../../assets/styles/modal.css" xmlns="http://javafx.com/javafx/11.0.14-internal"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="prog.projeto.controllers.provider.ServiceViewController">
+    <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="background">
+        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="8.0">
+            <Button mnemonicParsing="false" text="+" onAction="#newService"/>
+            <Button mnemonicParsing="false" text="Editar" onAction="#editService"/>
+        </HBox>
+        <TableView fx:id="table" prefHeight="400.0" prefWidth="400.0">
+            <columns>
+                <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Nome" />
+                <TableColumn fx:id="priceColumn" prefWidth="75.0" text="Preço" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+    </VBox>
+</ScrollPane>
