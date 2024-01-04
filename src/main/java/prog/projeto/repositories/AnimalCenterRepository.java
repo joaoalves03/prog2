@@ -20,14 +20,8 @@ public class AnimalCenterRepository extends Repository<AnimalCenter> {
 
   public List<User> getEmployees(AnimalCenter animalCenter) {
     UserRepository userRepository = UserRepository.getInstance();
-    List<User> employees = new ArrayList<>();
 
-    employees.addAll(userRepository.getByType(UserType.Secretary));
-    employees.addAll(userRepository.getByType(UserType.Assistant));
-    employees.addAll(userRepository.getByType(UserType.Educator));
-    employees.addAll(userRepository.getByType(UserType.Veterinarian));
-
-    return employees;
+    return new ArrayList<>(userRepository.getByType(UserType.Staff));
   }
 
   public Collection<AnimalCenter> getEntities() { return this.entities.values(); }
