@@ -3,13 +3,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: -background-900" stylesheets="@../assets/styles/form.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.SettingsController">
+<ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: -background-900" stylesheets="@../assets/styles/modal.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.EditUserController">
     <VBox alignment="CENTER" spacing="10.0" styleClass="background">
         <fx:include fx:id="registerForm" source="register-form.fxml" />
 
         <HBox alignment="CENTER_RIGHT" spacing="10.0">
             <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#closeWindow" text="Cancelar" />
-            <Button mnemonicParsing="false" onAction="#saveSettings" styleClass="primary" text="Salvar" />
+            <Button mnemonicParsing="false" styleClass="primary" onAction="#save"  text="Guardar" />
         </HBox>
     </VBox>
 </ScrollPane>

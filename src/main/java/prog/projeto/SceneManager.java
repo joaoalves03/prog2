@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.Modality;
@@ -27,6 +28,7 @@ public class SceneManager {
       stage.show();
     } catch (Exception e){
       System.out.println("openNewWindow (SceneManager): " + e.getMessage());
+      e.printStackTrace();
     }
   }
 
@@ -48,6 +50,7 @@ public class SceneManager {
       stage.showAndWait();
     } catch (Exception e) {
       System.out.println("openNewModal (SceneManager): " + e.getMessage());
+      e.printStackTrace();
     }
   }
 
@@ -72,13 +75,25 @@ public class SceneManager {
       stage.show();
     } catch (Exception e) {
       System.out.println("switchScene (SceneManager): " + e.getMessage());
+      e.printStackTrace();
     }
   }
 
   public static void switchScene(Node node, String sceneName) {
     switchScene(getStage(node), sceneName);
   }
-  
+
+  public static boolean openConfirmationAlert(String alertHeader, String alertContent){
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setTitle("Alerta");
+    alert.setHeaderText(alertHeader);
+    alert.setContentText(alertContent);
+    Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+    stage.getIcons().add(getAppIcon());
+    stage.getIcons().clear();
+    return alert.showAndWait().filter(response -> response == ButtonType.OK).isPresent();
+  }
+
   public static void openErrorAlert(String errorHeader, String errorContent){
     Alert alert = new Alert(Alert.AlertType.ERROR);
     alert.setTitle("Erro");

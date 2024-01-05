@@ -3,25 +3,27 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="10.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.RegisterFormController">
-    <Label contentDisplay="BOTTOM" styleClass="form-label" text="Nome" />
+<VBox spacing="10.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="prog.projeto.controllers.RegisterFormController"
+      stylesheets="@../assets/styles/form.css">
+    <Label contentDisplay="BOTTOM" styleClass="form-label" text="Nome"/>
     <HBox fillHeight="false" spacing="10.0">
-        <TextField fx:id="firstName" promptText="Primeiro" HBox.hgrow="ALWAYS" />
-        <TextField fx:id="lastName" layoutX="10.0" layoutY="10.0" promptText="Último" HBox.hgrow="ALWAYS" />
+        <TextField fx:id="firstName" promptText="Primeiro" HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="lastName" layoutX="10.0" layoutY="10.0" promptText="Último" HBox.hgrow="ALWAYS"/>
     </HBox>
 
-    <Label contentDisplay="BOTTOM" styleClass="form-label" text="Email" />
-    <TextField fx:id="email" />
+    <Label contentDisplay="BOTTOM" styleClass="form-label" text="Email"/>
+    <TextField fx:id="email"/>
 
-    <Label contentDisplay="BOTTOM" styleClass="form-label" text="Password" />
-    <PasswordField fx:id="password" />
+    <Label contentDisplay="BOTTOM" styleClass="form-label" text="Password" fx:id="passwordLabel"/>
+    <PasswordField fx:id="password"/>
 
-    <Label contentDisplay="BOTTOM" styleClass="form-label" text="Morada" />
+    <Label contentDisplay="BOTTOM" styleClass="form-label" text="Morada"/>
     <HBox fillHeight="false" spacing="10.0">
-        <TextField fx:id="address" promptText="Rua" HBox.hgrow="ALWAYS" />
-        <TextField fx:id="city" layoutX="10.0" layoutY="10.0" promptText="Cidade" HBox.hgrow="ALWAYS" />
+        <TextField fx:id="address" promptText="Rua" HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="city" layoutX="10.0" layoutY="10.0" promptText="Cidade" HBox.hgrow="ALWAYS"/>
     </HBox>
 
-    <Label contentDisplay="BOTTOM" styleClass="form-label" text="Telemóvel" />
-    <TextField fx:id="phone" />
+    <Label contentDisplay="BOTTOM" styleClass="form-label" text="Telemóvel"/>
+    <TextField fx:id="phone"/>
 </VBox>

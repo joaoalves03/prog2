@@ -1,31 +1,37 @@
 package prog.projeto.controllers.admin;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import prog.projeto.PetCareApplication;
+import prog.projeto.SceneManager;
+import prog.projeto.controllers.EditUserController;
+import prog.projeto.controllers.RegisterController;
 import prog.projeto.models.User;
 import prog.projeto.repositories.UserRepository;
 
 public class UserManagementController {
+  private int currentUser = -1;
+
   @FXML
   ListView<User> usersList;
 
   @FXML
-  VBox informationBox;
+  public Label name;
 
   @FXML
-  Label name;
+  public Label email;
+
   @FXML
-  Label email;
+  public Label address;
+
   @FXML
-  Label address;
-  @FXML
-  Label city;
-  @FXML
-  Label phone;
+  public Label phone;
 
 
   @FXML
@@ -44,19 +50,11 @@ public class UserManagementController {
     // Add a listener to detect when an item is selected
     usersList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
       if (newValue != null) {
-        // If a user is selected, update the label text
-        name.setText("Nome: " + newValue.getFirstName() + " " + newValue.getLastName());
-        email.setText("Email: " + newValue.getEmail());
-        address.setText("Rua: " + newValue.getAddress());
-        city.setText("Cidade: " + newValue.getCity());
-        phone.setText("Telemovel: " + newValue.getPhone());
-      } else {
-        // If no user is selected
-        name.setText("Nome:");
-        email.setText("Email:");
-        address.setText("Rua:");
-        city.setText("Cidade:");
-        phone.setText("Telemovel:");
+        currentUser = newValue.getId();
+        name.setText(newValue.getFirstName() + " " + newValue.getLastName());
+        email.setText(newValue.getEmail());
+        address.setText(newValue.getAddress() + ", " + newValue.getCity());
+        phone.setText(newValue.getPhone());
       }
     });
   }
@@ -71,5 +69,46 @@ public class UserManagementController {
         setText(user.getFirstName());
       }
     }
+  }
+
+  @FXML
+  void add() throws Exception {
+    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("pages/register.fxml"));
+    Scene scene = new Scene(fxmlLoader.load());
+    Stage stage = new Stage();
+    stage.setScene(scene);
+    stage.setTitle("Adicionar Utilizador");
+    stage.centerOnScreen();
+    RegisterController controller = fxmlLoader.getController();
+    controller.addAdminType();
+    controller.insideModal();
+
+    stage.showAndWait();
+  }
+
+  @FXML
+  private void edit() throws Exception {
+    if (currentUser == -1) {
+      SceneManager.openErrorAlert("Erro", "Selecione um Utilizador");
+      return;
+    }
+
+    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("widgets/edit-user.fxml"));
+    Scene scene = new Scene(fxmlLoader.load());
+    Stage stage = new Stage();
+    stage.setScene(scene);
+    stage.setTitle("Editar Utilizador");
+    stage.centerOnScreen();
+    EditUserController controller = fxmlLoader.getController();
+    controller.setUser(currentUser);
+
+    stage.showAndWait();
+  }
+
+  @FXML
+  private void remove(){
+    System.out.println(
+      SceneManager.openConfirmationAlert("Remover utilizador", "Têm a certeza que quer eliminareste utilizador?")
+    );
   }
 }

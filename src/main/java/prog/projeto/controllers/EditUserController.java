@@ -2,11 +2,14 @@ package prog.projeto.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import prog.projeto.SceneManager;
+import prog.projeto.models.AnimalCenter;
 import prog.projeto.models.User;
 import prog.projeto.repositories.UserRepository;
 
-public class SettingsController {
+public class EditUserController {
+  private int id;
   @FXML
   RegisterFormController registerFormController;
 
@@ -16,26 +19,48 @@ public class SettingsController {
   public void initialize() {
     UserRepository userRepository = UserRepository.getInstance();
     User selectedUser = userRepository.getSelectedUser();
-    if (selectedUser == null) { return; }
+    if (selectedUser == null) {
+      return;
+    }
+    id = selectedUser.getId();
 
-    registerFormController.firstName.setText(selectedUser.getFirstName());
-    registerFormController.lastName.setText(selectedUser.getLastName());
-    registerFormController.email.setText(selectedUser.getEmail());
-    registerFormController.password.setText(selectedUser.getPassword());
-    registerFormController.address.setText(selectedUser.getAddress());
-    registerFormController.city.setText(selectedUser.getCity());
-    registerFormController.phone.setText(selectedUser.getPhone());
+    registerFormController.setValues(
+            selectedUser.getFirstName(),
+            selectedUser.getLastName(),
+            selectedUser.getEmail(),
+            selectedUser.getPassword(),
+            selectedUser.getAddress(),
+            selectedUser.getCity(),
+            selectedUser.getPhone()
+    );
+  }
+
+  public void setUser(int id){
+    UserRepository userRepository = UserRepository.getInstance();
+    User selectedUser = userRepository.findById(id);
+    this.id = id;
+
+
+    registerFormController.setValues(
+            selectedUser.getFirstName(),
+            selectedUser.getLastName(),
+            selectedUser.getEmail(),
+            selectedUser.getPassword(),
+            selectedUser.getAddress(),
+            selectedUser.getCity(),
+            selectedUser.getPhone()
+    );
   }
 
   @FXML
-  protected void saveSettings(){
-    if(!registerFormController.isFormCorrect()) {
+  protected void save() {
+    if (!registerFormController.isFormCorrect()) {
       SceneManager.openErrorAlert("Erro ao registar", "Por favor preencha todos os campos corretamente");
       return;
     }
 
     UserRepository userRepository = UserRepository.getInstance();
-    User selectedUser = userRepository.getSelectedUser();
+    User selectedUser = userRepository.findById(id);
 
     // Check if email was changed
     if (!selectedUser.getEmail().equals(registerFormController.email.getText())) {
@@ -44,7 +69,8 @@ public class SettingsController {
 
         SceneManager.openErrorAlert("Erro ao registar", "Um utilizador com este e-mail já existe");
         return;
-      } catch (Exception ignored) {}
+      } catch (Exception ignored) {
+      }
     }
 
     selectedUser.setFirstName(registerFormController.firstName.getText());
@@ -65,7 +91,7 @@ public class SettingsController {
   }
 
   @FXML
-  protected void closeWindow(){
+  protected void closeWindow() {
     SceneManager.closeWindow(cancelButton);
   }
 }
