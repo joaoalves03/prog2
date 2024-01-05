@@ -8,38 +8,44 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import prog.projeto.SceneManager;
+import prog.projeto.models.Appointment;
 import prog.projeto.models.User;
+import prog.projeto.repositories.AppointmentRepository;
+import prog.projeto.repositories.ServiceRepository;
 import prog.projeto.repositories.UserRepository;
 
 public class ViewAppointmentsController {
 
   @FXML
-  ListView<User> appointmentsList;
+  ListView<Appointment> appointmentsList;
 
   @FXML
   VBox informationBox;
 
   @FXML
-  Label name;
+  Label provider;
   @FXML
-  Label email;
+  Label employee;
   @FXML
-  Label address;
+  Label serviceType;
   @FXML
-  Label city;
+  Label date;
   @FXML
-  Label phone;
+  Label status;
 
 
   @FXML
   private void initialize() {
+    AppointmentRepository appointmentRepository = AppointmentRepository.getInstance();
     UserRepository userRepository = UserRepository.getInstance();
+    ServiceRepository serviceRepository = ServiceRepository.getInstance();
 
-    // Set the cell factory to display the user's first name
-    appointmentsList.setCellFactory(param -> new UserListCell());
+    appointmentsList.setCellFactory(param -> new AppointmentListCell());
 
     // Populate the ListView with users
-    appointmentsList.getItems().addAll(userRepository.getAllUsers());
+    appointmentsList.getItems().addAll(
+        appointmentRepository.getByClient(userRepository.getSelectedUser().getId())
+    );
 
     // Set the selection mode to single
     appointmentsList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -47,19 +53,20 @@ public class ViewAppointmentsController {
     // Add a listener to detect when an item is selected
     appointmentsList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
       if (newValue != null) {
-        // If a user is selected, update the label text
-        name.setText("Nome: " + newValue.getFirstName() + " " + newValue.getLastName());
-        email.setText("Email: " + newValue.getEmail());
-        address.setText("Rua: " + newValue.getAddress());
-        city.setText("Cidade: " + newValue.getCity());
-        phone.setText("Telemovel: " + newValue.getPhone());
+        User _provider = userRepository.findById(newValue.getProviderID());
+        User _employee = userRepository.findById(newValue.getEmployeeID());
+
+        provider.setText("Prestador: " + _provider.getFirstName() + _provider.getLastName());
+        employee.setText("Funcionário: " + _employee.getFirstName() + _employee.getLastName());
+        serviceType.setText("Tipo de serviço: [TODO]");
+        date.setText("Data: " + newValue.getDate());
+        status.setText("Estado: " + newValue.getStatus().description);
       } else {
-        // If no user is selected
-        name.setText("Nome:");
-        email.setText("Email:");
-        address.setText("Rua:");
-        city.setText("Cidade:");
-        phone.setText("Telemovel:");
+        provider.setText("Prestador: ");
+        employee.setText("Funcionário: ");
+        serviceType.setText("Tipo de serviço: ");
+        date.setText("Data: ");
+        status.setText("Estado: ");
       }
     });
   }
@@ -71,15 +78,22 @@ public class ViewAppointmentsController {
     // TODO: Refresh list
   }
 
-  // YourListCell class to customize cell rendering
-  private static class UserListCell extends ListCell<User> {
+  private static class AppointmentListCell extends ListCell<Appointment> {
     @Override
-    protected void updateItem(User user, boolean empty) {
-      super.updateItem(user, empty);
-      if (empty || user == null) {
+    protected void updateItem(Appointment appointment, boolean empty) {
+      super.updateItem(appointment, empty);
+      if (empty || appointment == null) {
         setText(null);
       } else {
-        setText(user.getFirstName());
+        UserRepository userRepository = UserRepository.getInstance();
+        User provider = userRepository.findById(appointment.getProviderID());
+        User employee = userRepository.findById(appointment.getEmployeeID());
+
+        setText(
+            provider.getFirstName() + " " + provider.getLastName()
+            + " - " + employee.getFirstName() + " " + employee.getLastName()
+            + " (" + appointment.getDate() + ")"
+        );
       }
     }
   }
