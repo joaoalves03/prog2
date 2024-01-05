@@ -17,4 +17,9 @@ public class ProviderIndexController {
       System.out.println("SceneManager: " + e.getMessage());
     }
   }
+
+  @FXML
+  protected void onStaffClick() {
+    SceneManager.openNewModal("provider/staffView.fxml", "Funcionários", true);
+  }
 }

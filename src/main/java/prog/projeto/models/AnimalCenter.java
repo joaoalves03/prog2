@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -18,4 +19,5 @@ public class AnimalCenter implements Serializable {
   @Setter
   private String phone;
   private int serviceType;
+  private List<User> employees;
 }

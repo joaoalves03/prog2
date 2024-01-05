@@ -12,5 +12,6 @@
     <FlowPane styleClass="content">
         <Button mnemonicParsing="false" onAction="#onServiceClick" text="Serviços"/>
         <Button mnemonicParsing="false" onAction="#onAnimalCenterClick" text="Locais de recolha" />
+        <Button mnemonicParsing="false" onAction="#onStaffClick" text="Funcionários" />
     </FlowPane>
 </VBox>

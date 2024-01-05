@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 import javafx.stage.Modality;
 import javafx.stage.StageStyle;
 
-import java.net.URL;
 import java.util.Objects;
 
 public class SceneManager {
@@ -47,7 +46,7 @@ public class SceneManager {
       stage.centerOnScreen();
       stage.showAndWait();
     } catch (Exception e) {
-      System.out.println("openNewModal (SceneManager): " + e.getMessage());
+      System.out.println("openNewModal (SceneManager): " + e.getCause());
     }
   }
 
