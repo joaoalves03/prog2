@@ -18,6 +18,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
+  private boolean insideModal = false;
   @FXML
   RegisterFormController registerFormController;
   @FXML
@@ -72,6 +73,7 @@ public class RegisterController implements Initializable {
     cancelButton.setVisible(true);
     cancelButton.setManaged(true);
     container.getStyleClass().add("modal");
+    insideModal = true;
   }
 
   @FXML
@@ -111,7 +113,11 @@ public class RegisterController implements Initializable {
     try {
       userRepository.save();
 
-      returnToLogin();
+      if (insideModal) {
+        closeWindow();
+      } else {
+        returnToLogin();
+      }
     } catch (Exception exc) {
       SceneManager.openErrorAlert("Erro ao registar", "Não foi possível guardar o registo");
     }

@@ -107,8 +107,15 @@ public class UserManagementController {
 
   @FXML
   private void remove(){
-    System.out.println(
-      SceneManager.openConfirmationAlert("Remover utilizador", "Têm a certeza que quer eliminareste utilizador?")
-    );
+    if (currentUser == -1) {
+      SceneManager.openErrorAlert("Erro", "Selecione um Utilizador");
+      return;
+    }
+
+    boolean response = SceneManager.openConfirmationAlert("Remover utilizador", "Têm a certeza que quer eliminareste utilizador?");
+    if(!response) { return; }
+
+    UserRepository userRepository = UserRepository.getInstance();
+    userRepository.delete(currentUser);
   }
 }
