@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import prog.projeto.models.AnimalServiceType;
 
-public class ScheduleServiceController {
+public class ScheduleAppointmentController {
   @FXML
   private ChoiceBox<String> serviceTypeChoiceBox;
 

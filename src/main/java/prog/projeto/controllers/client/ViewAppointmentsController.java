@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import prog.projeto.SceneManager;
 import prog.projeto.models.User;
 import prog.projeto.repositories.UserRepository;
 
@@ -61,6 +62,13 @@ public class ViewAppointmentsController {
         phone.setText("Telemovel:");
       }
     });
+  }
+
+  @FXML
+  protected void newAppointment() {
+    SceneManager.openNewModal("client/scheduleAppointment.fxml", "Nova marcação", true);
+
+    // TODO: Refresh list
   }
 
   // YourListCell class to customize cell rendering

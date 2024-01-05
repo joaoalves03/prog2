@@ -6,7 +6,7 @@
 <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: -background-900"
             stylesheets="@../assets/styles/modal.css" xmlns="http://javafx.com/javafx/11.0.14-internal"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="prog.projeto.controllers.client.ScheduleServiceController">
+            fx:controller="prog.projeto.controllers.client.ScheduleAppointmentController">
     <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="background">
         <Label nodeOrientation="RIGHT_TO_LEFT" text="Tipo de Serviço:">
             <graphic>
