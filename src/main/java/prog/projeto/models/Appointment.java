@@ -9,15 +9,19 @@ import java.util.*;
 
 @Getter
 public class Appointment implements Serializable {
+  private final int id;
   private final int providerID;
   private final int serviceID;
   private final int employeeID;
   private final Date date;
-  @Setter private AppointmentStatus status;
-  @Setter private String notes;
+  @Setter
+  private AppointmentStatus status;
+  @Setter
+  private String notes;
   private final Set<Extra> extraProducts;
 
-  public Appointment(int providerID, int serviceID, int employeeID, Date date) {
+  public Appointment(int id, int providerID, int serviceID, int employeeID, Date date) {
+    this.id = id;
     this.providerID = providerID;
     this.serviceID = serviceID;
     this.employeeID = employeeID;
@@ -30,7 +34,7 @@ public class Appointment implements Serializable {
   public void addExtra(String name, float price, int quantity) {
     Optional<Extra> extra = this.extraProducts.stream().filter(x -> x.getName().equals(name)).findFirst();
 
-    if(extra.isPresent()) {
+    if (extra.isPresent()) {
       Extra _extra = extra.get();
 
       _extra.setQuantity(_extra.getQuantity() + 1);
@@ -42,7 +46,7 @@ public class Appointment implements Serializable {
   public void removeExtra(String name, int quantity) throws NoSuchElementException {
     Optional<Extra> extra = this.extraProducts.stream().filter(x -> x.getName().equals(name)).findFirst();
 
-    if(extra.isPresent()) {
+    if (extra.isPresent()) {
       Extra _extra = extra.get();
       int _quantity = _extra.getQuantity();
 
@@ -62,7 +66,7 @@ public class Appointment implements Serializable {
 
     float total = service.getPrice();
 
-    for(Extra x: extraProducts) {
+    for (Extra x : extraProducts) {
       total += x.getPrice();
     }
 
