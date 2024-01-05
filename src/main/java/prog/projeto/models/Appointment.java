@@ -13,6 +13,7 @@ public class Appointment implements Serializable {
   private final int providerID;
   private final int serviceID;
   private final int employeeID;
+  private final int clientID;
   private final Date date;
   @Setter
   private AppointmentStatus status;
@@ -20,11 +21,12 @@ public class Appointment implements Serializable {
   private String notes;
   private final Set<Extra> extraProducts;
 
-  public Appointment(int id, int providerID, int serviceID, int employeeID, Date date) {
+  public Appointment(int id, int providerID, int serviceID, int employeeID, int clientID, Date date) {
     this.id = id;
     this.providerID = providerID;
     this.serviceID = serviceID;
     this.employeeID = employeeID;
+    this.clientID = clientID;
     this.date = date;
     this.status = AppointmentStatus.Scheduled;
     this.notes = "";
