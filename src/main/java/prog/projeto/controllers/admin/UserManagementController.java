@@ -117,5 +117,10 @@ public class UserManagementController {
 
     UserRepository userRepository = UserRepository.getInstance();
     userRepository.delete(currentUser);
+    try {
+      userRepository.save();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
   }
 }
