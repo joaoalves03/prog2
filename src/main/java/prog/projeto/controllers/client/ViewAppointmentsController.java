@@ -73,7 +73,7 @@ public class ViewAppointmentsController {
 
   @FXML
   protected void newAppointment() {
-    SceneManager.openNewModal("client/scheduleAppointment.fxml", "Nova marcação", true);
+    SceneManager.openNewModal("pages/client/scheduleAppointment.fxml", "Nova marcação", true);
 
     // TODO: Refresh list
   }
