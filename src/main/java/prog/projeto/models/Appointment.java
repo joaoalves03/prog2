@@ -2,44 +2,58 @@ package prog.projeto.models;
 
 import lombok.Getter;
 import lombok.Setter;
+import prog.projeto.repositories.ServiceRepository;
 
 import java.io.Serializable;
 import java.util.*;
 
 @Getter
 public class Appointment implements Serializable {
-  private final int companyID;
+  private final int id;
+  private final int providerID;
+  private final int serviceID;
+  private final int employeeID;
+  private final int clientID;
+  private final Date date;
   @Setter
-  private float price;
-  private final Set<Extra> extras;
+  private AppointmentStatus status;
+  @Setter
+  private String notes;
+  private final Set<Extra> extraProducts;
 
-  public Appointment(int companyID, float price) {
-    this.companyID = companyID;
-    this.price = price;
-    this.extras = new HashSet<>();
+  public Appointment(int id, int providerID, int serviceID, int employeeID, int clientID, Date date) {
+    this.id = id;
+    this.providerID = providerID;
+    this.serviceID = serviceID;
+    this.employeeID = employeeID;
+    this.clientID = clientID;
+    this.date = date;
+    this.status = AppointmentStatus.Scheduled;
+    this.notes = "";
+    this.extraProducts = new HashSet<>();
   }
 
   public void addExtra(String name, float price, int quantity) {
-    Optional<Extra> extra = this.extras.stream().filter(x -> x.getName().equals(name)).findFirst();
+    Optional<Extra> extra = this.extraProducts.stream().filter(x -> x.getName().equals(name)).findFirst();
 
-    if(extra.isPresent()) {
+    if (extra.isPresent()) {
       Extra _extra = extra.get();
 
       _extra.setQuantity(_extra.getQuantity() + 1);
     } else {
-      this.extras.add(new Extra(name, price, quantity));
+      this.extraProducts.add(new Extra(name, price, quantity));
     }
   }
 
   public void removeExtra(String name, int quantity) throws NoSuchElementException {
-    Optional<Extra> extra = this.extras.stream().filter(x -> x.getName().equals(name)).findFirst();
+    Optional<Extra> extra = this.extraProducts.stream().filter(x -> x.getName().equals(name)).findFirst();
 
-    if(extra.isPresent()) {
+    if (extra.isPresent()) {
       Extra _extra = extra.get();
       int _quantity = _extra.getQuantity();
 
       if (_quantity - quantity <= 0) {
-        this.extras.remove(_extra);
+        this.extraProducts.remove(_extra);
       } else {
         _extra.setQuantity(_quantity - quantity);
       }
@@ -49,9 +63,12 @@ public class Appointment implements Serializable {
   }
 
   public float getFinalValue() {
-    float total = price;
+    ServiceRepository serviceRepository = ServiceRepository.getInstance();
+    Service service = serviceRepository.findById(serviceID);
 
-    for(Extra x: extras) {
+    float total = service.getPrice();
+
+    for (Extra x : extraProducts) {
       total += x.getPrice();
     }
 

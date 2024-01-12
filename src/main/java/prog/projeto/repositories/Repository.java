@@ -36,7 +36,17 @@ public abstract class Repository<T> {
     objectOutputStream.close();
   }
 
+  /**
+   * Tries to read file defined in the class into the
+   * entities variable.<br>
+   * If the file doesn't exist, continue with an empty list.<br>
+   * It throws any other error to outside the function.
+   */
   public void read() throws IOException, ClassNotFoundException {
+    if(!new File(fileName).isFile()) {
+      return;
+    }
+
     FileInputStream fileInputStream = new FileInputStream(fileName);
     ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 

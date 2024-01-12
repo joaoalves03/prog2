@@ -14,6 +14,7 @@ import prog.projeto.repositories.AnimalCenterRepository;
 import prog.projeto.repositories.ServiceRepository;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AnimalCenterFormController implements Initializable {
@@ -86,7 +87,8 @@ public class AnimalCenterFormController implements Initializable {
           address.getText(),
           city.getText(),
           phone.getText(),
-          serviceType.getValue().getId()
+          serviceType.getValue().getId(),
+          new ArrayList<>()
       ));
     } else {
       animalCenterRepository.add(new AnimalCenter(
@@ -95,7 +97,8 @@ public class AnimalCenterFormController implements Initializable {
           address.getText(),
           city.getText(),
           phone.getText(),
-          serviceType.getValue().getId()
+          serviceType.getValue().getId(),
+          new ArrayList<>()
       ));
     }
 

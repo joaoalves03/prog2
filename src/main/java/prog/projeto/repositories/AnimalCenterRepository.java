@@ -7,6 +7,7 @@ import prog.projeto.models.UserType;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AnimalCenterRepository extends Repository<AnimalCenter> {
   private static AnimalCenterRepository instance;
@@ -20,17 +21,17 @@ public class AnimalCenterRepository extends Repository<AnimalCenter> {
 
   public List<User> getEmployees(AnimalCenter animalCenter) {
     UserRepository userRepository = UserRepository.getInstance();
-    List<User> employees = new ArrayList<>();
 
-    employees.addAll(userRepository.getByType(UserType.Secretary));
-    employees.addAll(userRepository.getByType(UserType.Assistant));
-    employees.addAll(userRepository.getByType(UserType.Educator));
-    employees.addAll(userRepository.getByType(UserType.Veterinarian));
-
-    return employees;
+    return new ArrayList<>(userRepository.getByType(UserType.Staff));
   }
 
   public Collection<AnimalCenter> getEntities() { return this.entities.values(); }
+
+  public List<AnimalCenter> getByProvider(int providerID) {
+    return entities.values().stream().filter(
+        animalCenter -> animalCenter.getProviderID() == providerID
+    ).collect(Collectors.toList());
+  }
 
   @Override
   public int getId(AnimalCenter entity) {
