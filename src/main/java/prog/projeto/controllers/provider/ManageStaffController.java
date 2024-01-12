@@ -1,11 +1,15 @@
 package prog.projeto.controllers.provider;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import prog.projeto.PetCareApplication;
 import prog.projeto.SceneManager;
 import prog.projeto.models.User;
 import prog.projeto.repositories.UserRepository;
@@ -36,6 +40,7 @@ public class ManageStaffController {
     // Set the cell factory to display the user's first name
     usersList.setCellFactory(param -> new UserListCell());
 
+    // TODO: Filter by animal center
     // Populate the ListView with users
     usersList.getItems().addAll(userRepository.getAllUsers());
 
@@ -68,7 +73,22 @@ public class ManageStaffController {
 
   @FXML
   void add() {
-    SceneManager.openNewModal("pages/provider/staffForm.fxml", "Adicionar Empregado", true);
+    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("pages/provider/staffForm.fxml"));
+
+    try {
+      Scene scene = new Scene(fxmlLoader.load());
+      Stage stage = new Stage();
+      stage.setScene(scene);
+      stage.setTitle("Adicionar Empregado");
+      stage.centerOnScreen();
+      StaffFormController controller = fxmlLoader.getController();
+      controller.setAnimalCenter(usersList.getSelectionModel().getSelectedIndex());
+      stage.showAndWait();
+    } catch (Exception ignored) {
+      SceneManager.openErrorAlert("Erro", "Não foi possível criar um novo empregado");
+    }
+
+    refreshList();
   }
 
   @FXML
@@ -107,5 +127,13 @@ public class ManageStaffController {
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }*/
+  }
+
+  protected void refreshList() {
+    UserRepository userRepository = UserRepository.getInstance();
+
+    // TODO: Filter users by animal center
+    usersList.getItems().clear();
+    usersList.getItems().addAll(userRepository.getAllUsers());
   }
 }

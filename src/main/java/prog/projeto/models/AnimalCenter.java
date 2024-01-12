@@ -20,7 +20,7 @@ public class AnimalCenter implements Serializable {
   @Setter
   private String phone;
   private int serviceType;
-  private List<User> employees;
+  private List<Integer> employees;
 
   @Override
   public String toString() {
