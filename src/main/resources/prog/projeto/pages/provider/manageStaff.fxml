@@ -2,45 +2,47 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Font?>
-<ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: -background-900"
-            stylesheets="@../../assets/styles/modal.css" xmlns="http://javafx.com/javafx/11.0.14-internal"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="prog.projeto.controllers.provider.ManageStaffController">
+<ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: -background-900" stylesheets="@../../assets/styles/modal.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.provider.ManageStaffController">
     <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="background">
-        <ListView fx:id="usersList" prefHeight="250.0" prefWidth="400.0"/>
+      <Label alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" text="Local de recolha">
+         <graphic>
+            <ComboBox fx:id="animalCenterList" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" />
+         </graphic>
+      </Label>
+        <ListView fx:id="usersList" prefHeight="250.0" prefWidth="400.0" />
         <VBox fx:id="informationBox" prefWidth="100.0">
-            <Label text="Informação do Empregado">
+            <Label text="Informação do Funcionário">
                 <font>
-                    <Font size="22.0"/>
+                    <Font size="22.0" />
                 </font>
             </Label>
             <Label fx:id="name">
                 <graphic>
-                    <Label text="Nome:"/>
+                    <Label text="Nome:" />
                 </graphic>
             </Label>
             <Label fx:id="email">
                 <graphic>
-                    <Label text="Email:"/>
+                    <Label text="Email:" />
                 </graphic>
             </Label>
             <Label fx:id="address">
                 <graphic>
-                    <Label text="Morada:"/>
+                    <Label text="Morada:" />
                 </graphic>
             </Label>
             <Label fx:id="phone">
                 <graphic>
-                    <Label text="Telemóvel:"/>
+                    <Label text="Telemóvel:" />
                 </graphic>
             </Label>
         </VBox>
-        <HBox alignment="TOP_CENTER" fillHeight="false" spacing="10.0">
-            <Button mnemonicParsing="false" onAction="#add" text="Adicionar"/>
-            <Button mnemonicParsing="false" onAction="#edit" text="Editar"/>
-            <Button mnemonicParsing="false" onAction="#remove" text="Remover"/>
+        <HBox fx:id="controlButtons" alignment="TOP_CENTER" fillHeight="false" spacing="10.0" visible="false">
+            <Button mnemonicParsing="false" onAction="#add" text="Adicionar" />
+            <Button mnemonicParsing="false" onAction="#edit" text="Editar" />
+            <Button mnemonicParsing="false" onAction="#remove" text="Remover" />
         </HBox>
     </VBox>
 </ScrollPane>
