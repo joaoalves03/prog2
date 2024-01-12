@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="prog.projeto.controllers.ProviderIndexController"
+      fx:controller="prog.projeto.controllers.provider.ProviderIndexController"
       styleClass="background" stylesheets="@../../assets/styles/global.css">
 
      <fx:include source="../../widgets/header.fxml" />

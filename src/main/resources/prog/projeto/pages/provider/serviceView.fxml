@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.ServiceViewController">
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.provider.ServiceViewController">
   <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="8.0">
     <Button mnemonicParsing="false" text="+" onAction="#newService"/>
     <Button mnemonicParsing="false" text="Editar" onAction="#editService"/>

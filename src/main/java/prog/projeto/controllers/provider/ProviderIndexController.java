@@ -1,4 +1,4 @@
-package prog.projeto.controllers;
+package prog.projeto.controllers.provider;
 
 import javafx.fxml.FXML;
 import prog.projeto.SceneManager;
