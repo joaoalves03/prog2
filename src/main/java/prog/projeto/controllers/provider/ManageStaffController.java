@@ -6,6 +6,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.VBox;
+import prog.projeto.SceneManager;
 import prog.projeto.models.User;
 import prog.projeto.repositories.UserRepository;
 
@@ -45,18 +46,10 @@ public class ManageStaffController {
     usersList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
       if (newValue != null) {
         // If a user is selected, update the label text
-        name.setText("Nome: " + newValue.getFirstName() + " " + newValue.getLastName());
-        email.setText("Email: " + newValue.getEmail());
-        address.setText("Rua: " + newValue.getAddress());
-        city.setText("Cidade: " + newValue.getCity());
-        phone.setText("Telemovel: " + newValue.getPhone());
-      } else {
-        // If no user is selected
-        name.setText("Nome:");
-        email.setText("Email:");
-        address.setText("Rua:");
-        city.setText("Cidade:");
-        phone.setText("Telemovel:");
+        name.setText(newValue.getFirstName() + " " + newValue.getLastName());
+        email.setText(newValue.getEmail());
+        address.setText(newValue.getAddress() + ", " + newValue.getCity());
+        phone.setText(newValue.getPhone());
       }
     });
   }
@@ -71,5 +64,48 @@ public class ManageStaffController {
         setText(user.getFirstName());
       }
     }
+  }
+
+  @FXML
+  void add() {
+    SceneManager.openNewModal("pages/provider/staffForm.fxml", "Adicionar Empregado", true);
+  }
+
+  @FXML
+  private void edit() {
+    /*if (currentUser == -1) {
+      SceneManager.openErrorAlert("Erro", "Selecione um Utilizador");
+      return;
+    }
+
+    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("widgets/edit-user.fxml"));
+    Scene scene = new Scene(fxmlLoader.load());
+    Stage stage = new Stage();
+    stage.setScene(scene);
+    stage.setTitle("Editar Utilizador");
+    stage.centerOnScreen();
+    EditUserController controller = fxmlLoader.getController();
+    controller.setUser(currentUser);
+
+    stage.showAndWait();*/
+  }
+
+  @FXML
+  private void remove(){
+    /*if (currentUser == -1) {
+      SceneManager.openErrorAlert("Erro", "Selecione um Utilizador");
+      return;
+    }
+
+    boolean response = SceneManager.openConfirmationAlert("Remover utilizador", "Têm a certeza que quer eliminareste utilizador?");
+    if(!response) { return; }
+
+    UserRepository userRepository = UserRepository.getInstance();
+    userRepository.delete(currentUser);
+    try {
+      userRepository.save();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }*/
   }
 }
