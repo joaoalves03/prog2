@@ -5,14 +5,14 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<FlowPane alignment="CENTER" styleClass="background" stylesheets="@assets/styles/form.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.RegisterController">
+<FlowPane alignment="CENTER" styleClass="background" stylesheets="@../assets/styles/form.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.RegisterController">
    <fx:define>
       <ToggleGroup fx:id="userType" />
    </fx:define>
 
    <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="form-container">
       <ImageView fitHeight="123.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
-         <Image url="@assets/icons/petcare.png" />
+         <Image url="@../assets/icons/petcare.png" />
       </ImageView>
       <Label styleClass="title" text="Pet Care" />
 
@@ -22,7 +22,7 @@
          <RadioButton mnemonicParsing="false" text="Prestador" toggleGroup="$userType"/>
       </HBox>
 
-      <fx:include fx:id="registerForm" source="widgets/register-form.fxml" />
+      <fx:include fx:id="registerForm" source="../widgets/register-form.fxml" />
       <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="8.0">
          <Button mnemonicParsing="false" onAction="#returnToLogin" text="Voltar" />
          <Button mnemonicParsing="false" styleClass="primary" onAction="#onRegisterSubmit" text="Registar" />

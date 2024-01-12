@@ -5,9 +5,9 @@
 
 <VBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="prog.projeto.controllers.client.ClientIndexController"
-      styleClass="background" stylesheets="@../assets/styles/global.css">
+      styleClass="background" stylesheets="@../../assets/styles/global.css">
 
-    <fx:include source="../widgets/header.fxml" />
+    <fx:include source="../../widgets/header.fxml" />
 
     <FlowPane styleClass="content">
         <Button mnemonicParsing="false" onAction="#openModal" text="Ver Marcações" userData="client/viewAppointments.fxml"/>

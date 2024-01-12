@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: -background-900"
-            stylesheets="@../assets/styles/modal.css" xmlns="http://javafx.com/javafx/11.0.14-internal"
+            stylesheets="@../../assets/styles/modal.css" xmlns="http://javafx.com/javafx/11.0.14-internal"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="prog.projeto.controllers.admin.UserManagementController">
     <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="background">
