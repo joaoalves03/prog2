@@ -17,4 +17,9 @@ public class User implements Serializable {
   @Setter private String address;
   @Setter private String city;
   @Setter private String phone;
+
+  @Override
+  public String toString() {
+    return this.firstName + " " + this.lastName;
+  }
 }

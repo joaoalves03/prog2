@@ -7,6 +7,7 @@ import prog.projeto.models.UserType;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AnimalCenterRepository extends Repository<AnimalCenter> {
   private static AnimalCenterRepository instance;
@@ -25,6 +26,12 @@ public class AnimalCenterRepository extends Repository<AnimalCenter> {
   }
 
   public Collection<AnimalCenter> getEntities() { return this.entities.values(); }
+
+  public List<AnimalCenter> getByProvider(int providerID) {
+    return entities.values().stream().filter(
+        animalCenter -> animalCenter.getProviderID() == providerID
+    ).collect(Collectors.toList());
+  }
 
   @Override
   public int getId(AnimalCenter entity) {
