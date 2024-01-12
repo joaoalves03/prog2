@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 
 <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: -background-900"
-            stylesheets="@../assets/styles/modal.css" xmlns="http://javafx.com/javafx/11.0.14-internal"
+            stylesheets="@../../assets/styles/modal.css" xmlns="http://javafx.com/javafx/11.0.14-internal"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="prog.projeto.controllers.admin.UserManagementController">
+            fx:controller="prog.projeto.controllers.provider.ManageStaffController">
     <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="background">
         <ListView fx:id="usersList" prefHeight="250.0" prefWidth="400.0"/>
         <VBox fx:id="informationBox" prefWidth="100.0">

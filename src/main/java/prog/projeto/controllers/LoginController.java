@@ -19,7 +19,7 @@ public class LoginController {
 
   @FXML
   protected void onRegisterClick() {
-    SceneManager.switchScene(registerLink, "register.fxml");
+    SceneManager.switchScene(registerLink, "pages/register.fxml");
   }
 
   @FXML
@@ -42,9 +42,9 @@ public class LoginController {
         userRepository.setSelectedUser(user);
 
         switch(user.getType()) {
-          case Client -> SceneManager.switchScene(stage, "client/index.fxml");
-          case ServiceProvider -> SceneManager.switchScene(stage, "provider/index.fxml");
-          case Admin -> SceneManager.switchScene(stage, "admin/index.fxml");
+          case Client -> SceneManager.switchScene(stage, "pages/client/index.fxml");
+          case ServiceProvider -> SceneManager.switchScene(stage, "pages/provider/index.fxml");
+          case Admin -> SceneManager.switchScene(stage, "pages/admin/index.fxml");
           default -> System.out.println("Welp guess you're staying in login page");
         }
       } else {

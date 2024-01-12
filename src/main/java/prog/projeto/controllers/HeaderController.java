@@ -45,7 +45,7 @@ public class HeaderController {
 
   @FXML
   protected void logout(){
-    SceneManager.switchScene(userDropDown, "login.fxml");
+    SceneManager.switchScene(userDropDown, "pages/login.fxml");
   }
 
   @FXML

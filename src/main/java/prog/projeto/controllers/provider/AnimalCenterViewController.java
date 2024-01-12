@@ -1,4 +1,4 @@
-package prog.projeto.controllers;
+package prog.projeto.controllers.provider;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -83,7 +83,7 @@ public class AnimalCenterViewController implements Initializable {
   public void newAnimalCenter() throws Exception {
     UserRepository userRepository = UserRepository.getInstance();
 
-    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("provider/animalCenterForm.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("pages/provider/animalCenterForm.fxml"));
     Scene scene = new Scene(fxmlLoader.load());
     Stage stage = new Stage();
     stage.setScene(scene);
@@ -103,7 +103,7 @@ public class AnimalCenterViewController implements Initializable {
     AnimalCenter selectedAnimalCenter = table.getSelectionModel().getSelectedItem();
     if (selectedAnimalCenter == null) return;
 
-    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("provider/animalCenterForm.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("pages/provider/animalCenterForm.fxml"));
     Scene scene = new Scene(fxmlLoader.load());
     Stage stage = new Stage();
     stage.setScene(scene);

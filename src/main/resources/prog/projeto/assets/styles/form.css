@@ -10,6 +10,11 @@
     -fx-padding: 20;
     -fx-spacing: 20;
 }
+.form-container.modal {
+    -fx-background-color: -background-900;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+}
 
 .form-label {
     -fx-font-size: 18;

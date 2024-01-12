@@ -7,7 +7,7 @@
 
 
 <VBox alignment="CENTER" spacing="8.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="prog.projeto.controllers.ServiceFormController">
+      fx:controller="prog.projeto.controllers.provider.ServiceFormController">
     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Serviço">
         <font>
             <Font size="24.0" />

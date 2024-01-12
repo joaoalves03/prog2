@@ -4,6 +4,10 @@
     -fx-text-fill: -text-50;
 }
 
+ScrollPane {
+    -fx-background-color: -background-900;
+}
+
 .background {
     -fx-background-color: -background-900;
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="prog.projeto.controllers.staff.StaffIndexController"
+      styleClass="background" stylesheets="@../../assets/styles/global.css">
+
+    <fx:include source="../../widgets/header.fxml"/>
+
+    <FlowPane styleClass="content">
+        <Label text="you are staff nice" />
+    </FlowPane>
+</VBox>

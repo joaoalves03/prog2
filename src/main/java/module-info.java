@@ -15,6 +15,12 @@ module prog.projeto {
   opens prog.projeto.controllers.client to javafx.fxml;
   exports prog.projeto.controllers.admin;
   opens prog.projeto.controllers.admin to javafx.fxml;
+  exports prog.projeto.controllers.provider;
+  opens prog.projeto.controllers.provider to javafx.fxml;
+  exports prog.projeto.controllers.staff;
+  opens prog.projeto.controllers.staff to javafx.fxml;
+
+
   exports prog.projeto.models;
   opens prog.projeto.models to javafx.fxml;
 }

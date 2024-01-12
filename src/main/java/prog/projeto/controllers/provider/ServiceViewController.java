@@ -1,4 +1,4 @@
-package prog.projeto.controllers;
+package prog.projeto.controllers.provider;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -51,7 +51,7 @@ public class ServiceViewController implements Initializable {
 
   @FXML
   public void newService() {
-    SceneManager.openNewModal("provider/serviceForm.fxml", "Serviço", true);
+    SceneManager.openNewModal("pages/provider/serviceForm.fxml", "Serviço", true);
     refreshTable();
   }
 
@@ -60,7 +60,7 @@ public class ServiceViewController implements Initializable {
     Service selectedService = table.getSelectionModel().getSelectedItem();
     if(selectedService == null) return;
 
-    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("provider/serviceForm.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("pages/provider/serviceForm.fxml"));
     Scene scene = new Scene(fxmlLoader.load());
     Stage stage = new Stage();
     stage.setScene(scene);

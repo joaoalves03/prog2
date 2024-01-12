@@ -28,7 +28,7 @@
     <HBox alignment="CENTER" styleClass="profile-dropdown" GridPane.columnIndex="1">
         <MenuButton fx:id="userDropDown" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefWidth="130.0" text="Username">
           <items>
-              <MenuItem mnemonicParsing="false" onAction="#openModal" text="Definições" userData="widgets/settings.fxml" />
+              <MenuItem mnemonicParsing="false" onAction="#openModal" text="Definições" userData="widgets/edit-user.fxml" />
               <MenuItem mnemonicParsing="false" onAction="#logout" text="Sair" />
           </items>
         </MenuButton>
