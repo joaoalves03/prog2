@@ -36,8 +36,10 @@ public class AnimalCenterViewController implements Initializable {
 
   protected void refreshTable() {
     AnimalCenterRepository animalCenterRepository = AnimalCenterRepository.getInstance();
+    UserRepository userRepository = UserRepository.getInstance();
+
     ObservableList<AnimalCenter> entities = FXCollections.observableArrayList(
-        animalCenterRepository.getEntities().stream().toList()
+        animalCenterRepository.getByProvider(userRepository.getSelectedUser().getId())
     );
 
     table.setItems(entities);

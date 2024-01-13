@@ -5,6 +5,7 @@ import lombok.Setter;
 import prog.projeto.repositories.ServiceRepository;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.*;
 
 @Getter
@@ -14,14 +15,14 @@ public class Appointment implements Serializable {
   private final int serviceID;
   private final int employeeID;
   private final int clientID;
-  private final Date date;
+  private final LocalDate date;
   @Setter
   private AppointmentStatus status;
   @Setter
   private String notes;
   private final Set<Extra> extraProducts;
 
-  public Appointment(int id, int providerID, int serviceID, int employeeID, int clientID, Date date) {
+  public Appointment(int id, int providerID, int serviceID, int employeeID, int clientID, LocalDate date) {
     this.id = id;
     this.providerID = providerID;
     this.serviceID = serviceID;

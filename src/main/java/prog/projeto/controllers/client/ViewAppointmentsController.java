@@ -42,23 +42,18 @@ public class ViewAppointmentsController {
 
     appointmentsList.setCellFactory(param -> new AppointmentListCell());
 
-    // Populate the ListView with users
-    appointmentsList.getItems().addAll(
-        appointmentRepository.getByClient(userRepository.getSelectedUser().getId())
-    );
+    refreshList();
 
-    // Set the selection mode to single
     appointmentsList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
-    // Add a listener to detect when an item is selected
     appointmentsList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
       if (newValue != null) {
         User _provider = userRepository.findById(newValue.getProviderID());
         User _employee = userRepository.findById(newValue.getEmployeeID());
 
-        provider.setText("Prestador: " + _provider.getFirstName() + _provider.getLastName());
-        employee.setText("Funcionário: " + _employee.getFirstName() + _employee.getLastName());
-        serviceType.setText("Tipo de serviço: [TODO]");
+        provider.setText(String.format("Prestador: %s %s", _provider.getFirstName(), _provider.getLastName()));
+        employee.setText(String.format("Funcionário: %s %s", _employee.getFirstName(), _employee.getLastName()));
+        serviceType.setText(String.format("Tipo de serviço: %s", serviceRepository.findById(newValue.getServiceID())));
         date.setText("Data: " + newValue.getDate());
         status.setText("Estado: " + newValue.getStatus().description);
       } else {
@@ -75,7 +70,17 @@ public class ViewAppointmentsController {
   protected void newAppointment() {
     SceneManager.openNewModal("pages/client/scheduleAppointment.fxml", "Nova marcação", true);
 
-    // TODO: Refresh list
+    refreshList();
+  }
+
+  protected void refreshList() {
+    AppointmentRepository appointmentRepository = AppointmentRepository.getInstance();
+    UserRepository userRepository = UserRepository.getInstance();
+
+    appointmentsList.getItems().clear();
+    appointmentsList.getItems().addAll(
+        appointmentRepository.getByClient(userRepository.getSelectedUser().getId())
+    );
   }
 
   private static class AppointmentListCell extends ListCell<Appointment> {

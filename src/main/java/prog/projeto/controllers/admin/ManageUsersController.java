@@ -34,17 +34,9 @@ public class ManageUsersController {
 
   @FXML
   private void initialize() {
-
+    usersList.setCellFactory(param -> new UserListCell());
     refreshList();
     usersList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-    usersList.setCellFactory(param -> new ListCell<>() {
-      @Override
-      protected void updateItem(User user, boolean empty) {
-        super.updateItem(user, empty);
-        if (empty || user == null) {setText(null);}
-        else {setText(user.getFirstName() + " " + user.getLastName());}
-      }
-    });
 
     usersList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
       if (newValue != null) {
@@ -53,8 +45,25 @@ public class ManageUsersController {
         email.setText(newValue.getEmail());
         address.setText(newValue.getAddress() + ", " + newValue.getCity());
         phone.setText(newValue.getPhone());
+      } else {
+        name.setText("");
+        email.setText("");
+        address.setText("");
+        phone.setText("");
       }
     });
+  }
+
+  private static class UserListCell extends ListCell<User> {
+    @Override
+    protected void updateItem(User user, boolean empty) {
+      super.updateItem(user, empty);
+      if (empty || user == null) {
+        setText(null);
+      } else {
+        setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
+      }
+    }
   }
 
   @FXML
@@ -99,10 +108,8 @@ public class ManageUsersController {
       return;
     }
 
-    boolean response = SceneManager.openConfirmationAlert("Remover utilizador", "Têm a certeza que quer eliminareste utilizador?");
-    if (!response) {
-      return;
-    }
+    boolean response = SceneManager.openConfirmationAlert("Remover utilizador", "Tem a certeza que quer eliminar este utilizador?");
+    if(!response) { return; }
 
     UserRepository userRepository = UserRepository.getInstance();
     userRepository.delete(currentUser);
@@ -111,6 +118,8 @@ public class ManageUsersController {
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
+
+    refreshList();
   }
 
   protected void refreshList() {
