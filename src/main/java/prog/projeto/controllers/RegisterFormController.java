@@ -23,13 +23,15 @@ public class RegisterFormController {
   @FXML
   public TextField phone;
 
+  boolean passwordHidden = false;
+
   public boolean isFormCorrect() {
     return
             email.getText().matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
                     && phone.getText().matches("\\d{9}")
                     && !firstName.getText().trim().isEmpty()
                     && !lastName.getText().trim().isEmpty()
-                    && !password.getText().trim().isEmpty()
+                    && (passwordHidden || (!password.getText().trim().isEmpty()))
                     && !address.getText().trim().isEmpty()
                     && !city.getText().trim().isEmpty()
             ;
@@ -55,6 +57,7 @@ public class RegisterFormController {
   }
 
   public void hidePassword() {
+    passwordHidden = true;
     passwordLabel.setVisible(false);
     passwordLabel.setManaged(false);
     password.setVisible(false);

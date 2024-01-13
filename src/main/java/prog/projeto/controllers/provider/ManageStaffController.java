@@ -106,25 +106,34 @@ public class ManageStaffController {
 
   @FXML
   private void edit() {
-    /*if (currentUser == -1) {
-      SceneManager.openErrorAlert("Erro", "Selecione um Utilizador");
+    if(usersList.getSelectionModel().getSelectedItem() == null) {
       return;
     }
 
-    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("widgets/edit-user.fxml"));
-    Scene scene = new Scene(fxmlLoader.load());
-    Stage stage = new Stage();
-    stage.setScene(scene);
-    stage.setTitle("Editar Utilizador");
-    stage.centerOnScreen();
-    EditUserController controller = fxmlLoader.getController();
-    controller.setUser(currentUser);
+    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("pages/provider/staffForm.fxml"));
 
-    stage.showAndWait();*/
+    try {
+      Scene scene = new Scene(fxmlLoader.load());
+      Stage stage = new Stage();
+      stage.setScene(scene);
+      stage.setTitle("Editar Funcionário");
+      stage.centerOnScreen();
+      StaffFormController controller = fxmlLoader.getController();
+      controller.setAnimalCenter(animalCenterList.getSelectionModel().getSelectedItem().getId());
+      controller.enableEdit(usersList.getSelectionModel().getSelectedItem());
+      stage.showAndWait();
+      refreshList();
+    } catch (Exception ignored) {
+      SceneManager.openErrorAlert("Erro", "Não foi possível editar o funcionário");
+    }
   }
 
   @FXML
   private void remove(){
+    if(usersList.getSelectionModel().getSelectedItem() == null) {
+      return;
+    }
+
     UserRepository userRepository = UserRepository.getInstance();
     AnimalCenterRepository animalCenterRepository = AnimalCenterRepository.getInstance();
     User employee = usersList.getSelectionModel().getSelectedItem();
@@ -151,7 +160,7 @@ public class ManageStaffController {
         userRepository.save();
         animalCenterRepository.save();
       } catch (Exception e) {
-        SceneManager.openErrorAlert("Erro", "Não foi possível apagar o funcionário\n"+e.getMessage());
+        SceneManager.openErrorAlert("Erro", "Não foi possível apagar o funcionário");
       }
     }
 

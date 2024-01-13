@@ -29,9 +29,24 @@ public class StaffFormController {
 
   boolean edit = false;
   int animalCenterID = -1;
+  int employeeID = -1;
 
   public void setAnimalCenter(int id){
     animalCenterID = id;
+  }
+
+  public void enableEdit(User employee) {
+    edit = true;
+    employeeID = employee.getId();
+    registerFormController.setValues(
+        employee.getFirstName(),
+        employee.getLastName(),
+        employee.getEmail(),
+        employee.getAddress(),
+        employee.getCity(),
+        employee.getPhone()
+    );
+    registerFormController.hidePassword();
   }
 
   @FXML
@@ -53,16 +68,17 @@ public class StaffFormController {
 
     AnimalCenter animalCenter = animalCenterRepository.findById(animalCenterID);
 
-    try {
-      userRepository.findByEmail(registerFormController.email.getText());
+    if(!edit){
+      try {
+        userRepository.findByEmail(registerFormController.email.getText());
 
-      SceneManager.openErrorAlert("Erro ao registar", "Um utilizador com este e-mail já existe");
-      return;
-    } catch (Exception ignored) {
+        SceneManager.openErrorAlert("Erro ao registar", "Um utilizador com este e-mail já existe");
+        return;
+      } catch (Exception ignored) {}
     }
 
     User newEmployee = new User(
-        userRepository.getNextId(),
+        edit ? employeeID : userRepository.getNextId(),
         UserType.Staff,
         registerFormController.firstName.getText(),
         registerFormController.lastName.getText(),
@@ -73,8 +89,12 @@ public class StaffFormController {
         registerFormController.phone.getText()
     );
 
-    userRepository.add(newEmployee);
-    animalCenter.getEmployees().add(newEmployee.getId());
+    if(edit) {
+      userRepository.update(newEmployee);
+    } else {
+      userRepository.add(newEmployee);
+      animalCenter.getEmployees().add(newEmployee.getId());
+    }
 
     try {
       userRepository.save();
