@@ -68,7 +68,19 @@ public class StaffFormController {
 
     AnimalCenter animalCenter = animalCenterRepository.findById(animalCenterID);
 
-    if(!edit){
+    User newEmployee = new User(
+            edit ? employeeID : userRepository.getNextId(),
+            UserType.Staff,
+            registerFormController.firstName.getText(),
+            registerFormController.lastName.getText(),
+            registerFormController.email.getText(),
+            registerFormController.password.getText(),
+            registerFormController.address.getText(),
+            registerFormController.city.getText(),
+            registerFormController.phone.getText()
+    );
+
+    if(!edit || !newEmployee.getEmail().equals(registerFormController.email.getText())){
       try {
         userRepository.findByEmail(registerFormController.email.getText());
 
@@ -76,18 +88,6 @@ public class StaffFormController {
         return;
       } catch (Exception ignored) {}
     }
-
-    User newEmployee = new User(
-        edit ? employeeID : userRepository.getNextId(),
-        UserType.Staff,
-        registerFormController.firstName.getText(),
-        registerFormController.lastName.getText(),
-        registerFormController.email.getText(),
-        registerFormController.password.getText(),
-        registerFormController.address.getText(),
-        registerFormController.city.getText(),
-        registerFormController.phone.getText()
-    );
 
     if(edit) {
       userRepository.update(newEmployee);
