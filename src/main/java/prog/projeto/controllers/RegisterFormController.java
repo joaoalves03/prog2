@@ -56,6 +56,16 @@ public class RegisterFormController {
     this.phone.setText(phone);
   }
 
+  public void clearValues(){
+    this.firstName.clear();
+    this.lastName.clear();
+    this.email.clear();
+    this.password.clear();
+    this.address.clear();
+    this.city.clear();
+    this.phone.clear();
+  }
+
   public void hidePassword() {
     passwordHidden = true;
     passwordLabel.setVisible(false);
