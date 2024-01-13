@@ -53,7 +53,7 @@ public class ViewAppointmentsController {
 
         provider.setText(String.format("Prestador: %s %s", _provider.getFirstName(), _provider.getLastName()));
         employee.setText(String.format("Funcionário: %s %s", _employee.getFirstName(), _employee.getLastName()));
-        serviceType.setText("Tipo de serviço: [TODO]");
+        serviceType.setText(String.format("Tipo de serviço: %s", serviceRepository.findById(newValue.getServiceID())));
         date.setText("Data: " + newValue.getDate());
         status.setText("Estado: " + newValue.getStatus().description);
       } else {
