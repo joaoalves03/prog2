@@ -80,7 +80,7 @@ public class ManageStaffController {
       if (empty || user == null) {
         setText(null);
       } else {
-        setText(user.getFirstName());
+        setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
       }
     }
   }

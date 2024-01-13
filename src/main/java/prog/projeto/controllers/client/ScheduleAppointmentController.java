@@ -55,6 +55,9 @@ public class ScheduleAppointmentController {
           );
           animalCenterLabel.setVisible(true);
         }
+
+        employeeLabel.setVisible(false);
+        datePicker.setVisible(false);
       }));
 
       animalCenterComboBox.setOnAction((event -> {
@@ -68,15 +71,20 @@ public class ScheduleAppointmentController {
             employees.add(
                 userRepository.findById(id)
             );
+
+            System.out.println(id);
           }
 
           employeeComboBox.setItems(FXCollections.observableList(employees));
           employeeLabel.setVisible(true);
         }
+
+        datePicker.setVisible(false);
       }));
 
       employeeComboBox.setOnAction((event -> {
         User selectedEmployee = employeeComboBox.getSelectionModel().getSelectedItem();
+        datePicker.valueProperty().set(null);
         if(selectedEmployee == null) {
           datePicker.setVisible(false);
         } else {

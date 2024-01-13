@@ -55,6 +55,11 @@ public class UserManagementController {
         email.setText(newValue.getEmail());
         address.setText(newValue.getAddress() + ", " + newValue.getCity());
         phone.setText(newValue.getPhone());
+      } else {
+        name.setText("");
+        email.setText("");
+        address.setText("");
+        phone.setText("");
       }
     });
   }
@@ -66,7 +71,7 @@ public class UserManagementController {
       if (empty || user == null) {
         setText(null);
       } else {
-        setText(user.getFirstName());
+        setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
       }
     }
   }
@@ -84,6 +89,7 @@ public class UserManagementController {
     controller.insideModal();
 
     stage.showAndWait();
+    refreshList();
   }
 
   @FXML
@@ -103,6 +109,7 @@ public class UserManagementController {
     controller.setUser(currentUser);
 
     stage.showAndWait();
+    refreshList();
   }
 
   @FXML
@@ -112,7 +119,7 @@ public class UserManagementController {
       return;
     }
 
-    boolean response = SceneManager.openConfirmationAlert("Remover utilizador", "Têm a certeza que quer eliminareste utilizador?");
+    boolean response = SceneManager.openConfirmationAlert("Remover utilizador", "Têm a certeza que quer eliminar este utilizador?");
     if(!response) { return; }
 
     UserRepository userRepository = UserRepository.getInstance();
@@ -122,5 +129,14 @@ public class UserManagementController {
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
+
+    refreshList();
+  }
+
+  protected void refreshList() {
+    UserRepository userRepository = UserRepository.getInstance();
+
+    usersList.getItems().clear();
+    usersList.getItems().addAll(userRepository.getAllUsers());
   }
 }
