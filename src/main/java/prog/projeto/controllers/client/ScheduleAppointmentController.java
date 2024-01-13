@@ -10,6 +10,9 @@ import prog.projeto.models.UserType;
 import prog.projeto.repositories.AnimalCenterRepository;
 import prog.projeto.repositories.UserRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ScheduleAppointmentController {
   @FXML
   private ComboBox<User> providerComboBox;
@@ -43,6 +46,24 @@ public class ScheduleAppointmentController {
             FXCollections.observableList(animalCenterRepository.getByProvider(selectedUser.getId()))
           );
           animalCenterLabel.setVisible(true);
+        }
+      }));
+
+      animalCenterComboBox.setOnAction((event -> {
+        AnimalCenter selectedAnimalCenter = animalCenterComboBox.getSelectionModel().getSelectedItem();
+        if(selectedAnimalCenter == null){
+          employeeLabel.setVisible(false);
+        } else {
+          List<User> employees = new ArrayList<>();
+
+          for(int id: animalCenterComboBox.getSelectionModel().getSelectedItem().getEmployees()) {
+            employees.add(
+                userRepository.findById(id)
+            );
+          }
+
+          employeeComboBox.setItems(FXCollections.observableList(employees));
+          employeeLabel.setVisible(true);
         }
       }));
     } catch (Exception e) {
