@@ -6,10 +6,10 @@
 
 <ScrollPane fitToHeight="true" fitToWidth="true" stylesheets="@../../assets/styles/modal.css"
             xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="prog.projeto.controllers.admin.UserManagementController">
+            fx:controller="prog.projeto.controllers.admin.ManageUsersController">
     <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="background">
         <ListView fx:id="usersList" minHeight="-Infinity" prefHeight="250.0" prefWidth="400.0"/>
-        <VBox fx:id="informationBox" prefWidth="100.0" spacing="10.0">
+        <VBox prefWidth="100.0" spacing="10.0">
             <Label text="Informação do Utilizador">
                 <font>
                     <Font size="22.0"/>
@@ -37,7 +37,7 @@
                 </graphic>
             </Label>
         </VBox>
-        <HBox fx:id="optionButtons" alignment="TOP_CENTER" fillHeight="false" spacing="10.0">
+        <HBox alignment="TOP_CENTER" fillHeight="false" spacing="10.0">
             <Button mnemonicParsing="false" onAction="#add" text="Adicionar"/>
             <Button mnemonicParsing="false" onAction="#edit" text="Editar"/>
             <Button mnemonicParsing="false" onAction="#remove" text="Remover"/>

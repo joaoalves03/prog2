@@ -12,11 +12,11 @@
         <ToggleGroup fx:id="userType"/>
     </fx:define>
 
-    <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="form-container" fx:id="container">
-        <ImageView fitHeight="123.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true" fx:id="logo">
+    <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="form-container">
+        <ImageView fitHeight="123.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../assets/icons/petcare.png"/>
         </ImageView>
-        <Label styleClass="title" text="Pet Care" fx:id="title"/>
+        <Label styleClass="title" text="Pet Care"/>
 
         <Label fx:id="firstTimeLabel" text="Por favor adicione o primeiro utilizador" visible="false" managed="false"/>
         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="8.0" fx:id="userTypeSelection">
@@ -26,8 +26,7 @@
 
         <fx:include fx:id="registerForm" source="../widgets/register-form.fxml"/>
         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="8.0">
-            <Button mnemonicParsing="false" onAction="#closeWindow" text="Cancelar" fx:id="cancelButton"/>
-            <Button mnemonicParsing="false" onAction="#returnToLogin" text="Voltar" fx:id="backButton"/>
+            <Button mnemonicParsing="false" onAction="#returnToLogin" text="Voltar"/>
             <Button mnemonicParsing="false" styleClass="primary" onAction="#onRegisterSubmit" text="Registar"/>
         </HBox>
 

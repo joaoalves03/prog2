@@ -5,10 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import prog.projeto.SceneManager;
 import prog.projeto.models.User;
 import prog.projeto.models.UserType;
@@ -18,7 +15,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
-  private boolean insideModal = false;
   @FXML
   RegisterFormController registerFormController;
   @FXML
@@ -29,16 +25,6 @@ public class RegisterController implements Initializable {
   ToggleGroup userType;
   @FXML
   HBox userTypeSelection;
-  @FXML
-  Label title;
-  @FXML
-  ImageView logo;
-  @FXML
-  VBox container;
-  @FXML
-  Button cancelButton;
-  @FXML
-  Button backButton;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -50,32 +36,7 @@ public class RegisterController implements Initializable {
       userTypeSelection.setVisible(false);
       userTypeSelection.setManaged(false);
     }
-
-    cancelButton.setVisible(false);
-    cancelButton.setManaged(false);
-
-    //rbClient.setSelected(true);
   }
-
-  public void addAdminType() {
-    RadioButton adminRadioButton = new RadioButton("Admin");
-    adminRadioButton.setToggleGroup(userType);
-    userTypeSelection.getChildren().add(adminRadioButton);
-  }
-
-  public void insideModal() {
-    title.setVisible(false);
-    title.setManaged(false);
-    logo.setVisible(false);
-    logo.setManaged(false);
-    backButton.setVisible(false);
-    backButton.setManaged(false);
-    cancelButton.setVisible(true);
-    cancelButton.setManaged(true);
-    container.getStyleClass().add("modal");
-    insideModal = true;
-  }
-
   @FXML
   protected void onRegisterSubmit() {
     if (!registerFormController.isFormCorrect()) {
@@ -113,11 +74,7 @@ public class RegisterController implements Initializable {
     try {
       userRepository.save();
 
-      if (insideModal) {
-        closeWindow();
-      } else {
-        returnToLogin();
-      }
+      returnToLogin();
     } catch (Exception exc) {
       SceneManager.openErrorAlert("Erro ao registar", "Não foi possível guardar o registo");
     }
@@ -130,10 +87,5 @@ public class RegisterController implements Initializable {
     } catch (Exception e) {
       System.out.println("SceneManager");
     }
-  }
-
-  @FXML
-  protected void closeWindow() {
-    SceneManager.closeWindow(cancelButton);
   }
 }

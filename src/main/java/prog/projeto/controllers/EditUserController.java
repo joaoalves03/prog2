@@ -2,14 +2,11 @@ package prog.projeto.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import prog.projeto.SceneManager;
-import prog.projeto.models.AnimalCenter;
 import prog.projeto.models.User;
 import prog.projeto.repositories.UserRepository;
 
 public class EditUserController {
-  private int id;
   @FXML
   RegisterFormController registerFormController;
 
@@ -22,24 +19,6 @@ public class EditUserController {
     if (selectedUser == null) {
       return;
     }
-    id = selectedUser.getId();
-
-    registerFormController.setValues(
-            selectedUser.getFirstName(),
-            selectedUser.getLastName(),
-            selectedUser.getEmail(),
-            selectedUser.getPassword(),
-            selectedUser.getAddress(),
-            selectedUser.getCity(),
-            selectedUser.getPhone()
-    );
-  }
-
-  public void setUser(int id){
-    UserRepository userRepository = UserRepository.getInstance();
-    User selectedUser = userRepository.findById(id);
-    this.id = id;
-
 
     registerFormController.setValues(
             selectedUser.getFirstName(),
@@ -60,7 +39,7 @@ public class EditUserController {
     }
 
     UserRepository userRepository = UserRepository.getInstance();
-    User selectedUser = userRepository.findById(id);
+    User selectedUser = userRepository.getSelectedUser();
 
     // Check if email was changed
     if (!selectedUser.getEmail().equals(registerFormController.email.getText())) {
