@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: -background-900"
+<ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="300.0" style="-fx-background-color: -background-900"
             stylesheets="@../../assets/styles/modal.css" xmlns="http://javafx.com/javafx/17.0.2-ea"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="prog.projeto.controllers.client.ScheduleAppointmentController">
@@ -24,5 +24,10 @@
                 <ComboBox fx:id="employeeComboBox" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0"/>
             </graphic>
         </Label>
+        <DatePicker fx:id="datePicker" visible="false"/>
+        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="16.0">
+            <Button mnemonicParsing="false" text="Cancelar"/>
+            <Button mnemonicParsing="false" text="Submeter"/>
+        </HBox>
     </VBox>
 </ScrollPane>

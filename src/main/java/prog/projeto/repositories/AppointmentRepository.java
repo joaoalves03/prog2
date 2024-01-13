@@ -20,6 +20,12 @@ public class AppointmentRepository extends Repository<Appointment> {
     ).toList();
   }
 
+  public List<Appointment> getByEmployee(int id) {
+    return this.entities.values().stream().filter(
+        x -> x.getEmployeeID() == id
+    ).toList();
+  }
+
   @Override
   public int getId(Appointment entity) {
     return entity.getId();
