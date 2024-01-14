@@ -13,10 +13,12 @@ import javafx.stage.StageStyle;
 import java.util.Objects;
 
 public class SceneManager {
-  public static void openNewWindow(String sceneName) {
+  public static void openNewWindow(String sceneName, boolean maximized) {
     try {
       FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource(sceneName));
       Scene scene = new Scene(fxmlLoader.load());
+
+
 
       Stage stage = new Stage();
       stage.setScene(scene);
@@ -24,6 +26,7 @@ public class SceneManager {
       stage.getIcons().clear();
       stage.getIcons().add(getAppIcon());
       stage.centerOnScreen();
+      stage.setMaximized(maximized);
       stage.show();
     } catch (Exception e){
       System.out.println("openNewWindow (SceneManager): " + e.getMessage());

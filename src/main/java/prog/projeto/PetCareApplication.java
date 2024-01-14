@@ -20,7 +20,7 @@ public class PetCareApplication extends Application {
       resource = "pages/register.fxml";
     }
 
-    SceneManager.openNewWindow(resource);
+    SceneManager.openNewWindow(resource, true);
   }
 
   public static void main(String[] args) {
