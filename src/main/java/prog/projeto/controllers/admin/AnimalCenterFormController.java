@@ -30,6 +30,7 @@ public class AnimalCenterFormController implements Initializable {
 
   boolean edit = false;
   int providerId = -1;
+  boolean animalCenterStatus;
   int newID;
   List<Integer> employees;
 
@@ -64,6 +65,7 @@ public class AnimalCenterFormController implements Initializable {
     city.setText(animalCenter.getCity());
     phone.setText(animalCenter.getPhone());
     employees = animalCenter.getEmployees();
+    animalCenterStatus = animalCenter.getStatus();
   }
 
   public void setProvider(int id) {
@@ -92,7 +94,8 @@ public class AnimalCenterFormController implements Initializable {
           city.getText(),
           phone.getText(),
           serviceType.getValue().getId(),
-          employees
+          employees,
+          animalCenterStatus
       ));
     } else {
       animalCenterRepository.add(new AnimalCenter(
@@ -102,7 +105,8 @@ public class AnimalCenterFormController implements Initializable {
           city.getText(),
           phone.getText(),
           serviceType.getValue().getId(),
-          new ArrayList<>()
+          new ArrayList<>(),
+          true
       ));
     }
 

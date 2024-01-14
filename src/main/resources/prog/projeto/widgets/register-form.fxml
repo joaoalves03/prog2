@@ -26,4 +26,10 @@
 
     <Label contentDisplay="BOTTOM" styleClass="form-label" text="Telemóvel"/>
     <TextField fx:id="phone"/>
+
+    <Label contentDisplay="BOTTOM" styleClass="form-label" text="Identificação"/>
+    <HBox fillHeight="false" spacing="10.0">
+        <TextField fx:id="cc" promptText="Cartão de Cidadão" HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="nif" layoutX="10.0" layoutY="10.0" promptText="NIF" HBox.hgrow="ALWAYS"/>
+    </HBox>
 </VBox>

@@ -21,6 +21,8 @@ public class AnimalCenter implements Serializable {
   private String phone;
   private int serviceType;
   private List<Integer> employees;
+  @Setter
+  private Boolean status;
 
   @Override
   public String toString() {

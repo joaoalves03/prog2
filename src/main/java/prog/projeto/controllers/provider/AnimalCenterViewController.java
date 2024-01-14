@@ -26,6 +26,8 @@ public class AnimalCenterViewController {
   TableColumn<AnimalCenter, String> phoneColumn;
   @FXML
   TableColumn<AnimalCenter, Integer> serviceTypeColumn;
+  @FXML
+  TableColumn<AnimalCenter, Boolean> activeCenter;
 
   protected void refreshTable() {
     AnimalCenterRepository animalCenterRepository = AnimalCenterRepository.getInstance();
@@ -35,6 +37,7 @@ public class AnimalCenterViewController {
         animalCenterRepository.getByProvider(userRepository.getSelectedUser().getId())
     );
 
+    table.getItems().clear();
     table.setItems(entities);
   }
 
@@ -54,6 +57,7 @@ public class AnimalCenterViewController {
     cityColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
     phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
     serviceTypeColumn.setCellValueFactory(new PropertyValueFactory<>("serviceType"));
+    activeCenter.setCellValueFactory(new PropertyValueFactory<>("status"));
 
     serviceTypeColumn.setCellFactory(tc -> new TableCell<>() {
       @Override
@@ -117,6 +121,34 @@ public class AnimalCenterViewController {
     } catch (Exception e) {
       System.out.println("editAnimalCenter (AnimalCenterViewController):" + e.getCause());
       SceneManager.openErrorAlert("Erro", "Não foi possível editar o local de recolha");
+    }
+  }
+
+  @FXML
+  private void changeStatus() {
+    if(table.getSelectionModel().getSelectedItem() != null){
+      return;
+    }
+
+    AnimalCenterRepository animalCenterRepository = AnimalCenterRepository.getInstance();
+    AnimalCenter selectedAnimalCenter = table.getSelectionModel().getSelectedItem();
+
+    boolean response;
+    if(!selectedAnimalCenter.getStatus()){
+      response = SceneManager.openConfirmationAlert("Ativar Local", "Tem a certeza que quer ativar este local de recolha?");
+    }else{
+      response = SceneManager.openConfirmationAlert("Destativar Local", "Tem a certeza que quer destivar este local de recolha?");
+    }
+    if(!response) { return; }
+    selectedAnimalCenter.setStatus(!selectedAnimalCenter.getStatus());
+
+    try {
+      animalCenterRepository.save();
+
+      refreshTable();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+      SceneManager.openErrorAlert("Erro", "Não foi possivel mudar o estado do local");
     }
   }
 

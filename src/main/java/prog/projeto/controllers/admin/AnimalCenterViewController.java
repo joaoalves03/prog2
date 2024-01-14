@@ -27,11 +27,15 @@ public class AnimalCenterViewController {
   @FXML
   TableColumn<AnimalCenter, Integer> serviceTypeColumn;
   @FXML
+  TableColumn<AnimalCenter, Boolean> activeCenter;
+  @FXML
   private ComboBox<User> providerComboBox;
   @FXML
   private Button add;
   @FXML
   private Button edit;
+  @FXML
+  private Button deactivateButton;
 
   private int providerId = -1;
 
@@ -41,10 +45,12 @@ public class AnimalCenterViewController {
     }
     AnimalCenterRepository animalCenterRepository = AnimalCenterRepository.getInstance();
 
+    System.out.println("FUCK");
     ObservableList<AnimalCenter> entities = FXCollections.observableArrayList(
         animalCenterRepository.getByProvider(providerId)
     );
 
+    table.getItems().clear();
     table.setItems(entities);
   }
 
@@ -65,6 +71,7 @@ public class AnimalCenterViewController {
     cityColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
     phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
     serviceTypeColumn.setCellValueFactory(new PropertyValueFactory<>("serviceType"));
+    activeCenter.setCellValueFactory(new PropertyValueFactory<>("status"));
 
     serviceTypeColumn.setCellFactory(tc -> new TableCell<>() {
       @Override
@@ -89,11 +96,13 @@ public class AnimalCenterViewController {
       providerId = providerComboBox.getSelectionModel().getSelectedItem().getId();
       add.setDisable(false);
       edit.setDisable(false);
+      deactivateButton.setDisable(false);
       refreshTable();
     }));
 
     add.setDisable(true);
     edit.setDisable(true);
+    deactivateButton.setDisable(true);
     refreshTable();
   }
 
@@ -138,6 +147,30 @@ public class AnimalCenterViewController {
     } catch (Exception e){
       System.out.println("editAnimalCenter (AnimalCenterViewController):" + e.getCause());
       SceneManager.openErrorAlert("Erro", "Não foi possível editar o Local de recolha");
+    }
+  }
+
+  @FXML
+  private void changeStatus() {
+    AnimalCenterRepository animalCenterRepository = AnimalCenterRepository.getInstance();
+    AnimalCenter selectedAnimalCenter = table.getSelectionModel().getSelectedItem();
+
+    boolean response;
+    if(!selectedAnimalCenter.getStatus()){
+      response = SceneManager.openConfirmationAlert("Ativar Local", "Tem a certeza que quer ativar este local de recolha?");
+    }else{
+      response = SceneManager.openConfirmationAlert("Destativar Local", "Tem a certeza que quer destivar este local de recolha?");
+    }
+    if(!response) { return; }
+    selectedAnimalCenter.setStatus(!selectedAnimalCenter.getStatus());
+
+    try {
+      animalCenterRepository.save();
+
+      refreshTable();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+      SceneManager.openErrorAlert("Erro", "Não foi possivel mudar o estado do local");
     }
   }
 

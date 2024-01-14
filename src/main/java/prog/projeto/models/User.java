@@ -17,6 +17,9 @@ public class User implements Serializable {
   @Setter private String address;
   @Setter private String city;
   @Setter private String phone;
+  @Setter private String cc;
+  @Setter private String nif;
+  @Setter private Boolean status;
 
   @Override
   public String toString() {

@@ -4,10 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import prog.projeto.SceneManager;
-import prog.projeto.models.AnimalCenter;
 import prog.projeto.models.User;
 import prog.projeto.models.UserType;
-import prog.projeto.repositories.AnimalCenterRepository;
 import prog.projeto.repositories.UserRepository;
 
 import java.util.ArrayList;
@@ -34,6 +32,11 @@ public class ManageUsersController {
   @FXML
   public Label phone;
 
+  @FXML
+  public Button deactivateButton;
+  @FXML
+  public Button editButton;
+
 
   @FXML
   private void initialize() {
@@ -55,11 +58,20 @@ public class ManageUsersController {
         email.setText(newValue.getEmail());
         address.setText(newValue.getAddress() + ", " + newValue.getCity());
         phone.setText(newValue.getPhone());
+
+        deactivateButton.setText(
+                newValue.getStatus() ? "Desativar" : "Ativar"
+        );
+        deactivateButton.setDisable(false);
+        editButton.setDisable(false);
       } else {
         name.setText("");
         email.setText("");
         address.setText("");
         phone.setText("");
+
+        deactivateButton.setDisable(true);
+        editButton.setDisable(true);
       }
     });
   }
@@ -83,7 +95,7 @@ public class ManageUsersController {
       if (empty || user == null) {
         setText(null);
       } else {
-        setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
+        setText(String.format("%s %s %s", user.getFirstName(), user.getLastName(), user.getStatus() ? "" : "(Desativado)"));
       }
     }
   }
@@ -126,33 +138,24 @@ public class ManageUsersController {
   }
 
   @FXML
-  private void remove() {
+  private void changeStatus() {
     if (currentUser == -1) {
       SceneManager.openErrorAlert("Erro", "Selecione um Utilizador");
       return;
     }
-
-    boolean response = SceneManager.openConfirmationAlert("Remover utilizador", "Tem a certeza que quer eliminar este utilizador?");
-    if(!response) { return; }
-
     UserRepository userRepository = UserRepository.getInstance();
-    AnimalCenterRepository animalCenterRepository = AnimalCenterRepository.getInstance();
-    UserType currentUserType = userRepository.findById(currentUser).getType();
-    if(currentUserType == UserType.Staff){
-      for (AnimalCenter center : animalCenterRepository.getEntities()) {
-        if (center.getEmployees().contains(currentUser)) {
-          center.getEmployees().remove((Integer) currentUser);
-          animalCenterRepository.update(center);
-          break;
-        }
-      }
-    }
-    userRepository.delete(currentUser);
 
+    boolean response;
+    if(!userRepository.findById(currentUser).getStatus()){
+      response = SceneManager.openConfirmationAlert("Ativar utilizador", "Tem a certeza que quer ativar este utilizador?");
+    }else{
+      response = SceneManager.openConfirmationAlert("Destativar utilizador", "Tem a certeza que quer destivar este utilizador?");
+    }
+    if(!response) { return; }
+    userRepository.findById(currentUser).setStatus(!userRepository.findById(currentUser).getStatus());
 
     try {
       userRepository.save();
-      if(currentUserType == UserType.Staff) { animalCenterRepository.save(); }
 
       refreshList(filterUsers.getValue());
     } catch (Exception e) {

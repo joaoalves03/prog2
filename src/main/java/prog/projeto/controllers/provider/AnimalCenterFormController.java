@@ -3,7 +3,6 @@ package prog.projeto.controllers.provider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -13,11 +12,10 @@ import prog.projeto.models.Service;
 import prog.projeto.repositories.AnimalCenterRepository;
 import prog.projeto.repositories.ServiceRepository;
 
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.List;
 
-public class AnimalCenterFormController implements Initializable {
+public class AnimalCenterFormController {
   @FXML
   ComboBox<Service> serviceType;
   @FXML
@@ -29,10 +27,12 @@ public class AnimalCenterFormController implements Initializable {
 
   boolean edit = false;
   int providerId = -1;
+  boolean animalCenterStatus;
   int newID;
 
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
+  List<Integer> employees;
+
+  public void initialize(){
     ServiceRepository serviceRepository = ServiceRepository.getInstance();
     AnimalCenterRepository animalCenterRepository = AnimalCenterRepository.getInstance();
     newID = animalCenterRepository.getNextId();
@@ -60,6 +60,8 @@ public class AnimalCenterFormController implements Initializable {
     address.setText(animalCenter.getAddress());
     city.setText(animalCenter.getCity());
     phone.setText(animalCenter.getPhone());
+    employees = animalCenter.getEmployees();
+    animalCenterStatus = animalCenter.getStatus();
   }
 
   public void setProvider(int id) {
@@ -88,7 +90,8 @@ public class AnimalCenterFormController implements Initializable {
           city.getText(),
           phone.getText(),
           serviceType.getValue().getId(),
-          new ArrayList<>()
+          employees,
+          animalCenterStatus
       ));
     } else {
       animalCenterRepository.add(new AnimalCenter(
@@ -98,7 +101,8 @@ public class AnimalCenterFormController implements Initializable {
           city.getText(),
           phone.getText(),
           serviceType.getValue().getId(),
-          new ArrayList<>()
+          new ArrayList<>(),
+          true
       ));
     }
 

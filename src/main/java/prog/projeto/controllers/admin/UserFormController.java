@@ -47,7 +47,9 @@ public class UserFormController {
             user.getPassword(),
             user.getAddress(),
             user.getCity(),
-            user.getPhone()
+            user.getPhone(),
+            user.getCc(),
+            user.getNif()
     );
     registerFormController.hidePassword();
 
@@ -144,18 +146,29 @@ public class UserFormController {
             registerFormController.password.getText(),
             registerFormController.address.getText(),
             registerFormController.city.getText(),
-            registerFormController.phone.getText()
+            registerFormController.phone.getText(),
+            registerFormController.cc.getText(),
+            registerFormController.nif.getText(),
+            userRepository.findById(userId).getStatus()
     );
 
     // Check if email was changed
     if (!edit || !newUser.getEmail().equals(registerFormController.email.getText())) {
       try {
         userRepository.findByEmail(registerFormController.email.getText());
-
         SceneManager.openErrorAlert("Erro ao registar", "Um utilizador com este e-mail já existe");
         return;
-      } catch (Exception ignored) {
-      }
+      } catch (Exception ignored) {}
+      try {
+        userRepository.findByCC(registerFormController.cc.getText());
+        SceneManager.openErrorAlert("Erro ao registar", "Um utilizador com este cc já existe");
+        return;
+      } catch (Exception ignored) {}
+      try {
+        userRepository.findByNIF(registerFormController.nif.getText());
+        SceneManager.openErrorAlert("Erro ao registar", "Um utilizador com este nif já existe");
+        return;
+      } catch (Exception ignored) {}
     }
 
     if (staff && (providerComboBox.getValue() == null || animalCenterComboBox.getValue() == null)) {

@@ -37,7 +37,7 @@ public class LoginController {
     try {
       User user = userRepository.findByEmail(email.getText());
 
-      if(user.getPassword().equals(password.getText())) {
+      if(user.getPassword().equals(password.getText()) && user.getStatus()) {
         Stage stage = (Stage) email.getScene().getWindow();
         userRepository.setSelectedUser(user);
 

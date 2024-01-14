@@ -37,9 +37,7 @@ public class HeaderController {
     }
 
     userDropDown.setText(
-        selectedUser == null
-            ? ""
-            : String.format("%s %s", selectedUser.getFirstName(), selectedUser.getLastName())
+        String.format("%s %s", selectedUser.getFirstName(), selectedUser.getLastName())
     );
   }
   @FXML

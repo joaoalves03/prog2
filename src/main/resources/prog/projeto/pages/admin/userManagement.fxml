@@ -41,8 +41,8 @@
         </VBox>
         <HBox alignment="TOP_CENTER" fillHeight="false" spacing="10.0">
             <Button mnemonicParsing="false" onAction="#add" text="Adicionar" />
-            <Button mnemonicParsing="false" onAction="#edit" text="Editar" />
-            <Button mnemonicParsing="false" onAction="#remove" text="Remover" />
+            <Button mnemonicParsing="false" onAction="#edit" text="Editar" fx:id="editButton" disable="true"/>
+            <Button mnemonicParsing="false" onAction="#changeStatus" text="Desativar" fx:id="deactivateButton" disable="true"/>
         </HBox>
     </VBox>
 </ScrollPane>

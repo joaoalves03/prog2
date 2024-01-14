@@ -39,7 +39,7 @@ public class ClientIndexController {
     VBox mainVBox = new VBox();
     mainVBox.getStyleClass().add("card");
 
-    Label serviceLabel = new Label(service.getName() + " " + "(" + service.getPrice() + "€)");
+    Label serviceLabel = new Label(service.toString());
     serviceLabel.getStyleClass().add("service");
     Label descriptionLabel = new Label(appointment.getStatus().description);
     descriptionLabel.getStyleClass().add("description");

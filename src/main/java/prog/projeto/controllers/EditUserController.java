@@ -27,7 +27,9 @@ public class EditUserController {
             selectedUser.getPassword(),
             selectedUser.getAddress(),
             selectedUser.getCity(),
-            selectedUser.getPhone()
+            selectedUser.getPhone(),
+            selectedUser.getCc(),
+            selectedUser.getNif()
     );
   }
 
@@ -45,11 +47,19 @@ public class EditUserController {
     if (!selectedUser.getEmail().equals(registerFormController.email.getText())) {
       try {
         userRepository.findByEmail(registerFormController.email.getText());
-
         SceneManager.openErrorAlert("Erro ao registar", "Um utilizador com este e-mail já existe");
         return;
-      } catch (Exception ignored) {
-      }
+      } catch (Exception ignored) {}
+      try {
+        userRepository.findByCC(registerFormController.cc.getText());
+        SceneManager.openErrorAlert("Erro ao registar", "Um utilizador com este cc já existe");
+        return;
+      } catch (Exception ignored) {}
+      try {
+        userRepository.findByNIF(registerFormController.nif.getText());
+        SceneManager.openErrorAlert("Erro ao registar", "Um utilizador com este nif já existe");
+        return;
+      } catch (Exception ignored) {}
     }
 
     selectedUser.setFirstName(registerFormController.firstName.getText());
@@ -59,6 +69,8 @@ public class EditUserController {
     selectedUser.setAddress(registerFormController.address.getText());
     selectedUser.setCity(registerFormController.city.getText());
     selectedUser.setPhone(registerFormController.phone.getText());
+    selectedUser.setCc(registerFormController.cc.getText());
+    selectedUser.setNif(registerFormController.nif.getText());
 
     try {
       userRepository.save();

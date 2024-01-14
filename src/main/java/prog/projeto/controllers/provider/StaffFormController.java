@@ -19,6 +19,7 @@ public class StaffFormController {
   boolean edit = false;
   int animalCenterID = -1;
   int employeeID = -1;
+  boolean status;
 
   public void setAnimalCenter(int id){
     animalCenterID = id;
@@ -33,8 +34,11 @@ public class StaffFormController {
         employee.getEmail(),
         employee.getAddress(),
         employee.getCity(),
-        employee.getPhone()
+        employee.getPhone(),
+        employee.getCc(),
+        employee.getNif()
     );
+    status = employee.getStatus();
     registerFormController.hidePassword();
   }
 
@@ -66,14 +70,26 @@ public class StaffFormController {
             registerFormController.password.getText(),
             registerFormController.address.getText(),
             registerFormController.city.getText(),
-            registerFormController.phone.getText()
+            registerFormController.phone.getText(),
+            registerFormController.cc.getText(),
+            registerFormController.nif.getText(),
+            status
     );
 
     if(!edit || !newEmployee.getEmail().equals(registerFormController.email.getText())){
       try {
         userRepository.findByEmail(registerFormController.email.getText());
-
         SceneManager.openErrorAlert("Erro ao registar", "Um utilizador com este e-mail já existe");
+        return;
+      } catch (Exception ignored) {}
+      try {
+        userRepository.findByCC(registerFormController.cc.getText());
+        SceneManager.openErrorAlert("Erro ao registar", "Um utilizador com este cc já existe");
+        return;
+      } catch (Exception ignored) {}
+      try {
+        userRepository.findByNIF(registerFormController.nif.getText());
+        SceneManager.openErrorAlert("Erro ao registar", "Um utilizador com este nif já existe");
         return;
       } catch (Exception ignored) {}
     }

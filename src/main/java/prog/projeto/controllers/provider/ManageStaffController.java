@@ -13,7 +13,6 @@ import prog.projeto.repositories.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class ManageStaffController {
   @FXML
@@ -34,6 +33,9 @@ public class ManageStaffController {
   Label address;
   @FXML
   Label phone;
+
+  @FXML
+  Button deactivateButton;
 
 
   @FXML
@@ -66,6 +68,10 @@ public class ManageStaffController {
         email.setText(newValue.getEmail());
         address.setText(newValue.getAddress() + ", " + newValue.getCity());
         phone.setText(newValue.getPhone());
+        deactivateButton.setText(
+                newValue.getStatus() ? "Desativar" : "Ativar"
+        );
+        deactivateButton.setDisable(false);
       }
     });
   }
@@ -77,7 +83,7 @@ public class ManageStaffController {
       if (empty || user == null) {
         setText(null);
       } else {
-        setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
+        setText(String.format("%s %s %s", user.getFirstName(), user.getLastName(), user.getStatus() ? "" : "(Desativado)"));
       }
     }
   }
@@ -128,42 +134,29 @@ public class ManageStaffController {
   }
 
   @FXML
-  private void remove(){
+  private void changeStatus() {
     if(usersList.getSelectionModel().getSelectedItem() == null) {
       return;
     }
-
     UserRepository userRepository = UserRepository.getInstance();
-    AnimalCenterRepository animalCenterRepository = AnimalCenterRepository.getInstance();
     User employee = usersList.getSelectionModel().getSelectedItem();
-    AnimalCenter animalCenter = animalCenterList.getSelectionModel().getSelectedItem();
 
-    Alert alert = new Alert(
-        Alert.AlertType.CONFIRMATION,
-        "Deseja mesmo apagar este funcionário?",
-        ButtonType.OK,
-        ButtonType.CANCEL
-    );
-    alert.setHeaderText(String.format(
-        "Apagar %s %s?",
-        employee.getFirstName(),
-        employee.getLastName()
-    ));
-    alert.setTitle("Apagar funcionário");
-    Optional<ButtonType> result = alert.showAndWait();
-
-    if(result.isPresent() && result.get() == ButtonType.OK) {
-      try {
-        userRepository.delete(employee.getId());
-        animalCenter.getEmployees().remove((Integer) employee.getId());
-        userRepository.save();
-        animalCenterRepository.save();
-      } catch (Exception e) {
-        SceneManager.openErrorAlert("Erro", "Não foi possível apagar o funcionário");
-      }
+    boolean response;
+    if(!employee.getStatus()){
+      response = SceneManager.openConfirmationAlert("Ativar funcionário", "Tem a certeza que quer ativar este funcionário?");
+    }else{
+      response = SceneManager.openConfirmationAlert("Destativar funcionário", "Tem a certeza que quer destivar este funcionário?");
     }
+    if(!response) { return; }
+    employee.setStatus(!employee.getStatus());
 
-    refreshList();
+    try {
+      userRepository.save();
+
+      refreshList();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
   }
 
   protected void refreshList() {

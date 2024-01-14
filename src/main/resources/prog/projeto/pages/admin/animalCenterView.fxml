@@ -16,6 +16,7 @@
             </Label>
             <Button mnemonicParsing="false" text="+" onAction="#newAnimalCenter" fx:id="add"/>
             <Button mnemonicParsing="false" text="Editar" onAction="#editAnimalCenter" fx:id="edit"/>
+            <Button mnemonicParsing="false" text="Desativar" onAction="#changeStatus" fx:id="deactivateButton"/>
         </HBox>
         <TableView fx:id="table" prefHeight="600.0" prefWidth="1000.0">
             <columns>
@@ -23,6 +24,7 @@
                 <TableColumn fx:id="cityColumn" prefWidth="75.0" text="Cidade"/>
                 <TableColumn fx:id="phoneColumn" prefWidth="75.0" text="Telefone"/>
                 <TableColumn fx:id="serviceTypeColumn" prefWidth="75.0" text="Tipo"/>
+                <TableColumn fx:id="activeCenter" prefWidth="75.0" text="Ativado"/>
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
