@@ -5,34 +5,38 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<FlowPane alignment="CENTER" styleClass="background" stylesheets="@../assets/styles/form.css"
-          xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="prog.projeto.controllers.RegisterController">
-    <fx:define>
-        <ToggleGroup fx:id="userType"/>
-    </fx:define>
 
-    <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="form-container">
-        <ImageView fitHeight="123.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../assets/icons/petcare.png"/>
-        </ImageView>
-        <Label styleClass="title" text="Pet Care"/>
+<ScrollPane fitToHeight="true" fitToWidth="true" xmlns="http://javafx.com/javafx/11.0.14-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.RegisterController"
+            stylesheets="@../assets/styles/form.css">
+    <FlowPane alignment="CENTER" styleClass="background" >
+        <fx:define>
+            <ToggleGroup fx:id="userType"/>
+        </fx:define>
 
-        <Label fx:id="firstTimeLabel" text="Por favor adicione o primeiro utilizador" visible="false" managed="false"/>
-        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="8.0" fx:id="userTypeSelection">
-            <RadioButton mnemonicParsing="false" text="Cliente" toggleGroup="$userType" selected="true"/>
-            <RadioButton mnemonicParsing="false" text="Prestador" toggleGroup="$userType"/>
-        </HBox>
+        <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="form-container">
+            <ImageView fitHeight="123.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../assets/icons/petcare.png"/>
+            </ImageView>
+            <Label styleClass="title" text="Pet Care"/>
 
-        <fx:include fx:id="registerForm" source="../widgets/register-form.fxml"/>
-        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="8.0">
-            <Button mnemonicParsing="false" onAction="#returnToLogin" text="Voltar"/>
-            <Button mnemonicParsing="false" styleClass="primary" onAction="#onRegisterSubmit" text="Registar"/>
-        </HBox>
+            <Label fx:id="firstTimeLabel" managed="false" text="Por favor adicione o primeiro utilizador"
+                   visible="false"/>
+            <HBox fx:id="userTypeSelection" alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="8.0">
+                <RadioButton mnemonicParsing="false" selected="true" text="Cliente" toggleGroup="$userType"/>
+                <RadioButton mnemonicParsing="false" text="Prestador" toggleGroup="$userType"/>
+            </HBox>
 
-        <FlowPane.margin>
-            <Insets/>
-        </FlowPane.margin>
-    </VBox>
+            <fx:include fx:id="registerForm" source="../widgets/register-form.fxml"/>
+            <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="8.0">
+                <Button mnemonicParsing="false" onAction="#returnToLogin" text="Voltar"/>
+                <Button mnemonicParsing="false" onAction="#onRegisterSubmit" styleClass="primary" text="Registar"/>
+            </HBox>
 
-</FlowPane>
+            <FlowPane.margin>
+                <Insets/>
+            </FlowPane.margin>
+        </VBox>
+
+    </FlowPane>
+</ScrollPane>
