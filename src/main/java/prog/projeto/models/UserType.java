@@ -1,8 +1,11 @@
 package prog.projeto.models;
 
 public enum UserType {
-  Client,
-  ServiceProvider,
-  Staff,
-  Admin
+  Client("Cliente"),
+  ServiceProvider("Prestador"),
+  Staff("Funcionário"),
+  Admin("Admin");
+
+  public final String description;
+  UserType(String description) { this.description = description; }
 }

@@ -45,9 +45,14 @@ public class RegisterController implements Initializable {
     }
 
     UserRepository userRepository = UserRepository.getInstance();
-    UserType selectedUserType = ((RadioButton) userType.getSelectedToggle()).getText().equals("Cliente")
-            ? UserType.Client
-            : UserType.ServiceProvider;
+    UserType selectedUserType = null;
+    for (UserType type : UserType.values()) {
+      if (type.description.equals(((RadioButton) userType.getSelectedToggle()).getText())) {
+        selectedUserType = type;
+        break;
+      }
+    }
+
 
     if (firstTime) selectedUserType = UserType.Admin;
 
