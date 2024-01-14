@@ -4,7 +4,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../assets/styles/header.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.HeaderController">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="70.0" stylesheets="@../assets/styles/header.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.HeaderController">
 
     <columnConstraints>
         <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="500.0" />
@@ -18,8 +18,8 @@
             <Image url="@../assets/icons/petcare.png" />
         </ImageView>
         <VBox>
-            <Label alignment="TOP_LEFT" contentDisplay="BOTTOM" styleClass="title" text="PetCare"/>
-            <Label fx:id="subTitle" styleClass="sub-title" managed="false"/>
+            <Label alignment="TOP_LEFT" contentDisplay="BOTTOM" styleClass="title" text="PetCare" />
+            <Label fx:id="subTitle" managed="false" styleClass="sub-title" />
         </VBox>
     </HBox>
 
@@ -27,8 +27,20 @@
     <HBox alignment="CENTER" styleClass="profile-dropdown" GridPane.columnIndex="1">
         <MenuButton fx:id="userDropDown" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefWidth="130.0" text="Username">
           <items>
-              <MenuItem mnemonicParsing="false" onAction="#openModal" text="Definições" userData="widgets/edit-user.fxml" />
-              <MenuItem mnemonicParsing="false" onAction="#logout" text="Sair" />
+              <MenuItem mnemonicParsing="false" onAction="#openModal" text="Definições" userData="widgets/edit-user.fxml">
+               <graphic>
+                   <ImageView fitHeight="10.0" fitWidth="10.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true"
+                              preserveRatio="true">
+                       <Image url="@../assets/icons/gear.png"/>
+                   </ImageView>
+               </graphic></MenuItem>
+              <MenuItem mnemonicParsing="false" onAction="#logout" text="Sair">
+               <graphic>
+                   <ImageView fitHeight="10.0" fitWidth="10.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true"
+                              preserveRatio="true">
+                       <Image url="@../assets/icons/logout.png"/>
+                   </ImageView>
+               </graphic></MenuItem>
           </items>
         </MenuButton>
         <ImageView fitHeight="40.0" fitWidth="40.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">

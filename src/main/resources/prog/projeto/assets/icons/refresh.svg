@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   height="62.583931"
+   width="67.043983"
+   viewBox="0 0 2145.4075 2002.6858"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="refresh.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     id="namedview6"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     showgrid="false"
+     inkscape:zoom="4.6514368"
+     inkscape:cx="28.270834"
+     inkscape:cy="34.935442"
+     inkscape:window-width="1920"
+     inkscape:window-height="1013"
+     inkscape:window-x="1920"
+     inkscape:window-y="30"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+  <path
+     d="m 398.3243,762.78423 c 34.4231,-97.45755 90.3047,-189.10341 168.986,-267.3377 279.40813,-279.4081 732.2728,-279.4081 1011.681,0 l 76.446,76.89312 h -153.3392 c -79.1284,0 -143.0569,63.92859 -143.0569,143.05697 0,79.12838 63.9285,143.05695 143.0569,143.05695 h 498.4641 c 0,0 0,0 0,0 h 1.7882 c 79.1284,0 143.057,-63.92857 143.057,-143.05695 V 214.69723 c 0,-79.1283 -63.9286,-143.056905 -143.057,-143.056905 -79.1284,0 -143.0569,63.928605 -143.0569,143.056905 v 157.3627 l -78.2343,-78.6813 c -391.1714,-391.171505 -1025.09252,-391.171505 -1416.2639,0 -109.0809,109.0809 -187.7622,237.3851 -236.044,374.63037 -26.3762,74.65786 12.9645,156.0215 87.1754,182.39763 74.2108,26.37613 156.0215,-12.96454 182.3976,-87.17534 z M 102.8222,1150.3792 c -22.3526,6.7058 -43.8111,18.7762 -61.2462,36.6583 -17.8822,17.8822 -29.9526,39.3407 -36.2113,62.5874 -1.3412,5.3647 -2.6824,11.1764 -3.5764,16.9881 C 0.4471,1274.2129 0,1281.8128 0,1289.4127 v 498.9111 c 0,79.1284 63.9287,143.057 143.057,143.057 79.1284,0 143.057,-63.9286 143.057,-143.057 v -156.9156 l 78.6813,78.2343 v 0 c 391.17138,390.7243 1025.0925,390.7243 1415.8169,0 109.0809,-109.0809 188.2093,-237.3852 236.491,-374.1834 26.3761,-74.6578 -12.9646,-156.0215 -87.1753,-182.3976 -74.2108,-26.3761 -156.0215,12.9645 -182.3977,87.1753 -34.4231,97.4576 -90.3047,189.1035 -168.986,267.3377 -279.4081,279.4082 -732.27282,279.4082 -1011.6809,0 l -0.4471,-0.447 -76.4461,-76.4461 h 153.7863 c 79.12836,0 143.05693,-63.9286 143.05693,-143.0569 0,-79.1284 -63.92857,-143.057 -143.05693,-143.057 H 144.8452 c -7.1528,0 -14.3056,0.447 -21.4586,1.3411 -7.1528,0.8942 -13.8585,2.2353 -20.5644,4.4706 z"
+     id="path2"
+     style="fill:#ffffff;stroke-width:4.47053"
+     inkscape:export-filename="/media/pedro/alpha/pedro/school/ipvc/ano2/s1/prog2/projeto/src/main/resources/prog/projeto/assets/icons/refresh.png"
+     inkscape:export-xdpi="96"
+     inkscape:export-ydpi="96" />
+</svg>

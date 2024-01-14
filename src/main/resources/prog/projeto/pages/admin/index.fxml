@@ -9,8 +9,16 @@
 
     <fx:include source="../../widgets/header.fxml"/>
 
-    <FlowPane styleClass="content">
-        <Button mnemonicParsing="false" onAction="#openModal" text="Ver Utilizadores"
-                userData="pages/admin/userManagement.fxml"/>
-    </FlowPane>
+    <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
+        <VBox styleClass="content">
+            <Label styleClass="welcome-label" text="Bem vindo!"/>
+            <FlowPane hgap="10.0" vgap="10.0">
+                <Button mnemonicParsing="false" onAction="#openModal" text="Gerir utilizadores"
+                        userData="pages/admin/userManagement.fxml"/>
+                <!--TODO: do some actual shit with this button-->
+                <Button mnemonicParsing="false" onAction="#openModal" text="Gerir Serviços"
+                        userData="pages/provider/serviceView.fxml"/>
+            </FlowPane>
+        </VBox>
+    </ScrollPane>
 </VBox>

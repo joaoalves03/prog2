@@ -26,11 +26,12 @@
 
 
 .button {
-    -fx-background-color: -background-600;
+    -fx-background-color: -background-700;
+    -fx-text-fill: -text-300;
 }
 
 .button:hover, .button:focused {
-    -fx-background-color: -background-700;
+    -fx-background-color: -background-600;
 }
 
 
