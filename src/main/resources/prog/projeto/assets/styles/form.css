@@ -23,3 +23,50 @@
 .title {
     -fx-font-size: 50;
 }
+
+
+.button {
+    -fx-background-color: -background-600;
+}
+
+.button:hover, .button:focused {
+    -fx-background-color: -background-700;
+}
+
+
+
+.text-field {
+    -fx-background-color: -background-700;
+}
+
+.radio-button {
+    -fx-background-color: -background-700;
+}
+
+.radio-button:selected {
+    -fx-border-color: -primary-600;
+}
+
+.radio-button:selected .radio .dot {
+    -fx-background-color: -primary-600;
+}
+
+.choice-box {
+    -fx-background-color: -background-700;
+}
+
+.choice-box .context-menu {
+    -fx-background-color: -background-600;
+}
+
+.choice-box .menu-item:hover, .content .choice-box .menu-item:focused {
+    -fx-background-color: -background-500;
+}
+
+.combo-box {
+    -fx-background-color: -background-600;
+}
+
+.combo-box .list-cell:selected {
+    -fx-background-color: -background-600;
+}

@@ -127,5 +127,6 @@ public class ManageUsersController {
 
     usersList.getItems().clear();
     usersList.getItems().addAll(userRepository.getAllUsers());
+    currentUser = -1;
   }
 }
