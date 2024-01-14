@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.stage.Stage;
 import prog.projeto.SceneManager;
 import prog.projeto.models.Appointment;
 import prog.projeto.models.User;
@@ -39,6 +40,14 @@ public class ViewAppointmentsController {
     AppointmentRepository appointmentRepository = AppointmentRepository.getInstance();
     UserRepository userRepository = UserRepository.getInstance();
     ServiceRepository serviceRepository = ServiceRepository.getInstance();
+
+    try {
+      appointmentRepository.read();
+      serviceRepository.read();
+    } catch (Exception ignored) {
+      SceneManager.openErrorAlert("Erro", "Não foi possível obter as suas consultas");
+      close();
+    }
 
     appointmentsList.setCellFactory(param -> new AppointmentListCell());
 
@@ -81,6 +90,11 @@ public class ViewAppointmentsController {
     appointmentsList.getItems().addAll(
         appointmentRepository.getByClient(userRepository.getSelectedUser().getId())
     );
+  }
+
+  protected void close() {
+    Stage stage = (Stage) appointmentsList.getScene().getWindow();
+    stage.close();
   }
 
   private static class AppointmentListCell extends ListCell<Appointment> {
