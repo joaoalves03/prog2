@@ -25,23 +25,22 @@
                 </VBox.margin>
             </ListView>
         </VBox>
+        <Label text="Total: " fx:id="totalLabel"/>
         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="16.0">
-            <Button mnemonicParsing="false" text="Confirmar" disable="true" fx:id="confirmButton"
-                    onAction="#confirmAppointment"/>
+            <Button fx:id="confirmButton" disable="true" mnemonicParsing="false" onAction="#confirmAppointment"
+                    text="Confirmar"/>
             <Button fx:id="cancelButton" disable="true" mnemonicParsing="false" onAction="#cancelAppointment"
                     text="Cancelar"/>
-            <Button mnemonicParsing="false" text="Alterar notas" disable="true" onAction="#setNotes"
-                    fx:id="changeNotesButton"/>
+            <Button fx:id="changeNotesButton" disable="true" mnemonicParsing="false" onAction="#setNotes"
+                    text="Alterar notas"/>
         </HBox>
         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0">
-            <Button mnemonicParsing="false" text="Adicionar produto extra" disable="true"
-                    fx:id="addExtraProductButton"
-                    onAction="#addExtraProduct"/>
+            <Button fx:id="addExtraProductButton" disable="true" mnemonicParsing="false" onAction="#addExtraProduct"
+                    text="Adicionar produto extra"/>
         </HBox>
         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0">
-            <Button mnemonicParsing="false" text="Remover produtos extra" disable="true"
-                    fx:id="removeExtraProductButton"
-                    onAction="#removeExtraProduct"/>
+            <Button fx:id="removeExtraProductButton" disable="true" mnemonicParsing="false"
+                    onAction="#removeExtraProduct" text="Remover produtos extra"/>
         </HBox>
     </VBox>
 </ScrollPane>

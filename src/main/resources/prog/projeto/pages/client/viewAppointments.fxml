@@ -25,6 +25,7 @@
                 </VBox.margin>
             </ListView>
         </VBox>
+        <Label text="Total: " fx:id="totalLabel"/>
         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="16.0">
             <Button mnemonicParsing="false" onAction="#newAppointment" text="Adicionar"/>
             <Button fx:id="cancelButton" disable="true" mnemonicParsing="false" onAction="#cancelAppointment"

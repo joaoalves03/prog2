@@ -48,6 +48,8 @@ public class StaffAppointmentsController {
   Button changeNotesButton;
   @FXML
   Button confirmButton;
+  @FXML
+  Label totalLabel;
 
   @FXML
   private void initialize() {
@@ -88,6 +90,7 @@ public class StaffAppointmentsController {
         serviceType.setText(String.format("Tipo de serviço: %s", serviceRepository.findById(newValue.getServiceID())));
         date.setText(String.format("Data: %s", newValue.getDate()));
         notes.setText(String.format("Notas: %s", newValue.getNotes()));
+        totalLabel.setText(String.format("Total: %.2f€", newValue.getFinalValue()));
         extraProductsList.getItems().clear();
         extraProductsList.getItems().addAll(newValue.getExtraProducts());
         changeNotesButton.setDisable(false);
@@ -107,6 +110,7 @@ public class StaffAppointmentsController {
         serviceType.setText("Tipo de serviço: ");
         date.setText("Data: ");
         notes.setText("Notas: ");
+        totalLabel.setText("Total: ");
         extraProductsList.getItems().clear();
         cancelButton.setDisable(true);
         confirmButton.setDisable(true);
