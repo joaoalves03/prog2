@@ -119,8 +119,8 @@ public class SceneManager {
     alert.setHeaderText(alertHeader);
     alert.setContentText(alertContent);
     Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-    stage.getIcons().add(getAppIcon());
     stage.getIcons().clear();
+    stage.getIcons().add(getAppIcon());
     return alert.showAndWait().filter(response -> response == ButtonType.OK).isPresent();
   }
 
@@ -130,6 +130,7 @@ public class SceneManager {
     alert.setHeaderText(errorHeader);
     alert.setContentText(errorContent);
     Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+    stage.getIcons().clear();
     stage.getIcons().add(getAppIcon());
     alert.showAndWait();
     stage.getIcons().clear();

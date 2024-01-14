@@ -112,7 +112,7 @@ public class AnimalCenterViewController {
 
       refreshTable();
     } catch (Exception e){
-      System.out.println("editAnimalCenter (AnimalCenterViewController):" + e.getCause());
+      System.out.println("newAnimalCenter (AnimalCenterViewController):" + e.getCause());
       SceneManager.openErrorAlert("Erro", "Não foi possível adicionar o Local de recolha");
     }
   }

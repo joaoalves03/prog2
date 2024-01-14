@@ -73,23 +73,23 @@ public class ViewAppointmentsController {
         User _provider = userRepository.findById(newValue.getProviderID());
         User _employee = userRepository.findById(newValue.getEmployeeID());
 
-        provider.setText(String.format("Prestador: %s %s", _provider.getFirstName(), _provider.getLastName()));
-        employee.setText(String.format("Funcionário: %s %s", _employee.getFirstName(), _employee.getLastName()));
-        serviceType.setText(String.format("Tipo de serviço: %s", serviceRepository.findById(newValue.getServiceID())));
-        date.setText(String.format("Data: %s", newValue.getDate()));
-        notes.setText(String.format("Notas: %s", newValue.getNotes()));
-        totalLabel.setText(String.format("Total: %.2f€", newValue.getFinalValue()));
+        provider.setText(String.format("%s %s", _provider.getFirstName(), _provider.getLastName()));
+        employee.setText(String.format("%s %s", _employee.getFirstName(), _employee.getLastName()));
+        serviceType.setText(String.format("%s", serviceRepository.findById(newValue.getServiceID())));
+        date.setText(String.format("%s", newValue.getDate()));
+        notes.setText(String.format("%s", newValue.getNotes()));
+        totalLabel.setText(String.format("%.2f€", newValue.getFinalValue()));
         extraProductsList.getItems().clear();
         extraProductsList.getItems().addAll(newValue.getExtraProducts());
         if (statusComboBox.getValue() == AppointmentStatus.Scheduled)
           cancelButton.setDisable(false);
       } else {
-        provider.setText("Prestador: ");
-        employee.setText("Funcionário: ");
-        serviceType.setText("Tipo de serviço: ");
-        date.setText("Data: ");
-        notes.setText("Notas: ");
-        totalLabel.setText("Total: ");
+        provider.setText("");
+        employee.setText("");
+        serviceType.setText("");
+        date.setText("");
+        notes.setText("");
+        totalLabel.setText("");
         extraProductsList.getItems().clear();
         cancelButton.setDisable(true);
       }

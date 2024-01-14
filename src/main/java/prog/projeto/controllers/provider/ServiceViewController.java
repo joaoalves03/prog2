@@ -3,22 +3,15 @@ package prog.projeto.controllers.provider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import prog.projeto.PetCareApplication;
 import prog.projeto.SceneManager;
 import prog.projeto.models.Service;
 import prog.projeto.repositories.ServiceRepository;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class ServiceViewController implements Initializable {
+public class ServiceViewController {
   @FXML
   TableView<Service> table;
   @FXML
@@ -32,8 +25,7 @@ public class ServiceViewController implements Initializable {
     table.setItems(entities);
   }
 
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
+  public void initialize() {
     ServiceRepository serviceRepository = ServiceRepository.getInstance();
 
     try {
@@ -51,27 +43,36 @@ public class ServiceViewController implements Initializable {
 
   @FXML
   public void newService() {
-    SceneManager.openNewModal("pages/provider/serviceForm.fxml", "Serviço", true);
-    refreshTable();
+    try {
+      SceneManager.openNewModal("pages/provider/serviceForm.fxml", "Serviço", true);
+      refreshTable();
+    } catch (Exception e){
+    System.out.println("newService (ServiceViewController):" + e.getCause());
+    SceneManager.openErrorAlert("Erro", "Não foi possível adicionar o serviço");
+  }
   }
 
   @FXML
-  public void editService() throws Exception {
+  public void editService() {
     Service selectedService = table.getSelectionModel().getSelectedItem();
     if(selectedService == null) return;
 
-    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("pages/provider/serviceForm.fxml"));
-    Scene scene = new Scene(fxmlLoader.load());
-    Stage stage = new Stage();
-    stage.setScene(scene);
-    stage.setTitle("Serviço");
-    stage.centerOnScreen();
-    ServiceFormController controller = fxmlLoader.getController();
-    controller.setServiceToEdit(selectedService.getId());
+    try {
+      SceneManager.openNewModal(
+              "pages/provider/serviceForm.fxml",
+              "Editar Serviço",
+              true,
+              controller -> {
+                ServiceFormController _controller = (ServiceFormController) controller;
+                _controller.setServiceToEdit(selectedService.getId());
+              }
+      );
 
-    stage.showAndWait();
-
-    refreshTable();
+      refreshTable();
+    } catch (Exception e){
+      System.out.println("editService (ServiceViewController):" + e.getCause());
+      SceneManager.openErrorAlert("Erro", "Não foi possível editar o serviço");
+    }
   }
 
   public void close() {

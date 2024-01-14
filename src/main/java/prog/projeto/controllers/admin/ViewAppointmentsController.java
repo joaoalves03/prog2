@@ -37,6 +37,8 @@ public class ViewAppointmentsController {
   @FXML
   Label notes;
   @FXML
+  Label totalLabel;
+  @FXML
   ListView<Extra> extraProductsList;
 
   @FXML
@@ -80,6 +82,7 @@ public class ViewAppointmentsController {
         serviceType.setText(String.format("%s", serviceRepository.findById(newValue.getServiceID())));
         date.setText(String.format("%s", newValue.getDate()));
         notes.setText(String.format("%s", newValue.getNotes()));
+        totalLabel.setText(String.format("%.2f€", newValue.getFinalValue()));
         extraProductsList.getItems().clear();
         extraProductsList.getItems().addAll(newValue.getExtraProducts());
         if (statusComboBox.getValue() == AppointmentStatus.Scheduled)
@@ -90,6 +93,7 @@ public class ViewAppointmentsController {
         serviceType.setText("");
         date.setText("");
         notes.setText("");
+        totalLabel.setText("");
         extraProductsList.getItems().clear();
         cancelButton.setDisable(true);
       }

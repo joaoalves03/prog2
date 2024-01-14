@@ -94,8 +94,9 @@ public class ManageUsersController {
       SceneManager.openNewModal("pages/admin/userForm.fxml", "Adicionar Utilizador", true);
 
       refreshList(filterUsers.getValue());
-    } catch (Exception ignored) {
-      SceneManager.openErrorAlert("Erro", "Não foi possível criar um novo utilizador");
+    } catch (Exception e) {
+      System.out.println("add (ManageUsersController):" + e.getCause());
+      SceneManager.openErrorAlert("Erro", "Não foi possível criar o utilizador");
     }
   }
 
@@ -112,13 +113,14 @@ public class ManageUsersController {
               "Editar Utilizador",
               true,
               controller -> {
-                UserFormController userFormController = (UserFormController) controller;
-                userFormController.enableEdit(usersList.getSelectionModel().getSelectedItem());
+                UserFormController _controller = (UserFormController) controller;
+                _controller.enableEdit(usersList.getSelectionModel().getSelectedItem());
               }
       );
 
       refreshList(filterUsers.getValue());
-    } catch (Exception ignored) {
+    } catch (Exception e) {
+      System.out.println("edit (ManageUsersController):" + e.getCause());
       SceneManager.openErrorAlert("Erro", "Não foi possível editar o utilizador");
     }
   }

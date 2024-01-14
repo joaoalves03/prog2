@@ -3,15 +3,11 @@ package prog.projeto.controllers.provider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import prog.projeto.PetCareApplication;
 import prog.projeto.SceneManager;
 import prog.projeto.models.AnimalCenter;
 import prog.projeto.models.Service;
@@ -19,10 +15,7 @@ import prog.projeto.repositories.AnimalCenterRepository;
 import prog.projeto.repositories.ServiceRepository;
 import prog.projeto.repositories.UserRepository;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class AnimalCenterViewController implements Initializable {
+public class AnimalCenterViewController {
   @FXML
   TableView<AnimalCenter> table;
   @FXML
@@ -45,8 +38,7 @@ public class AnimalCenterViewController implements Initializable {
     table.setItems(entities);
   }
 
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
+  public void initialize() {
     AnimalCenterRepository animalCenterRepository = AnimalCenterRepository.getInstance();
     ServiceRepository serviceRepository = ServiceRepository.getInstance();
 
@@ -82,42 +74,50 @@ public class AnimalCenterViewController implements Initializable {
   }
 
   @FXML
-  public void newAnimalCenter() throws Exception {
+  public void newAnimalCenter() {
     UserRepository userRepository = UserRepository.getInstance();
 
-    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("pages/provider/animalCenterForm.fxml"));
-    Scene scene = new Scene(fxmlLoader.load());
-    Stage stage = new Stage();
-    stage.setScene(scene);
-    stage.setTitle("Novo Local de recolha");
-    stage.centerOnScreen();
-    AnimalCenterFormController controller = fxmlLoader.getController();
-    controller.setProvider(userRepository.getSelectedUser().getId());
+    try{
+      SceneManager.openNewModal(
+              "pages/provider/animalCenterForm.fxml",
+              "Novo Local de recolha",
+              true,
+              controller -> {
+                AnimalCenterFormController _controller = (AnimalCenterFormController) controller;
+                _controller.setProvider(userRepository.getSelectedUser().getId());
+              }
+      );
 
-    stage.showAndWait();
-
-    refreshTable();
+      refreshTable();
+    } catch (Exception e) {
+      System.out.println("newAnimalCenter (AnimalCenterViewController):" + e.getCause());
+      SceneManager.openErrorAlert("Erro", "Não foi possível adicionar o local de recolha");
+    }
   }
 
   @FXML
-  public void editAnimalCenter() throws Exception {
+  public void editAnimalCenter() {
     UserRepository userRepository = UserRepository.getInstance();
     AnimalCenter selectedAnimalCenter = table.getSelectionModel().getSelectedItem();
     if (selectedAnimalCenter == null) return;
 
-    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("pages/provider/animalCenterForm.fxml"));
-    Scene scene = new Scene(fxmlLoader.load());
-    Stage stage = new Stage();
-    stage.setScene(scene);
-    stage.setTitle("Editar Local de recolha");
-    stage.centerOnScreen();
-    AnimalCenterFormController controller = fxmlLoader.getController();
-    controller.setProvider(userRepository.getSelectedUser().getId());
-    controller.setAnimalCenterToEdit(selectedAnimalCenter.getId());
+    try{
+      SceneManager.openNewModal(
+              "pages/provider/animalCenterForm.fxml",
+              "Editar Local de recolha",
+              true,
+              controller -> {
+                AnimalCenterFormController _controller = (AnimalCenterFormController) controller;
+                _controller.setProvider(userRepository.getSelectedUser().getId());
+                _controller.setAnimalCenterToEdit(selectedAnimalCenter.getId());
+              }
+      );
 
-    stage.showAndWait();
-
-    refreshTable();
+      refreshTable();
+    } catch (Exception e) {
+      System.out.println("editAnimalCenter (AnimalCenterViewController):" + e.getCause());
+      SceneManager.openErrorAlert("Erro", "Não foi possível editar o local de recolha");
+    }
   }
 
   public void close() {

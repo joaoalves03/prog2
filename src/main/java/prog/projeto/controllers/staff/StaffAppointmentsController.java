@@ -2,12 +2,9 @@ package prog.projeto.controllers.staff;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import prog.projeto.PetCareApplication;
 import prog.projeto.SceneManager;
 import prog.projeto.models.Appointment;
 import prog.projeto.models.AppointmentStatus;
@@ -26,6 +23,8 @@ public class StaffAppointmentsController {
   ListView<Appointment> appointmentsList;
   @FXML
   VBox informationBox;
+  @FXML
+  Label client;
   @FXML
   Label provider;
   @FXML
@@ -82,15 +81,17 @@ public class StaffAppointmentsController {
 
     appointmentsList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
       if (newValue != null) {
+        User _client = userRepository.findById(newValue.getClientID());
         User _provider = userRepository.findById(newValue.getProviderID());
         User _employee = userRepository.findById(newValue.getEmployeeID());
 
-        provider.setText(String.format("Prestador: %s %s", _provider.getFirstName(), _provider.getLastName()));
-        employee.setText(String.format("Funcionário: %s %s", _employee.getFirstName(), _employee.getLastName()));
-        serviceType.setText(String.format("Tipo de serviço: %s", serviceRepository.findById(newValue.getServiceID())));
-        date.setText(String.format("Data: %s", newValue.getDate()));
-        notes.setText(String.format("Notas: %s", newValue.getNotes()));
-        totalLabel.setText(String.format("Total: %.2f€", newValue.getFinalValue()));
+        client.setText(String.format("%s %s", _client.getFirstName(), _client.getLastName()));
+        provider.setText(String.format("%s %s", _provider.getFirstName(), _provider.getLastName()));
+        employee.setText(String.format("%s %s", _employee.getFirstName(), _employee.getLastName()));
+        serviceType.setText(String.format("%s", serviceRepository.findById(newValue.getServiceID())));
+        date.setText(String.format("%s", newValue.getDate()));
+        notes.setText(String.format("%s", newValue.getNotes()));
+        totalLabel.setText(String.format("%.2f€", newValue.getFinalValue()));
         extraProductsList.getItems().clear();
         extraProductsList.getItems().addAll(newValue.getExtraProducts());
         changeNotesButton.setDisable(false);
@@ -105,12 +106,13 @@ public class StaffAppointmentsController {
           confirmButton.setDisable(false);
         }
       } else {
-        provider.setText("Prestador: ");
-        employee.setText("Funcionário: ");
-        serviceType.setText("Tipo de serviço: ");
-        date.setText("Data: ");
-        notes.setText("Notas: ");
-        totalLabel.setText("Total: ");
+        client.setText("");
+        provider.setText("");
+        employee.setText("");
+        serviceType.setText("");
+        date.setText("");
+        notes.setText("");
+        totalLabel.setText("");
         extraProductsList.getItems().clear();
         cancelButton.setDisable(true);
         confirmButton.setDisable(true);
@@ -175,21 +177,17 @@ public class StaffAppointmentsController {
   @FXML
   protected void addExtraProduct() {
     try {
-      FXMLLoader fxmlLoader = new FXMLLoader(
-          PetCareApplication.class.getResource("pages/staff/extraProductsForm.fxml")
+      SceneManager.openNewModal(
+              "pages/staff/extraProductsForm.fxml",
+              "Adicionar Produto",
+              true,
+              controller -> {
+                ExtraProductsFormController _controller = (ExtraProductsFormController) controller;
+                _controller.setAppointment(appointmentsList.getSelectionModel().getSelectedItem().getId());
+              }
       );
-      Scene scene = new Scene(fxmlLoader.load());
-
-      Stage stage = new Stage();
-      stage.setScene(scene);
-      stage.setTitle("Produto extra");
-      stage.centerOnScreen();
-
-      ExtraProductsFormController controller = fxmlLoader.getController();
-      controller.setAppointment(appointmentsList.getSelectionModel().getSelectedItem().getId());
-
-      stage.showAndWait();
-    } catch (Exception e) {
+    } catch (Exception e){
+      System.out.println("addExtraProduct (StaffAppointmentsController):" + e.getCause());
       SceneManager.openErrorAlert("Erro", "Não foi possível adicionar produto extra");
     }
   }

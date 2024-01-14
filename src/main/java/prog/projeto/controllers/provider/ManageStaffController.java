@@ -1,13 +1,10 @@
 package prog.projeto.controllers.provider;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import prog.projeto.PetCareApplication;
 import prog.projeto.SceneManager;
 import prog.projeto.models.AnimalCenter;
 import prog.projeto.models.User;
@@ -87,20 +84,21 @@ public class ManageStaffController {
 
   @FXML
   void add() {
-    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("pages/provider/staffForm.fxml"));
+    try{
+      SceneManager.openNewModal(
+              "pages/provider/staffForm.fxml",
+              "Adicionar Funcionário",
+              true,
+              controller -> {
+                StaffFormController _controller = (StaffFormController) controller;
+                _controller.setAnimalCenter(animalCenterList.getSelectionModel().getSelectedItem().getId());
+              }
+      );
 
-    try {
-      Scene scene = new Scene(fxmlLoader.load());
-      Stage stage = new Stage();
-      stage.setScene(scene);
-      stage.setTitle("Adicionar Funcionário");
-      stage.centerOnScreen();
-      StaffFormController controller = fxmlLoader.getController();
-      controller.setAnimalCenter(animalCenterList.getSelectionModel().getSelectedItem().getId());
-      stage.showAndWait();
       refreshList();
-    } catch (Exception ignored) {
-      SceneManager.openErrorAlert("Erro", "Não foi possível criar um novo funcionário");
+    } catch (Exception e) {
+      System.out.println("add (ManageStaffController):" + e.getCause());
+      SceneManager.openErrorAlert("Erro", "Não foi possível adicionar o funcionário");
     }
   }
 
@@ -110,20 +108,21 @@ public class ManageStaffController {
       return;
     }
 
-    FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("pages/provider/staffForm.fxml"));
+    try{
+      SceneManager.openNewModal(
+              "pages/provider/staffForm.fxml",
+              "Editar Funcionário",
+              true,
+              controller -> {
+                StaffFormController _controller = (StaffFormController) controller;
+                _controller.setAnimalCenter(animalCenterList.getSelectionModel().getSelectedItem().getId());
+                _controller.enableEdit(usersList.getSelectionModel().getSelectedItem());
+              }
+      );
 
-    try {
-      Scene scene = new Scene(fxmlLoader.load());
-      Stage stage = new Stage();
-      stage.setScene(scene);
-      stage.setTitle("Editar Funcionário");
-      stage.centerOnScreen();
-      StaffFormController controller = fxmlLoader.getController();
-      controller.setAnimalCenter(animalCenterList.getSelectionModel().getSelectedItem().getId());
-      controller.enableEdit(usersList.getSelectionModel().getSelectedItem());
-      stage.showAndWait();
       refreshList();
-    } catch (Exception ignored) {
+    } catch (Exception e) {
+      System.out.println("add (ManageStaffController):" + e.getCause());
       SceneManager.openErrorAlert("Erro", "Não foi possível editar o funcionário");
     }
   }

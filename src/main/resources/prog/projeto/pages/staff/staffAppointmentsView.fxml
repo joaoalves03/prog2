@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.text.Font?>
 <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: -background-900"
             stylesheets="@../../assets/styles/modal.css" xmlns="http://javafx.com/javafx/17.0.2-ea"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -12,12 +13,42 @@
         <ComboBox fx:id="statusComboBox" prefWidth="150.0"/>
         <ListView fx:id="appointmentsList" prefHeight="250.0" prefWidth="400.0"/>
         <VBox fx:id="informationBox" prefWidth="100.0">
-            <Label text="Informação da Marcação"/>
-            <Label fx:id="provider" text="Prestador:"/>
-            <Label fx:id="employee" text="Funcionário:"/>
-            <Label fx:id="serviceType" text="Tipo de serviço:"/>
-            <Label fx:id="date" text="Data:"/>
-            <Label fx:id="notes" text="Notas: "/>
+            <Label text="Informação do Marcação">
+                <font>
+                    <Font size="22.0" />
+                </font>
+            </Label>
+
+            <Label fx:id="client">
+                <graphic>
+                    <Label text="Cliente:" />
+                </graphic>
+            </Label>
+            <Label fx:id="provider">
+                <graphic>
+                    <Label text="Prestador:" />
+                </graphic>
+            </Label>
+            <Label fx:id="employee">
+                <graphic>
+                    <Label text="Funcionário:" />
+                </graphic>
+            </Label>
+            <Label fx:id="serviceType">
+                <graphic>
+                    <Label text="Tipo de serviço:" />
+                </graphic>
+            </Label>
+            <Label fx:id="date">
+                <graphic>
+                    <Label text="Data:" />
+                </graphic>
+            </Label>
+            <Label fx:id="notes">
+                <graphic>
+                    <Label text="Notas:" />
+                </graphic>
+            </Label>
             <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="1000.0" text="Produtos extra: "/>
             <ListView fx:id="extraProductsList" minWidth="0.0" prefHeight="100.0" prefWidth="200.0">
                 <VBox.margin>
@@ -25,7 +56,11 @@
                 </VBox.margin>
             </ListView>
         </VBox>
-        <Label text="Total: " fx:id="totalLabel"/>
+        <Label fx:id="totalLabel">
+            <graphic>
+                <Label text="Total:" />
+            </graphic>
+        </Label>
         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="16.0">
             <Button fx:id="confirmButton" disable="true" mnemonicParsing="false" onAction="#confirmAppointment"
                     text="Confirmar"/>
