@@ -47,7 +47,7 @@ public class SceneManager {
       stage.centerOnScreen();
       stage.showAndWait();
     } catch (Exception e) {
-      System.out.println("openNewModal (SceneManager): " + e.getCause());
+      System.out.println("openNewModal (SceneManager): " + e.getMessage());
     }
   }
 
