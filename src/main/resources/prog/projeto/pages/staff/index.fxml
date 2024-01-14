@@ -3,6 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <VBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="prog.projeto.controllers.staff.StaffIndexController"
       styleClass="background" stylesheets="@../../assets/styles/global.css">
@@ -14,6 +16,22 @@
             <Label styleClass="welcome-label" text="Bem vindo!" />
             <FlowPane hgap="10.0" vgap="10.0">
                 <Label text="You are Staff" />
+            </FlowPane>
+
+            <Label contentDisplay="RIGHT" style="-fx-font-size: 20" text="Marcações de Hoje:">
+                <graphic>
+                    <Button mnemonicParsing="false" onAction="#refresh">
+                        <graphic>
+                            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                <Image url="@../../assets/icons/refresh.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </graphic>
+            </Label>
+            <FlowPane fx:id="appointmentsToday" alignment="CENTER_LEFT" columnHalignment="CENTER" hgap="10.0"
+                      prefWrapLength="600.0" vgap="10.0">
+                <Label fx:id="noAppointmentsLabel" managed="false" text="Sem Marcações Hoje"/>
             </FlowPane>
         </VBox>
     </ScrollPane>

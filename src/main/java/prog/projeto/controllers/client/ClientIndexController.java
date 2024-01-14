@@ -73,7 +73,9 @@ public class ClientIndexController {
     }
 
     LocalDate today = LocalDate.now();
-    List<Appointment> appointments = AppointmentRepository.getInstance().getAppointmentsForDay(userRepository.getSelectedUser().getId(), today);
+    List<Appointment> appointments = AppointmentRepository.getInstance().getAppointmentsForDay(today).stream()
+            .filter(appointment -> appointment.getClientID() == userRepository.getSelectedUser().getId())
+            .toList();
 
     if(appointments.isEmpty()){
       noAppointmentsLabel.setManaged(true);

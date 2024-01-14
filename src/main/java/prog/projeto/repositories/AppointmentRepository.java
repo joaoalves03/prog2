@@ -28,9 +28,9 @@ public class AppointmentRepository extends Repository<Appointment> {
     ).toList();
   }
 
-  public List<Appointment> getAppointmentsForDay(int clientId, LocalDate day) {
+  public List<Appointment> getAppointmentsForDay(LocalDate day) {
     return this.entities.values().stream()
-            .filter(appointment -> appointment.getDate().isEqual(day) && appointment.getClientID() == clientId)
+            .filter(appointment -> appointment.getDate().isEqual(day))
             .collect(Collectors.toList());
   }
 
