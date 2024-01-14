@@ -1,23 +1,26 @@
 package prog.projeto.controllers.admin;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
-import javafx.stage.Stage;
-import prog.projeto.PetCareApplication;
+import javafx.scene.control.*;
 import prog.projeto.SceneManager;
+import prog.projeto.models.AnimalCenter;
 import prog.projeto.models.User;
+import prog.projeto.models.UserType;
+import prog.projeto.repositories.AnimalCenterRepository;
 import prog.projeto.repositories.UserRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ManageUsersController {
   private int currentUser = -1;
 
   @FXML
   ListView<User> usersList;
+
+  @FXML
+  ComboBox<UserType> filterUsers;
 
   @FXML
   public Label name;
@@ -34,8 +37,15 @@ public class ManageUsersController {
 
   @FXML
   private void initialize() {
+
+    filterUsers.setItems(FXCollections.observableArrayList(UserType.values()));
+    filterUsers.setCellFactory(tc -> new UserTypeListCell());
+    filterUsers.setButtonCell(new UserTypeListCell());
+    filterUsers.setValue(UserType.Client);
+    filterUsers.setOnAction((event -> refreshList(filterUsers.getValue())));
+
+    refreshList(filterUsers.getValue());
     usersList.setCellFactory(param -> new UserListCell());
-    refreshList();
     usersList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
     usersList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -54,6 +64,18 @@ public class ManageUsersController {
     });
   }
 
+  private static class UserTypeListCell extends ListCell<UserType> {
+    @Override
+    public void updateItem(UserType item, boolean empty) {
+      super.updateItem(item, empty);
+      if (empty || item == null) {
+        setText(null);
+      } else {
+        setText(item.description);
+      }
+    }
+  }
+
   private static class UserListCell extends ListCell<User> {
     @Override
     protected void updateItem(User user, boolean empty) {
@@ -70,10 +92,11 @@ public class ManageUsersController {
   void add() {
     try {
       SceneManager.openNewModal("pages/admin/userForm.fxml", "Adicionar Utilizador", true);
+
+      refreshList(filterUsers.getValue());
     } catch (Exception ignored) {
       SceneManager.openErrorAlert("Erro", "Não foi possível criar um novo utilizador");
     }
-    refreshList();
   }
 
   @FXML
@@ -84,21 +107,20 @@ public class ManageUsersController {
     }
 
     try {
-      FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource("pages/admin/userForm.fxml"));
-      Scene scene = new Scene(fxmlLoader.load());
-      Stage stage = new Stage();
-      stage.setScene(scene);
-      stage.setTitle("Editar Utilizador");
-      stage.centerOnScreen();
-      UserFormController controller = fxmlLoader.getController();
-      controller.enableEdit(usersList.getSelectionModel().getSelectedItem());
-      stage.showAndWait();
+      SceneManager.openNewModal(
+              "pages/admin/userForm.fxml",
+              "Editar Utilizador",
+              true,
+              controller -> {
+                UserFormController userFormController = (UserFormController) controller;
+                userFormController.enableEdit(usersList.getSelectionModel().getSelectedItem());
+              }
+      );
+
+      refreshList(filterUsers.getValue());
     } catch (Exception ignored) {
       SceneManager.openErrorAlert("Erro", "Não foi possível editar o utilizador");
     }
-
-
-    refreshList();
   }
 
   @FXML
@@ -112,21 +134,36 @@ public class ManageUsersController {
     if(!response) { return; }
 
     UserRepository userRepository = UserRepository.getInstance();
+    AnimalCenterRepository animalCenterRepository = AnimalCenterRepository.getInstance();
+    UserType currentUserType = userRepository.findById(currentUser).getType();
+    if(currentUserType == UserType.Staff){
+      for (AnimalCenter center : animalCenterRepository.getEntities()) {
+        if (center.getEmployees().contains(currentUser)) {
+          center.getEmployees().remove((Integer) currentUser);
+          animalCenterRepository.update(center);
+          break;
+        }
+      }
+    }
     userRepository.delete(currentUser);
+
+
     try {
       userRepository.save();
+      if(currentUserType == UserType.Staff) { animalCenterRepository.save(); }
+
+      refreshList(filterUsers.getValue());
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
-
-    refreshList();
   }
 
-  protected void refreshList() {
+  protected void refreshList(UserType type) {
     UserRepository userRepository = UserRepository.getInstance();
+    List<User> userList = new ArrayList<>(userRepository.getByType(type));
+    userList.remove(userRepository.getSelectedUser());
 
-    usersList.getItems().clear();
-    usersList.getItems().addAll(userRepository.getAllUsers());
+    usersList.getItems().setAll(userList);
     currentUser = -1;
   }
 }
