@@ -29,6 +29,8 @@ public class ViewAppointmentsController {
   Label serviceType;
   @FXML
   Label date;
+  @FXML
+  Button cancelButton;
 
   @FXML
   private void initialize() {
@@ -48,7 +50,10 @@ public class ViewAppointmentsController {
     statusComboBox.setCellFactory(tc -> new AppointmentStatusListCell());
     statusComboBox.setButtonCell(new AppointmentStatusListCell());
     statusComboBox.setValue(AppointmentStatus.Scheduled);
-    statusComboBox.setOnAction((event -> refreshList(statusComboBox.getValue())));
+    statusComboBox.setOnAction((event -> {
+      refreshList(statusComboBox.getValue());
+      cancelButton.setDisable(true);
+    }));
 
     appointmentsList.setCellFactory(param -> new AppointmentListCell());
 
@@ -65,11 +70,14 @@ public class ViewAppointmentsController {
         employee.setText(String.format("Funcionário: %s %s", _employee.getFirstName(), _employee.getLastName()));
         serviceType.setText(String.format("Tipo de serviço: %s", serviceRepository.findById(newValue.getServiceID())));
         date.setText("Data: " + newValue.getDate());
+        if(statusComboBox.getValue() == AppointmentStatus.Scheduled)
+          cancelButton.setDisable(false);
       } else {
         provider.setText("Prestador: ");
         employee.setText("Funcionário: ");
         serviceType.setText("Tipo de serviço: ");
         date.setText("Data: ");
+        cancelButton.setDisable(true);
       }
     });
   }
@@ -79,6 +87,30 @@ public class ViewAppointmentsController {
     SceneManager.openNewModal("pages/client/scheduleAppointment.fxml", "Nova marcação", true);
 
     refreshList(statusComboBox.getValue());
+  }
+
+  @FXML
+  protected void cancelAppointment() {
+    boolean response = SceneManager.openConfirmationAlert(
+        "Cancelar marcação",
+        "Tem a certeza que deseja cancelar esta marcação?"
+    );
+    if (response) {
+      AppointmentRepository appointmentRepository = AppointmentRepository.getInstance();
+
+      Appointment appointment = appointmentRepository
+          .findById(appointmentsList.getSelectionModel().getSelectedItem().getId());
+
+      appointment.setStatus(AppointmentStatus.Cancelled);
+
+      try {
+        appointmentRepository.save();
+      } catch (Exception ignored) {
+        SceneManager.openErrorAlert("Erro", "Não foi possível cancelar a sua consulta");
+      }
+
+      refreshList(statusComboBox.getValue());
+    }
   }
 
   protected void refreshList(AppointmentStatus status) {
@@ -124,8 +156,8 @@ public class ViewAppointmentsController {
 
         setText(
             provider.getFirstName() + " " + provider.getLastName()
-            + " - " + employee.getFirstName() + " " + employee.getLastName()
-            + " (" + appointment.getDate() + ")"
+                + " - " + employee.getFirstName() + " " + employee.getLastName()
+                + " (" + appointment.getDate() + ")"
         );
       }
     }

@@ -20,7 +20,8 @@
         </VBox>
         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="16.0">
             <Button mnemonicParsing="false" onAction="#newAppointment" text="Adicionar"/>
-            <Button mnemonicParsing="false" text="Remover"/>
+            <Button mnemonicParsing="false" onAction="#cancelAppointment" text="Cancelar" fx:id="cancelButton"
+                    disable="true"/>
         </HBox>
     </VBox>
 </ScrollPane>
