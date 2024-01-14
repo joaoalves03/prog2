@@ -161,7 +161,6 @@ public class ScheduleAppointmentController {
 
   @FXML
   protected void submit() {
-    UserRepository userRepository = UserRepository.getInstance();
     AppointmentRepository appointmentRepository = AppointmentRepository.getInstance();
 
     appointmentRepository.add(new Appointment(
@@ -169,7 +168,7 @@ public class ScheduleAppointmentController {
         providerComboBox.getSelectionModel().getSelectedItem().getId(),
         serviceComboBox.getSelectionModel().getSelectedItem().getId(),
         employeeComboBox.getSelectionModel().getSelectedItem().getId(),
-        userRepository.getSelectedUser().getId(),
+        clientComboBox.getSelectionModel().getSelectedItem().getId(),
         datePicker.getValue()
     ));
 
