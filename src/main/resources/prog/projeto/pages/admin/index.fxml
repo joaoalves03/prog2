@@ -13,8 +13,8 @@
         <VBox styleClass="content">
             <Label styleClass="welcome-label" text="Bem vindo!"/>
             <FlowPane hgap="10.0" vgap="10.0">
-                <Button mnemonicParsing="false" onAction="#openModal" text="Gerir Marcações"
-                        userData="pages/admin/userManagement..fxml"/>
+                <Button mnemonicParsing="false" onAction="#openModal" text="Gerir utilizadores"
+                        userData="pages/admin/userManagement.fxml"/>
             </FlowPane>
         </VBox>
     </ScrollPane>
