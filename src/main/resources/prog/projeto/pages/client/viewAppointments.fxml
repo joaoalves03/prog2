@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -16,12 +17,18 @@
             <Label fx:id="employee" text="Funcionário:"/>
             <Label fx:id="serviceType" text="Tipo de serviço:"/>
             <Label fx:id="date" text="Data:"/>
-            <!-- TODO: Add notes and extra products -->
+            <Label fx:id="notes" text="Notas: "/>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="1000.0" text="Produtos extra: "/>
+            <ListView fx:id="extraProductsList" minWidth="0.0" prefHeight="100.0" prefWidth="200.0">
+                <VBox.margin>
+                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+                </VBox.margin>
+            </ListView>
         </VBox>
         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="16.0">
             <Button mnemonicParsing="false" onAction="#newAppointment" text="Adicionar"/>
-            <Button mnemonicParsing="false" onAction="#cancelAppointment" text="Cancelar" fx:id="cancelButton"
-                    disable="true"/>
+            <Button fx:id="cancelButton" disable="true" mnemonicParsing="false" onAction="#cancelAppointment"
+                    text="Cancelar"/>
         </HBox>
     </VBox>
 </ScrollPane>

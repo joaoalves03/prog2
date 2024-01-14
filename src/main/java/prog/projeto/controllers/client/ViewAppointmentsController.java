@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import prog.projeto.SceneManager;
 import prog.projeto.models.Appointment;
 import prog.projeto.models.AppointmentStatus;
+import prog.projeto.models.Extra;
 import prog.projeto.models.User;
 import prog.projeto.repositories.AppointmentRepository;
 import prog.projeto.repositories.ServiceRepository;
@@ -31,6 +32,10 @@ public class ViewAppointmentsController {
   Label date;
   @FXML
   Button cancelButton;
+  @FXML
+  Label notes;
+  @FXML
+  ListView<Extra> extraProductsList;
 
   @FXML
   private void initialize() {
@@ -69,14 +74,19 @@ public class ViewAppointmentsController {
         provider.setText(String.format("Prestador: %s %s", _provider.getFirstName(), _provider.getLastName()));
         employee.setText(String.format("Funcionário: %s %s", _employee.getFirstName(), _employee.getLastName()));
         serviceType.setText(String.format("Tipo de serviço: %s", serviceRepository.findById(newValue.getServiceID())));
-        date.setText("Data: " + newValue.getDate());
-        if(statusComboBox.getValue() == AppointmentStatus.Scheduled)
+        date.setText(String.format("Data: %s", newValue.getDate()));
+        notes.setText(String.format("Notas: %s", newValue.getNotes()));
+        extraProductsList.getItems().clear();
+        extraProductsList.getItems().addAll(newValue.getExtraProducts());
+        if (statusComboBox.getValue() == AppointmentStatus.Scheduled)
           cancelButton.setDisable(false);
       } else {
         provider.setText("Prestador: ");
         employee.setText("Funcionário: ");
         serviceType.setText("Tipo de serviço: ");
         date.setText("Data: ");
+        notes.setText("Notas: ");
+        extraProductsList.getItems().clear();
         cancelButton.setDisable(true);
       }
     });
