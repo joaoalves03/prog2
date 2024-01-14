@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="16.0" styleClass="background" stylesheets="@../../assets/styles/global.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.projeto.controllers.staff.ExtraProductsFormController">
+    <Label text="Produtos extra" />
+    <Label nodeOrientation="RIGHT_TO_LEFT" text="Nome: ">
+        <graphic>
+            <TextField fx:id="nameField" nodeOrientation="LEFT_TO_RIGHT" />
+        </graphic>
+    </Label>
+    <Label nodeOrientation="RIGHT_TO_LEFT" text="Preço: ">
+        <graphic>
+            <TextField fx:id="priceField" nodeOrientation="LEFT_TO_RIGHT" />
+        </graphic>
+    </Label>
+    <Label nodeOrientation="RIGHT_TO_LEFT" text="Quantidade: ">
+        <graphic>
+            <TextField fx:id="quantityField" nodeOrientation="LEFT_TO_RIGHT" />
+        </graphic>
+    </Label>
+    <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="16.0">
+        <Button mnemonicParsing="false" text="Cancelar" onAction="#close"/>
+        <Button mnemonicParsing="false" text="Submeter" onAction="#submit"/>
+    </HBox>
+    <padding>
+        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+    </padding>
+</VBox>

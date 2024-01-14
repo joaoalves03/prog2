@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: -background-900"
+            stylesheets="@../../assets/styles/modal.css" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="prog.projeto.controllers.staff.StaffAppointmentsController">
+    <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="background">
+        <ComboBox fx:id="statusComboBox" prefWidth="150.0"/>
+        <ListView fx:id="appointmentsList" prefHeight="250.0" prefWidth="400.0"/>
+        <VBox fx:id="informationBox" prefWidth="100.0">
+            <Label text="Informação da Marcação"/>
+            <Label fx:id="provider" text="Prestador:"/>
+            <Label fx:id="employee" text="Funcionário:"/>
+            <Label fx:id="serviceType" text="Tipo de serviço:"/>
+            <Label fx:id="date" text="Data:"/>
+            <Label fx:id="notes" text="Notas: "/>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="1000.0" text="Produtos extra: "/>
+            <ListView fx:id="extraProductsList" minWidth="0.0" prefHeight="100.0" prefWidth="200.0">
+                <VBox.margin>
+                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+                </VBox.margin>
+            </ListView>
+        </VBox>
+        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="16.0">
+            <Button mnemonicParsing="false" text="Confirmar" disable="true"/>
+            <Button fx:id="cancelButton" disable="true" mnemonicParsing="false" onAction="#cancelAppointment"
+                    text="Cancelar"/>
+            <Button mnemonicParsing="false" text="Alterar notas" disable="true" onAction="#setNotes"/>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0">
+            <Button mnemonicParsing="false" text="Adicionar produtos extra" disable="true"
+                    onAction="#addExtraProducts"/>
+        </HBox>
+    </VBox>
+</ScrollPane>
