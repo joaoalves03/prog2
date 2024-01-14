@@ -11,16 +11,30 @@
             <ToggleGroup fx:id="userType"/>
         </fx:define>
         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="8.0">
-            <RadioButton mnemonicParsing="false" text="Cliente" toggleGroup="$userType" selected="true"/>
-            <RadioButton mnemonicParsing="false" text="Prestador" toggleGroup="$userType"/>
-            <RadioButton mnemonicParsing="false" text="Admin" toggleGroup="$userType"/>
+            <RadioButton mnemonicParsing="false" text="Cliente" toggleGroup="$userType" selected="true" onAction="#disableStaff"/>
+            <RadioButton mnemonicParsing="false" text="Prestador" toggleGroup="$userType" onAction="#disableStaff"/>
+            <RadioButton mnemonicParsing="false" text="Funcionário" toggleGroup="$userType" onAction="#enableStaff"/>
+            <RadioButton mnemonicParsing="false" text="Admin" toggleGroup="$userType" onAction="#disableStaff"/>
         </HBox>
-
         <fx:include fx:id="registerForm" source="../../widgets/register-form.fxml"/>
+
+        <HBox fx:id="staffExtra" alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="8.0">
+            <Label nodeOrientation="RIGHT_TO_LEFT" text="Prestador:">
+                <graphic>
+                    <ComboBox fx:id="providerComboBox" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0"/>
+                </graphic>
+            </Label>
+            <Label nodeOrientation="RIGHT_TO_LEFT" text="Local de recolha: " fx:id="animalCenterLabel" visible="false">
+                <graphic>
+                    <ComboBox fx:id="animalCenterComboBox" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0"/>
+                </graphic>
+            </Label>
+        </HBox>
 
         <HBox alignment="CENTER_RIGHT" spacing="10.0">
             <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#closeWindow" text="Cancelar"/>
             <Button mnemonicParsing="false" styleClass="primary" onAction="#save" text="Guardar"/>
         </HBox>
+
     </VBox>
 </ScrollPane>

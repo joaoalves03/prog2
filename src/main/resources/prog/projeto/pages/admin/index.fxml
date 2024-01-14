@@ -15,9 +15,12 @@
             <FlowPane hgap="10.0" vgap="10.0">
                 <Button mnemonicParsing="false" onAction="#openModal" text="Gerir utilizadores"
                         userData="pages/admin/userManagement.fxml"/>
-                <!--TODO: do some actual shit with this button-->
                 <Button mnemonicParsing="false" onAction="#openModal" text="Gerir Serviços"
                         userData="pages/provider/serviceView.fxml"/>
+                <Button mnemonicParsing="false" onAction="#openModal" text="Gerir Locais de recolha"
+                        userData="pages/admin/animalCenterView.fxml"/>
+                <Button mnemonicParsing="false" onAction="#openModal" text="Gerir Marcações"
+                        userData="pages/admin/viewAppointments.fxml"/>
             </FlowPane>
         </VBox>
     </ScrollPane>

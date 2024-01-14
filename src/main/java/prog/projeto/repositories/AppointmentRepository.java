@@ -16,6 +16,10 @@ public class AppointmentRepository extends Repository<Appointment> {
     return instance;
   }
 
+  public List<Appointment> getAll() {
+    return this.entities.values().stream().toList();
+  }
+
   public List<Appointment> getByClient(int id) {
     return this.entities.values().stream().filter(
         x -> x.getClientID() == id
