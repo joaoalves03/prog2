@@ -1,7 +1,9 @@
 package prog.projeto.controllers.staff;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -82,5 +84,14 @@ public class StaffIndexController {
         appointmentsToday.getChildren().add(createCard(appointment));
       }
     }
+  }
+
+  @FXML
+  protected void openModal(ActionEvent event){
+    Button node = (Button) event.getSource();
+    String scenePath = (String) node.getUserData();
+    String title = node.getText();
+
+    SceneManager.openNewModal(scenePath, title, true);
   }
 }
