@@ -9,7 +9,12 @@
 
     <fx:include source="../../widgets/header.fxml"/>
 
-    <FlowPane styleClass="content">
-        <Label text="you are staff nice" />
-    </FlowPane>
+    <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
+        <VBox styleClass="content">
+            <Label styleClass="welcome-label" text="Bem vindo!" />
+            <FlowPane hgap="10.0" vgap="10.0">
+                <Label text="You are Staff" />
+            </FlowPane>
+        </VBox>
+    </ScrollPane>
 </VBox>
