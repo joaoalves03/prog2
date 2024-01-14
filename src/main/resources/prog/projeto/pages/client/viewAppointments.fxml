@@ -8,6 +8,7 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="prog.projeto.controllers.client.ViewAppointmentsController">
     <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="background">
+        <ComboBox fx:id="statusComboBox" prefWidth="150.0"/>
         <ListView fx:id="appointmentsList" prefHeight="250.0" prefWidth="400.0"/>
         <VBox fx:id="informationBox" prefWidth="100.0">
             <Label text="Informação da Marcação"/>
@@ -15,7 +16,6 @@
             <Label fx:id="employee" text="Funcionário:"/>
             <Label fx:id="serviceType" text="Tipo de serviço:"/>
             <Label fx:id="date" text="Data:"/>
-            <Label fx:id="status" text="Estado:"/>
             <!-- TODO: Add notes and extra products -->
         </VBox>
         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="16.0">

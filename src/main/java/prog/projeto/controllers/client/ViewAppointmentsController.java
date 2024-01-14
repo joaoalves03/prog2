@@ -1,28 +1,26 @@
 package prog.projeto.controllers.client;
 
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.stage.Stage;
 import prog.projeto.SceneManager;
 import prog.projeto.models.Appointment;
+import prog.projeto.models.AppointmentStatus;
 import prog.projeto.models.User;
 import prog.projeto.repositories.AppointmentRepository;
 import prog.projeto.repositories.ServiceRepository;
 import prog.projeto.repositories.UserRepository;
 
 public class ViewAppointmentsController {
-
+  @FXML
+  ComboBox<AppointmentStatus> statusComboBox;
   @FXML
   ListView<Appointment> appointmentsList;
-
   @FXML
   VBox informationBox;
-
   @FXML
   Label provider;
   @FXML
@@ -31,9 +29,6 @@ public class ViewAppointmentsController {
   Label serviceType;
   @FXML
   Label date;
-  @FXML
-  Label status;
-
 
   @FXML
   private void initialize() {
@@ -49,9 +44,15 @@ public class ViewAppointmentsController {
       close();
     }
 
+    statusComboBox.setItems(FXCollections.observableArrayList(AppointmentStatus.values()));
+    statusComboBox.setCellFactory(tc -> new AppointmentStatusListCell());
+    statusComboBox.setButtonCell(new AppointmentStatusListCell());
+    statusComboBox.setValue(AppointmentStatus.Scheduled);
+    statusComboBox.setOnAction((event -> refreshList(statusComboBox.getValue())));
+
     appointmentsList.setCellFactory(param -> new AppointmentListCell());
 
-    refreshList();
+    refreshList(AppointmentStatus.Scheduled);
 
     appointmentsList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
@@ -64,13 +65,11 @@ public class ViewAppointmentsController {
         employee.setText(String.format("Funcionário: %s %s", _employee.getFirstName(), _employee.getLastName()));
         serviceType.setText(String.format("Tipo de serviço: %s", serviceRepository.findById(newValue.getServiceID())));
         date.setText("Data: " + newValue.getDate());
-        status.setText("Estado: " + newValue.getStatus().description);
       } else {
         provider.setText("Prestador: ");
         employee.setText("Funcionário: ");
         serviceType.setText("Tipo de serviço: ");
         date.setText("Data: ");
-        status.setText("Estado: ");
       }
     });
   }
@@ -79,22 +78,37 @@ public class ViewAppointmentsController {
   protected void newAppointment() {
     SceneManager.openNewModal("pages/client/scheduleAppointment.fxml", "Nova marcação", true);
 
-    refreshList();
+    refreshList(statusComboBox.getValue());
   }
 
-  protected void refreshList() {
+  protected void refreshList(AppointmentStatus status) {
     AppointmentRepository appointmentRepository = AppointmentRepository.getInstance();
     UserRepository userRepository = UserRepository.getInstance();
 
     appointmentsList.getItems().clear();
     appointmentsList.getItems().addAll(
-        appointmentRepository.getByClient(userRepository.getSelectedUser().getId())
+        appointmentRepository
+            .getByClient(userRepository.getSelectedUser().getId())
+            .stream().filter(x -> x.getStatus() == status)
+            .toList()
     );
   }
 
   protected void close() {
     Stage stage = (Stage) appointmentsList.getScene().getWindow();
     stage.close();
+  }
+
+  private static class AppointmentStatusListCell extends ListCell<AppointmentStatus> {
+    @Override
+    public void updateItem(AppointmentStatus item, boolean empty) {
+      super.updateItem(item, empty);
+      if (empty || item == null) {
+        setText(null);
+      } else {
+        setText(item.description);
+      }
+    }
   }
 
   private static class AppointmentListCell extends ListCell<Appointment> {
