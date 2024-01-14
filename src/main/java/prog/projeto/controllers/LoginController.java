@@ -46,7 +46,6 @@ public class LoginController {
           case ServiceProvider -> SceneManager.switchScene(stage, "pages/provider/index.fxml");
           case Staff -> SceneManager.switchScene(stage, "pages/staff/index.fxml");
           case Admin -> SceneManager.switchScene(stage, "pages/admin/index.fxml");
-          default -> System.out.println("Welp guess you're staying in login page");
         }
       } else {
         throw new Exception();
