@@ -11,6 +11,7 @@ import javafx.stage.Modality;
 import javafx.stage.StageStyle;
 
 import java.util.Objects;
+import java.util.function.Consumer;
 
 public class SceneManager {
   public static void openNewWindow(String sceneName, boolean maximized) {
@@ -29,9 +30,39 @@ public class SceneManager {
       stage.setMaximized(maximized);
       stage.show();
     } catch (Exception e){
-      System.out.println("openNewWindow (SceneManager): " + e.getMessage());
+      System.out.println("openNewWindow (SceneManager): " + e.getCause());
     }
   }
+
+  public static void openNewModal(String sceneName, String title, boolean movable, Consumer<Object> handler) {
+    try {
+      FXMLLoader fxmlLoader = new FXMLLoader(PetCareApplication.class.getResource(sceneName));
+      Scene scene = new Scene(fxmlLoader.load());
+
+      Stage stage = new Stage();
+      stage.setScene(scene);
+      stage.setTitle(title);
+      stage.getIcons().clear();
+      stage.getIcons().add(getAppIcon());
+      if(!movable) {
+        stage.initStyle(StageStyle.UNDECORATED);
+      }
+      stage.initModality(Modality.APPLICATION_MODAL);  // This makes the new window modal
+      stage.centerOnScreen();
+
+      Object controller = fxmlLoader.getController();
+
+      if (handler != null) {
+        handler.accept(controller);
+      }
+
+      stage.showAndWait();
+    } catch (Exception e) {
+      System.out.println("openNewModal (SceneManager): " + e.getCause());
+    }
+  }
+
+
 
   public static void openNewModal(String sceneName, String title, boolean movable) {
     try {
@@ -50,7 +81,7 @@ public class SceneManager {
       stage.centerOnScreen();
       stage.showAndWait();
     } catch (Exception e) {
-      System.out.println("openNewModal (SceneManager): " + e.getMessage());
+      System.out.println("openNewModal (SceneManager): " + e.getCause());
     }
   }
 
@@ -74,7 +105,7 @@ public class SceneManager {
       stage.centerOnScreen();
       stage.show();
     } catch (Exception e) {
-      System.out.println("switchScene (SceneManager): " + e.getMessage());
+      System.out.println("switchScene (SceneManager): " + e.getCause());
     }
   }
 
