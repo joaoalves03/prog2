@@ -26,14 +26,22 @@
             </ListView>
         </VBox>
         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="16.0">
-            <Button mnemonicParsing="false" text="Confirmar" disable="true"/>
+            <Button mnemonicParsing="false" text="Confirmar" disable="true" fx:id="confirmButton"
+                    onAction="#confirmAppointment"/>
             <Button fx:id="cancelButton" disable="true" mnemonicParsing="false" onAction="#cancelAppointment"
                     text="Cancelar"/>
-            <Button mnemonicParsing="false" text="Alterar notas" disable="true" onAction="#setNotes"/>
+            <Button mnemonicParsing="false" text="Alterar notas" disable="true" onAction="#setNotes"
+                    fx:id="changeNotesButton"/>
         </HBox>
         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0">
-            <Button mnemonicParsing="false" text="Adicionar produtos extra" disable="true"
-                    onAction="#addExtraProducts"/>
+            <Button mnemonicParsing="false" text="Adicionar produto extra" disable="true"
+                    fx:id="addExtraProductButton"
+                    onAction="#addExtraProduct"/>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0">
+            <Button mnemonicParsing="false" text="Remover produtos extra" disable="true"
+                    fx:id="removeExtraProductButton"
+                    onAction="#removeExtraProduct"/>
         </HBox>
     </VBox>
 </ScrollPane>

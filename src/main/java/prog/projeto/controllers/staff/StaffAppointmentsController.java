@@ -40,6 +40,14 @@ public class StaffAppointmentsController {
   Label notes;
   @FXML
   ListView<Extra> extraProductsList;
+  @FXML
+  Button addExtraProductButton;
+  @FXML
+  Button removeExtraProductButton;
+  @FXML
+  Button changeNotesButton;
+  @FXML
+  Button confirmButton;
 
   @FXML
   private void initialize() {
@@ -82,8 +90,17 @@ public class StaffAppointmentsController {
         notes.setText(String.format("Notas: %s", newValue.getNotes()));
         extraProductsList.getItems().clear();
         extraProductsList.getItems().addAll(newValue.getExtraProducts());
-        if (statusComboBox.getValue() == AppointmentStatus.Scheduled)
+        changeNotesButton.setDisable(false);
+        if (statusComboBox.getValue() != AppointmentStatus.Complete
+            && statusComboBox.getValue() != AppointmentStatus.Cancelled) {
+          addExtraProductButton.setDisable(false);
+        }
+        if (statusComboBox.getValue() == AppointmentStatus.Scheduled) {
+          confirmButton.setDisable(false);
           cancelButton.setDisable(false);
+        } else if (statusComboBox.getValue() == AppointmentStatus.AwaitingPayment) {
+          confirmButton.setDisable(false);
+        }
       } else {
         provider.setText("Prestador: ");
         employee.setText("Funcionário: ");
@@ -92,8 +109,15 @@ public class StaffAppointmentsController {
         notes.setText("Notas: ");
         extraProductsList.getItems().clear();
         cancelButton.setDisable(true);
+        confirmButton.setDisable(true);
+        addExtraProductButton.setDisable(true);
+        changeNotesButton.setDisable(true);
       }
     });
+
+    extraProductsList.getSelectionModel().selectedItemProperty().addListener(
+        (observable, oldValue, newValue) -> removeExtraProductButton.setDisable(newValue == null)
+    );
   }
 
   @FXML
@@ -145,7 +169,7 @@ public class StaffAppointmentsController {
   }
 
   @FXML
-  protected void addExtraProducts() {
+  protected void addExtraProduct() {
     try {
       FXMLLoader fxmlLoader = new FXMLLoader(
           PetCareApplication.class.getResource("pages/staff/extraProductsForm.fxml")
@@ -164,6 +188,45 @@ public class StaffAppointmentsController {
     } catch (Exception e) {
       SceneManager.openErrorAlert("Erro", "Não foi possível adicionar produto extra");
     }
+  }
+
+  @FXML
+  protected void confirmAppointment() {
+    AppointmentRepository appointmentRepository = AppointmentRepository.getInstance();
+    Appointment appointment = appointmentsList.getSelectionModel().getSelectedItem();
+
+    String message = statusComboBox.getValue() == AppointmentStatus.Scheduled
+        ? "Deseja definir esta marcação como \"Por pagar\"?"
+        : "Deseja completar esta marcação?";
+
+    boolean response = SceneManager.openConfirmationAlert(
+        "Confirmação",
+        message
+    );
+
+    if (response) {
+      appointment.setStatus(statusComboBox.getValue() == AppointmentStatus.Scheduled
+          ? AppointmentStatus.AwaitingPayment
+          : AppointmentStatus.Complete
+      );
+
+      try {
+        appointmentRepository.save();
+      } catch (Exception e) {
+        SceneManager.openErrorAlert("Erro", "Não foi possível efetuar esta ação");
+      }
+
+      refreshList(statusComboBox.getValue());
+    }
+  }
+
+  @FXML
+  protected void removeExtraProduct() {
+    Extra extra = extraProductsList.getSelectionModel().getSelectedItem();
+    Appointment appointment = appointmentsList.getSelectionModel().getSelectedItem();
+
+    appointment.getExtraProducts().remove(extra);
+    refreshList(statusComboBox.getValue());
   }
 
   protected void refreshList(AppointmentStatus status) {
