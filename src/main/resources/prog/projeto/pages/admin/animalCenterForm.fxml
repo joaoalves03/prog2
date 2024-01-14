@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<ScrollPane xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@../../assets/styles/modal.css" style="-fx-background-color: -background-900"
+            fx:controller="prog.projeto.controllers.admin.AnimalCenterFormController">
+    <VBox alignment="CENTER" spacing="8.0" styleClass="background">
+        <Label text="Local de recolha e entrega de animais">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="address" promptText="Morada"/>
+        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="16.0">
+            <TextField fx:id="city" promptText="Cidade" HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="phone" promptText="Telefone" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <ComboBox fx:id="serviceType" prefWidth="250.0" promptText="Tipo de serviço"/>
+        <Button mnemonicParsing="false" onAction="#save" text="Guardar" styleClass="primary"/>
+        <padding>
+            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
+        </padding>
+    </VBox>
+</ScrollPane>
