@@ -15,7 +15,6 @@
         <VBox styleClass="content">
             <Label styleClass="welcome-label" text="Bem vindo!" />
             <FlowPane hgap="10.0" vgap="10.0">
-                <!-- TODO: Chnage to a specific page for staff -->
                 <Button mnemonicParsing="false" onAction="#openModal" text="Gerir Marcações"
                         userData="pages/staff/staffAppointmentsView.fxml"/>
             </FlowPane>

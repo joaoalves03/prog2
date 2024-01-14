@@ -10,17 +10,6 @@ import prog.projeto.models.UserType;
 import prog.projeto.repositories.AnimalCenterRepository;
 import prog.projeto.repositories.UserRepository;
 
-
-/*
-
-    TODO: select the animal center id
-    Add the user, then in the animal center employee list, add the new user's id
-
- */
-
-
-
-
 public class StaffFormController {
   @FXML
   Button cancelButton;
