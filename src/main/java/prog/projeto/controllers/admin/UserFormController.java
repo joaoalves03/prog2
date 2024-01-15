@@ -149,7 +149,7 @@ public class UserFormController {
             registerFormController.phone.getText(),
             registerFormController.cc.getText(),
             registerFormController.nif.getText(),
-            userRepository.findById(userId).getStatus()
+            userRepository.findById(userId) != null ? userRepository.findById(userId).getStatus() : true
     );
 
     // Check if email was changed
